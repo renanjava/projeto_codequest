@@ -1,0 +1,5 @@
+Ideias iniciais
+ - Guardar todas as questões numa tabela banco
+ 	- Tabela de Questões com id
+ 	- Tabela de Respostas com id
+ 	- Tabela da junção dos dois
