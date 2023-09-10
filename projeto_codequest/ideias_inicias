@@ -1,5 +1,15 @@
 Ideias iniciais
+
  - Guardar todas as questões numa tabela banco
  	- Tabela de Questões com id
  	- Tabela de Respostas com id
  	- Tabela da junção dos dois
+ 	
+ - O objetivo é tornar o game infinito, ou seja,
+ 	 a cada execução, o jogo é diferente da ultima execução
+ 	 
+ Em estrutura de dados, é sorteado vários números, totalizando em 15,
+ o programa pega todos esses números e ordena. Após o jogador ordenar
+ os números gerados, o programa compara com os números ordenados corretamente
+ 	- Para o usuário, os números são em formato de botão em uma tela,
+ 	ele clica em cada botão do menor para o maior para ordená-los
