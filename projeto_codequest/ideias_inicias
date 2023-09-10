@@ -8,6 +8,10 @@ Ideias iniciais
  - O objetivo é tornar o game infinito, ou seja,
  	 a cada execução, o jogo é diferente da ultima execução
  	 
+O objetivo do jogo é responder todas as perguntas e resolver todos os desafios.
+Cada resposta errada nas perguntas ou errar o desafio perde 1 ponto de vida,
+o jogador tem 3 pontos de vida, se chegar em 0 ele perde.
+ 	 
  No início do game, é gerado várias portas onde o player pode interagir, algumas delas
  são os desafios das disciplinas e outras são portas comuns. 
  Exemplificando: 50 portas no total - 10 são perguntas aleatórias sobre as disciplinas,
