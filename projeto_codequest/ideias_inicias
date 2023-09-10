@@ -16,6 +16,24 @@ o jogador tem 3 pontos de vida, se chegar em 0 ele perde.
  são os desafios das disciplinas e outras são portas comuns. 
  Exemplificando: 50 portas no total - 10 são perguntas aleatórias sobre as disciplinas,
   4 são os desafios e 36 são portas comuns (a cada execução as portas mudarão de posição)
+  
+  2 desafios concluídos ele recebe uma conquista:   "Solucionador Júnior"
+  4 desafios concluídos ele recebe uma conquista:   "Solucionador Sênior"
+  5 perguntas respondidas corretamente, conquista:  "Consultor Júnior"
+  10 perguntas respondidas corretamente, conquista: "Consultor Sênior"
+  
+  as conquistas aparecem em formato de pop-up
+  
+  são 4 salas no total, ao completar o desafio da sala, ele pode avançar pra próxima sala.
+  Caso queira, ele pode voltar pra sala anterior caso queira explorar para encontrar perguntas
+  na última sala, quando ele completar o último desafio, ele pode avançar, ao avançar,
+  ele conclui o jogo, porém, caso tenha entre 5 a 10 perguntas respondidas, 
+  ele recebe 2 estrelas e não recebe o certificado CodeQuest - Master.
+  caso tenha menos que 5 perguntas respondidas, 1 estrela
+  caso tenha 10 perguntas respondidas e 4 desafios concluídos, porém, 1 vida perdida,
+  ele também não recebe o certificado CodeQuest - Master, mas ganha 3 estrelas
+  em todos os casos onde ele não recebe o certificado, ele recebe um feedback construtivo
+  de acordo com o que faltou
  	 
  Em estrutura de dados, é sorteado vários números, totalizando em 15,
  o programa pega todos esses números e ordena. Após o jogador ordenar
