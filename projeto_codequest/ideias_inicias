@@ -8,6 +8,11 @@ Ideias iniciais
  - O objetivo é tornar o game infinito, ou seja,
  	 a cada execução, o jogo é diferente da ultima execução
  	 
+ No início do game, é gerado várias portas onde o player pode interagir, algumas delas
+ são os desafios das disciplinas e outras são portas comuns. 
+ Exemplificando: 50 portas no total - 10 são perguntas aleatórias sobre as disciplinas,
+  4 são os desafios e 36 são portas comuns (a cada execução as portas mudarão de posição)
+ 	 
  Em estrutura de dados, é sorteado vários números, totalizando em 15,
  o programa pega todos esses números e ordena. Após o jogador ordenar
  os números gerados, o programa compara com os números ordenados corretamente
