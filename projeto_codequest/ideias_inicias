@@ -23,6 +23,7 @@ o jogador tem 3 pontos de vida, se chegar em 0 ele perde.
   10 perguntas respondidas corretamente, conquista: "Consultor Sênior"
   
   as conquistas aparecem em formato de pop-up
+  as portas ficam estáticas, só o que tem dentro muda
   
   são 4 salas no total, ao completar o desafio da sala, ele pode avançar pra próxima sala.
   Caso queira, ele pode voltar pra sala anterior caso queira explorar para encontrar perguntas
