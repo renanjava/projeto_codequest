@@ -40,3 +40,7 @@ o jogador tem 3 pontos de vida, se chegar em 0 ele perde.
  os números gerados, o programa compara com os números ordenados corretamente
  	- Para o usuário, os números são em formato de botão em uma tela,
  	ele clica em cada botão do menor para o maior para ordená-los
+ 	
+ Em testes de software, criaremos uma classe com vários métodos com parâmetros.
+ nos testes unitários, será gerado dados de entradas aleatórios onde o jogador
+ precisa acertar o resultado esperado (no assertEquals/assertThrows)
