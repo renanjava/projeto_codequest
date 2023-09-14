@@ -17,9 +17,12 @@ o jogador tem 3 pontos de vida, se chegar em 0 ele perde.
  Exemplificando: 50 portas no total - 10 são perguntas aleatórias sobre as disciplinas,
   4 são os desafios e 36 são portas comuns (a cada execução as portas mudarão de posição)
   
-  2 desafios concluídos ele recebe uma conquista:   "Solucionador Júnior"
+  1 desafio concluído ele recebe uma conquista: 	"Solucionador Júnior"
+  2 desafios concluídos ele recebe uma conquista:   "Solucionador Pleno"
   4 desafios concluídos ele recebe uma conquista:   "Solucionador Sênior"
-  5 perguntas respondidas corretamente, conquista:  "Consultor Júnior"
+  
+  1 pergunta respondida corretamente, conquista:  	"Consultor Júnior"
+  5 perguntas respondidas corretamente, conquista:  "Consultor Pleno"
   10 perguntas respondidas corretamente, conquista: "Consultor Sênior"
   
   as conquistas aparecem em formato de pop-up
@@ -45,3 +48,13 @@ o jogador tem 3 pontos de vida, se chegar em 0 ele perde.
  Em testes de software, criaremos uma classe com vários métodos com parâmetros.
  nos testes unitários, será gerado dados de entradas aleatórios onde o jogador
  precisa acertar o resultado esperado (no assertEquals/assertThrows)
+
+ Em Java, quando cair no desafio de java o jogador é redirecionado pra um labirinto onde
+ tem que achar todos os diamantes, cada diamante é um conceito em Java (Polimofismo,
+ Interface, Enum..) e no final o jogador precisa conectar os diamantes nas definições 
+ de cada conceito
+
+ Em Banco de Dados, criaremos vários tipos de triggers com comportamentos diferentes
+ que faz inserção em outra tabela. Quando a trigger for acionada, o jogador precisa
+ saber os valores de cada coluna que foi inserida na tabela pela trigger
+ Obs: os dados de entrada do evento que aciona a trigger serão aleatórios
