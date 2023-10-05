@@ -1,0 +1,19 @@
+planejamento
+
+tela inicial será uma sequência de demonstração do funcionamento do game
+após a demonstração, o usuário terá que digitar seu nome e salvar
+após isso redireciona para outra tela e terá o botão PLAY
+o botão play redireciona pra tela do jogo onde irá aparecer as vidas dele em formato de coração
+	preenchido, total 3 corações e cada erro ele perde um
+50 portas no total, toda execução elas irão estar no mesmo lugar, porém, o conteúdo delas muda
+colocar uma porta fechada com um botao em baixo, ao clicar, a porta abre e o botão não é mais clicável
+ao desbloquear uma conquista,é mostrado um pop-up no canto da tela e o jogador pode ver seu perfil
+cada disciplina terá uma temática diferente, SALA 01 - JAVA com cores e/ou imagens que representam
+ao avançar pra próxima fase, terá um botão do lado do nome da sala pra avançar/voltar de acordo
+	com as salas que o jogador liberou
+o jogador pode concluir o jogo sem liberar todas as conquistas, porém, ele vai receber menos estrelas
+ao finalizar o jogo, o sistema registra numa tabela no banco de dados a pontuação com o nome
+obs: na hora de por o nome, não pode ser o mesmo de algum outro que já concluiu o game
+
+restrições de estrelas no final "ideias_iniciais"
+feedback construtivos "ideias_inicias"
