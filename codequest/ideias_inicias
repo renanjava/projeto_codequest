@@ -1,0 +1,60 @@
+Ideias iniciais
+
+ - Guardar todas as questões numa tabela banco
+ 	- Tabela de Questões com id
+ 	- Tabela de Respostas com id
+ 	- Tabela da junção dos dois
+ 	
+ - O objetivo é tornar o game infinito, ou seja,
+ 	 a cada execução, o jogo é diferente da ultima execução
+ 	 
+O objetivo do jogo é responder todas as perguntas e resolver todos os desafios.
+Cada resposta errada nas perguntas ou errar o desafio perde 1 ponto de vida,
+o jogador tem 3 pontos de vida, se chegar em 0 ele perde.
+ 	 
+ No início do game, é gerado várias portas onde o player pode interagir, algumas delas
+ são os desafios das disciplinas e outras são portas comuns. 
+ Exemplificando: 50 portas no total - 10 são perguntas aleatórias sobre as disciplinas,
+  4 são os desafios e 36 são portas comuns (a cada execução as portas mudarão de posição)
+  
+  1 desafio concluído ele recebe uma conquista: 	"Solucionador Júnior"
+  2 desafios concluídos ele recebe uma conquista:   "Solucionador Pleno"
+  4 desafios concluídos ele recebe uma conquista:   "Solucionador Sênior"
+  
+  1 pergunta respondida corretamente, conquista:  	"Consultor Júnior"
+  5 perguntas respondidas corretamente, conquista:  "Consultor Pleno"
+  10 perguntas respondidas corretamente, conquista: "Consultor Sênior"
+  
+  as conquistas aparecem em formato de pop-up
+  as portas ficam estáticas, só o que tem dentro muda
+  
+  são 4 salas no total, ao completar o desafio da sala, ele pode avançar pra próxima sala.
+  Caso queira, ele pode voltar pra sala anterior caso queira explorar para encontrar perguntas
+  na última sala, quando ele completar o último desafio, ele pode avançar, ao avançar,
+  ele conclui o jogo, porém, caso tenha entre 5 a 10 perguntas respondidas, 
+  ele recebe 2 estrelas e não recebe o certificado CodeQuest - Master.
+  caso tenha menos que 5 perguntas respondidas, 1 estrela
+  caso tenha 10 perguntas respondidas e 4 desafios concluídos, porém, 1 vida perdida,
+  ele também não recebe o certificado CodeQuest - Master, mas ganha 3 estrelas
+  em todos os casos onde ele não recebe o certificado, ele recebe um feedback construtivo
+  de acordo com o que faltou
+ 	 
+ Em estrutura de dados, é sorteado vários números, totalizando em 15,
+ o programa pega todos esses números e ordena. Após o jogador ordenar
+ os números gerados, o programa compara com os números ordenados corretamente
+ 	- Para o usuário, os números são em formato de botão em uma tela,
+ 	ele clica em cada botão do menor para o maior para ordená-los
+ 	
+ Em testes de software, criaremos uma classe com vários métodos com parâmetros.
+ nos testes unitários, será gerado dados de entradas aleatórios onde o jogador
+ precisa acertar o resultado esperado (no assertEquals/assertThrows)
+
+ Em Java, quando cair no desafio de java o jogador é redirecionado pra um labirinto onde
+ tem que achar todos os diamantes, cada diamante é um conceito em Java (Polimofismo,
+ Interface, Enum..) e no final o jogador precisa conectar os diamantes nas definições 
+ de cada conceito
+
+ Em Banco de Dados, criaremos vários tipos de triggers com comportamentos diferentes
+ que faz inserção em outra tabela. Quando a trigger for acionada, o jogador precisa
+ saber os valores de cada coluna que foi inserida na tabela pela trigger
+ Obs: os dados de entrada do evento que aciona a trigger serão aleatórios
