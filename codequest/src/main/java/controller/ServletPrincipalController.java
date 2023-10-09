@@ -9,11 +9,11 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-@WebServlet(urlPatterns = { "/ServletInicio" })
-public class ServletInicioController extends HttpServlet {
+@WebServlet(urlPatterns = { "/ServletPrincipal" })
+public class ServletPrincipalController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
-    public ServletInicioController() {
+    public ServletPrincipalController() {
         super();
     }
 
@@ -29,7 +29,8 @@ public class ServletInicioController extends HttpServlet {
 		case "JOGAR": redireciona = request.getRequestDispatcher("principal/jogar.jsp"); break;
 		case "TUTORIAL": redireciona = request.getRequestDispatcher("principal/tutorial.jsp"); break;
 		case "CRÉDITOS": redireciona = request.getRequestDispatcher("principal/creditos.jsp"); break;
-		default: redireciona = request.getRequestDispatcher("principal/erro.jsp"); break;
+		case "VOLTAR": redireciona = request.getRequestDispatcher("/index.jsp"); break;
+		default: redireciona = request.getRequestDispatcher("/www.google.com"); break;
 		}
 
 		redireciona.forward(request, response);
