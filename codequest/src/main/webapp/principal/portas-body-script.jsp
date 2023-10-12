@@ -16,7 +16,7 @@
             
             var progressoElement = document.querySelector('.progresso');
             var valorPorcentagem = parseFloat(progressoElement.textContent);
-            document.getElementById("progressbar").style.width = valorPorcentagem + "%";
+            document.getElementById("progressbarPortas").style.width = valorPorcentagem + "%";
         }
         
         function calcularPorcentagem(numero, total) {

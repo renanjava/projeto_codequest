@@ -34,9 +34,17 @@
             <span class="close" onclick="fecharModal('progressoModal')">&times;</span>
             <h2>Progresso</h2>
             
-            <h2>Portas Abertas: <div class="contador">0</div>/160</h2>
+            <h2>Portas abertas: <div class="contador">0</div>/160</h2>
             <div class="barra-progresso">
-        		<div class="progresso" id="progressbar"></div>
+        		<div class="progresso" id="progressbarPortas"></div>
+    		</div>
+    		<h2>Perguntas acertadas: <div class="contador">0</div>/40</h2>
+            <div class="barra-progresso">
+        		<div class="progresso" id="progressbarPerguntas"></div>
+    		</div>
+    		<h2>Desafios resolvidos: <div class="contador">0</div>/4</h2>
+            <div class="barra-progresso">
+        		<div class="progresso" id="progressbarDesafios"></div>
     		</div>
         </div>
     </div>
