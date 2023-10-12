@@ -8,8 +8,9 @@ img {
 	height: auto;
 }
 button {
-    font-size: 8px; /* Tamanho da fonte do texto do botão */
-    padding: 2px 3px; /* Espaçamento interno do botão (ajuste conforme necessário) */
+    font-size: 8px;
+    padding: 2px 3px;
+    border-radius: 8px;
 }
 #centralizar{
 	margin-left: auto;

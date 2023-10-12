@@ -35,6 +35,10 @@
             background-color: #2980B9;
             color: #FFFFFF;
         }
+        .btn-primary{
+        	background-color: black;
+        	color: white;
+        }
     </style>
 </head>
 
@@ -48,13 +52,27 @@
                 <form action="ServletIniciar" method="post">
                     <div class="mb-3">
                         <label for="nome" class="form-label">Nome:</label>
-                        <input type="text" class="form-control" id="nome" placeholder="Digite seu nome de usuário"
+                        <input type="text" class="form-control" name="campoNome" placeholder="Digite seu nome de usuário"
                             required>
                     </div>
                     <div class="mb-3">
                         <label for="email" class="form-label">Email:</label>
-                        <input type="email" class="form-control" id="email" placeholder="Digite seu email"
+                        <input type="email" class="form-control" name="campoEmail" placeholder="Digite seu email"
                             required>
+                    </div>
+                    <div class="mb-3">
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="campoGenero" id="masculino" value="masculino" required>
+                            <label class="form-check-label" for="masculino">
+                                Masculino
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="campoGenero" id="feminino" value="feminino" required>
+                            <label class="form-check-label" for="feminino">
+                                Feminino
+                            </label>
+                        </div>
                     </div>
                     <button type="submit" class="btn btn-primary">Jogar</button>
                 </form>
