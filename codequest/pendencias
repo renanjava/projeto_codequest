@@ -1,7 +1,3 @@
-pegar um template onde contém uma estrutura de menu, lá vai ter a disciplina da sala,
-	o perfil, quantidade de portas abertas/total, logout, conquistas atuais/totais
-ao dar logout, nada é salvo no banco, apenas quando o jogador conclui o game
-
 quando for uma pergunta, ele abre uma janela (sem fechar a principal) onde terá a pergunta
 	e abaixo, 4 ou 5 opções de resposta, se ele acertar, a caixa fica verde e as outras vermelhas
 	a que clicar, ficará um X para ele saber se acertou ou não

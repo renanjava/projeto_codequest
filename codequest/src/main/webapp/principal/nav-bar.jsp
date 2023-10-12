@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <head>
 <jsp:include page="head.jsp"></jsp:include>
+<jsp:include page="barra-progresso-style.jsp"></jsp:include>
 </head>
 <body>
 	<nav class="navbar">
@@ -13,7 +14,8 @@
                 <li><a id="progresso" onclick="mostrarModal('progressoModal')">Progresso</a></li>
                 <li><a id="conquistas" onclick="mostrarModal('conquistasModal')">Conquistas</a></li>
                 <li><a href="#">Vidas</a></li>
-                <li><a href="#">Logout</a></li>
+                <li><a href="<%= request.getContextPath() %>/ServletPrincipal?acao=Logout"><i
+						class="ti-layout-sidebar-left"></i>Logout</a></li>
             </ul>
         </div>
     </nav>
@@ -32,6 +34,10 @@
         <div class="modal-content">
             <span class="close" onclick="fecharModal('conquistasModal')">&times;</span>
             <h2>Conquistas</h2>
+            <h2>Portas Abertas: <%= request.getSession().getAttribute("portas-jogador") %>/160</h2>
+            <div class="barra-progresso">
+        		<div class="progresso">50%</div>
+    		</div>
         </div>
     </div>
 

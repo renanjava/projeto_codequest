@@ -6,6 +6,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import model.ModelJogador;
 
 import java.io.IOException;
@@ -29,6 +30,7 @@ public class ServletIniciarController extends HttpServlet {
 		request.getSession().setAttribute("nome-jogador", jogador.getNome());
 		request.getSession().setAttribute("email-jogador", jogador.getEmail());
 		request.getSession().setAttribute("genero-jogador", jogador.getGenero());
+		request.getSession().setAttribute("portas-jogador", jogador.getQtdPortasAbertas());
 		
 		RequestDispatcher redireciona = request.getRequestDispatcher("principal/game.jsp");
 		redireciona.forward(request, response);

@@ -18,6 +18,14 @@ public class ServletPrincipalController extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String acao = request.getParameter("acao");
+		
+		if(acao != null && !acao.isEmpty() && acao.equalsIgnoreCase("Logout")) {
+			request.getSession().invalidate();
+			RequestDispatcher redireciona = request.getRequestDispatcher("index.jsp");
+			redireciona.forward(request, response);
+		}else 
+			doPost(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
