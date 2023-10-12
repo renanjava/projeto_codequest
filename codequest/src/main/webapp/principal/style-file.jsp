@@ -2,17 +2,11 @@
 	pageEncoding="UTF-8"%>
 
 <style type="text/css">
-body {
-    background-color: #2C3E50;
-}
 
 p {
 	padding: 1px;
 }
 
-td {
-	padding: 11px
-}
 
 #allthethings {
 	width: 0px;

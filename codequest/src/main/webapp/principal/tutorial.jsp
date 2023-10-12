@@ -3,8 +3,8 @@
 <!DOCTYPE html>
 <html>
 <head>
+<jsp:include page="/principal/title-and-favicon.jsp"></jsp:include>
 <meta charset="UTF-8">
-<title>Tutorial</title>
 </head>
 <body>
 

@@ -1,8 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <head>
-<title>CodeQuest Game</title>
-<link rel="icon" href="icon/codequest.ico" type="image/x-icon">
+<jsp:include page="/principal/title-and-favicon.jsp"></jsp:include>
 <jsp:include page="principal/style-file.jsp"></jsp:include>
 <jsp:include page="principal/arte.jsp"></jsp:include>
 </head>

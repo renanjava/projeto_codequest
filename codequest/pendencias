@@ -12,3 +12,6 @@ mesma coisa com o desafio, abre uma janela (sem fechar a principal) e ao conclui
 	
 conferir se dá pra colocar algum som, dai é possível por ao abrir porta, ao acertar
 	pergunta/desafio, conquistas e tela final de certificado
+	
+gerar os id das portas automaticamente, porém, ordená-las logo em seguida:
+	se o id for maior que um tal elemento e não encontrar o id, então encerra a busca
