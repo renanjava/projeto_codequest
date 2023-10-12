@@ -4,6 +4,7 @@
 <title>CodeQuest Game</title>
 <link rel="icon" href="icon/codequest.ico" type="image/x-icon">
 <jsp:include page="principal/style-file.jsp"></jsp:include>
+<jsp:include page="principal/arte.jsp"></jsp:include>
 </head>
 <body>
 	<div id="allthethings">

@@ -5,9 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CodeQuest Game</title>
-	<link rel="icon" href="icon/codequest.ico" type="image/x-icon">
+	<link rel="icon" href="/icon/codequest.ico" type="image/x-icon">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
-
+	<jsp:include page="arte.jsp"></jsp:include>
     <style type="text/css">
         :root {
             --cor-primaria: #3498db;
@@ -30,6 +30,7 @@
         }
 
         .card {
+        	top: 1px;
             width: 100%;
             max-width: 400px; /* Defina o tamanho máximo do card conforme necessário */
         }
