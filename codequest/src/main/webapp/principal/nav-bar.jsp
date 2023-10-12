@@ -3,6 +3,13 @@
 <head>
 <jsp:include page="head.jsp"></jsp:include>
 <jsp:include page="barra-progresso-style.jsp"></jsp:include>
+<style type="text/css">
+
+.contador {
+	display: inline;
+}
+
+</style>
 </head>
 <body>
 	<nav class="navbar">
@@ -11,8 +18,8 @@
                 <a href="#">Sala de Programação Orientada a Objetos</a>
             </div>
             <ul class="nav-links">
-                <li><a id="progresso" onclick="mostrarModal('progressoModal')">Progresso</a></li>
-                <li><a id="conquistas" onclick="mostrarModal('conquistasModal')">Conquistas</a></li>
+                <li><a id="progressoLink" onclick="mostrarModal('progressoModal')">Progresso</a></li>
+                <li><a id="perfilLink" onclick="mostrarModal('perfilModal')">Perfil</a></li>
                 <li><a href="#">Vidas</a></li>
                 <li><a href="<%= request.getContextPath() %>/ServletPrincipal?acao=Logout"><i
 						class="ti-layout-sidebar-left"></i>Logout</a></li>
@@ -20,24 +27,27 @@
         </div>
     </nav>
 
+    
+    
     <div id="progressoModal" class="modal">
         <div class="modal-content">
             <span class="close" onclick="fecharModal('progressoModal')">&times;</span>
             <h2>Progresso</h2>
-            <h2>Nome: <%= request.getSession().getAttribute("nome-jogador") %></h2>
-            <h2>Email: <%= request.getSession().getAttribute("email-jogador") %></h2>
-            <h2>Gênero: <%= request.getSession().getAttribute("genero-jogador") %></h2>
+            
+            <h2>Portas Abertas: <div class="contador">0</div>/160</h2>
+            <div class="barra-progresso">
+        		<div class="progresso" id="progressbar"></div>
+    		</div>
         </div>
     </div>
     
-    <div id="conquistasModal" class="modal">
+    <div id="perfilModal" class="modal">
         <div class="modal-content">
-            <span class="close" onclick="fecharModal('conquistasModal')">&times;</span>
-            <h2>Conquistas</h2>
-            <h2>Portas Abertas: <%= request.getSession().getAttribute("portas-jogador") %>/160</h2>
-            <div class="barra-progresso">
-        		<div class="progresso">50%</div>
-    		</div>
+            <span class="close" onclick="fecharModal('perfilModal')">&times;</span>
+            <h2>Perfil</h2>
+            <h2>Nome: <%= request.getSession().getAttribute("nome-jogador") %></h2>
+            <h2>Email: <%= request.getSession().getAttribute("email-jogador") %></h2>
+            <h2>Gênero: <%= request.getSession().getAttribute("genero-jogador") %></h2>
         </div>
     </div>
 
