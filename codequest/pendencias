@@ -14,6 +14,7 @@ gerar os id das portas automaticamente, porém, ordená-las logo em seguida:
 	
 pintar o background das imagens das portas
 
-conquistas aparece uma barrinha pra chegar em uma determinada conquista
-
 no final do jogo deve ter 5 estrelas no total
+
+no Modal Progresso, no fim, uma categoria de Conquista e lá vai ter mais progressbar
+	para alcançar determinadas conquistas e também um icon para cada conquista
