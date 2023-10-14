@@ -15,6 +15,11 @@
             if(verificarIdPortaSorteada(id))
             	mostrarModal('respostasModal');
         }
+
+    	function mostrarConquista(mensagem){
+    		document.getElementById('popUpConquista').style.display = 'block';
+    		document.querySelector('#campoConquista').textContent = 'Agora você é um '+mensagem;
+    	}
         
         function calcularPorcentagem(numero, total) {
             return ((numero / total) * 100);
@@ -35,6 +40,7 @@
         			atualizarProgresso(contadorRespostas, 1, 'CJunior');
         			atualizarProgresso(contadorRespostas, 20, 'CPleno');
         			atualizarProgresso(contadorRespostas, 40, 'CSenior');
+        			mostrarConquista('Consultor Júnior');
                 }
         		
         		atualizarProgresso(contadorRespostas, 40, 'Respostas');

@@ -15,6 +15,19 @@ html, body {
 body {
 	background: linear-gradient(to bottom, #2c3e50, #0d2959);
 }
+
+.pop-up-conquista {
+	display: none;
+	position: fixed;
+	background-color: gray;
+	width: 300px;
+	padding: 10px;
+	text-align: center;
+	border: 1px solid #ccc;
+	border-radius: 10px;
+	box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
+	top: 80px;
+}
 </style>
 </head>
 <body>
@@ -22,5 +35,10 @@ body {
 	<jsp:include page="nav-bar.jsp"></jsp:include>
 	<jsp:include page="portas-body-table.jsp"></jsp:include>
 	<jsp:include page="portas-body-script.jsp"></jsp:include>
+
+	<div class="pop-up-conquista" id="popUpConquista">
+		<h2>Conquista Desbloqueada!</h2>
+		<p id="campoConquista"></p>
+	</div>
 </body>
 </html>
