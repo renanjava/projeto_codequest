@@ -10,6 +10,7 @@
 	margin-top: 20px;
 }
 
+.progressoPerguntas,
 .progresso {
 	width: 0%;
 	height: 100%;

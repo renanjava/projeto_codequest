@@ -4,7 +4,7 @@
 <jsp:include page="head.jsp"></jsp:include>
 <jsp:include page="barra-progresso-style.jsp"></jsp:include>
 <style type="text/css">
-
+.contadorPerguntas,
 .contador {
 	display: inline;
 }
@@ -23,13 +23,67 @@
     display: inline;
 }
 
+.perguntasModal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.4);
+}
+
+.modal-content-perguntas {
+    background-color: black;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+}
+
+.closePerguntas {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.closePerguntas:hover,
+.closePerguntas:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.options {
+    margin-top: 20px;
+}
+
+.optionBtn {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    background-color: blue;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.optionBtn:hover {
+    background-color: gray;
+}
+
 </style>
 </head>
 <body>
 	<nav class="navbar">
         <div class="navbar-container">
             <div class="logo">
-                <a href="#">Sala de Programação Orientada a Objetos</a>
+                <a href="#">Sala de Estrutura de Dados</a>
             </div>
             <ul class="nav-links">
             	<li><a id="perfilLink" onclick="mostrarModal('perfilModal')">Perfil</a></li>
@@ -63,9 +117,9 @@
             <div class="barra-progresso">
         		<div class="progresso" id="progressbarPortas"></div>
     		</div>
-    		<h2>Perguntas acertadas: <div class="contador">0</div>/40</h2>
+    		<h2>Perguntas acertadas: <div class="contadorPerguntas">0</div>/40</h2>
             <div class="barra-progresso">
-        		<div class="progresso" id="progressbarPerguntas"></div>
+        		<div class="progressoPerguntas" id="progressbarPerguntas"></div>
     		</div>
     		<h2>Desafios resolvidos: <div class="contador">0</div>/4</h2>
             <div class="barra-progresso">
@@ -73,6 +127,21 @@
     		</div>
         </div>
     </div>
+    
+    <div id="perguntasModal" class="perguntasModal">
+    <div class="modal-content-perguntas">
+        <span class="closePerguntas" onclick="fecharModal('perguntasModal')">&times;</span>
+        <h2>Pergunta:</h2>
+        <p>Qual é a sua resposta?</p>
+        <div class="options">
+            <button id="resposta1" class="optionBtn" onclick="verificarResposta(id)">Resposta 1</button>
+            <button id="resposta2" class="optionBtn" onclick="verificarResposta(id)">Resposta 2</button>
+            <button id="resposta3" class="optionBtn" onclick="verificarResposta(id)">Resposta 3</button>
+            <button id="resposta4" class="optionBtn" onclick="verificarResposta(id)">Resposta 4</button>
+            <button id="resposta5" class="optionBtn" onclick="verificarResposta(id)">Resposta 5</button>
+        </div>
+    </div>
+</div>
     
    <script type="text/javascript">
     document.addEventListener("DOMContentLoaded", function() {
