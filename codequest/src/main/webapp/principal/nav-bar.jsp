@@ -124,6 +124,21 @@
             <div class="barra-progresso">
         		<div class="progresso" id="progressbarDesafios"></div>
     		</div>
+    		<p style="padding: 1px;"></p>
+    		<h2>Conquistas</h2>
+    		<p style="padding: 1px;"></p>
+    		<h2>Consultor Júnior - Respostas acertadas: <div class="contador" id="contCJunior">0</div>/1</h2>
+            <div class="barra-progresso">
+        		<div class="progresso" id="progressbarCJunior"></div>
+       		</div>
+       		<h2>Consultor Pleno - Respostas acertadas: <div class="contador" id="contCPleno">0</div>/20</h2>
+            <div class="barra-progresso">
+        		<div class="progresso" id="progressbarCPleno"></div>
+       		</div>
+       		<h2>Consultor Sênior - Respostas acertadas: <div class="contador" id="contCSenior">0</div>/40</h2>
+            <div class="barra-progresso">
+        		<div class="progresso" id="progressbarCSenior"></div>
+       		</div>
         </div>
     </div>
     
@@ -145,8 +160,6 @@
    <script type="text/javascript">
     document.addEventListener("DOMContentLoaded", function() {
         var generoJogador = '<%=request.getSession().getAttribute("genero-jogador")%>';
-        
-        console.log(generoJogador);
 
         if (generoJogador == "masculino") {
             document.getElementById("fotoPerfil").src = "<%= request.getContextPath()%>/icon/masculino.jpg";

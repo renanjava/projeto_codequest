@@ -2,23 +2,15 @@
     pageEncoding="UTF-8"%>
 <script>
 	let contadorPortas = 0;
-	let progressoPortas = 0;
-	let contadorRespostas = 0;
-	let progressoRespostas = 0;
+	let contadorRespostas = 0;	
+	let contadorDesafios = 0;
 	
         function alternarPorta(id) {
             document.getElementById("porta"+id).src = "icon/aberta.png";
             document.getElementById("botao"+id).disabled = true;
             
             contadorPortas++;
-            document.querySelector('#contPortas').textContent = contadorPortas;
-            
-            document.querySelector('#progressbarPortas')
-            	.textContent = calcularPorcentagem(contadorPortas, 160)+"%";
-            
-            var progressoPortasElement = document.querySelector('#progressbarPortas');
-            var valorPorcentagem = parseFloat(progressoPortasElement.textContent);
-            document.getElementById("progressbarPortas").style.width = valorPorcentagem + "%";
+            atualizarProgresso(contadorPortas, 160, 'Portas');
             
             if(verificarIdPortaSorteada(id))
             	mostrarModal('respostasModal');
@@ -36,16 +28,30 @@
         
         function verificarResposta(id){
         	if(id == "resposta3"){
+        		
         		contadorRespostas++;
-                document.querySelector('#contRespostas').textContent = contadorRespostas;
+        		
+        		if(contadorRespostas == 1){
+        			atualizarProgresso(contadorRespostas, 1, 'CJunior');
+        			atualizarProgresso(contadorRespostas, 20, 'CPleno');
+        			atualizarProgresso(contadorRespostas, 40, 'CSenior');
+                }
+        		
+        		atualizarProgresso(contadorRespostas, 40, 'Respostas');
                 
-                document.querySelector('#progressbarRespostas')
-                	.textContent = calcularPorcentagem(contadorRespostas, 40)+"%";
                 
-                var progressoRespostasElement = document.querySelector('#progressbarRespostas');
-                var valorPorcentagem = parseFloat(progressoRespostasElement.textContent);
-                document.getElementById("progressbarRespostas").style.width = valorPorcentagem + "%";
         	}
         	fecharModal('respostasModal');
         }
+ 
+        function atualizarProgresso(cont, valorMaximoPorcentagem, id){
+        	document.querySelector('#cont'+id).textContent = cont;
+            
+            document.querySelector('#progressbar'+id).textContent = calcularPorcentagem(cont, valorMaximoPorcentagem)+"%";
+            
+            var progressoRespostasElement = document.querySelector('#progressbar'+id);
+            var valorPorcentagem = parseFloat(progressoRespostasElement.textContent);
+            document.getElementById('progressbar'+id).style.width = valorPorcentagem + "%";
+        }
+
 </script>
