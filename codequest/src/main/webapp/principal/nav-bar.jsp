@@ -4,7 +4,6 @@
 <jsp:include page="head.jsp"></jsp:include>
 <jsp:include page="barra-progresso-style.jsp"></jsp:include>
 <style type="text/css">
-.contadorPerguntas,
 .contador {
 	display: inline;
 }
@@ -23,7 +22,7 @@
     display: inline;
 }
 
-.perguntasModal {
+.respostasModal {
     display: none;
     position: fixed;
     z-index: 1;
@@ -35,7 +34,7 @@
     background-color: rgba(0,0,0,0.4);
 }
 
-.modal-content-perguntas {
+.modal-content-respostas {
     background-color: black;
     margin: 15% auto;
     padding: 20px;
@@ -113,24 +112,24 @@
             <span class="close" onclick="fecharModal('progressoModal')">&times;</span>
             <h2>Progresso</h2>
             <p style="padding: 1px;"></p>
-            <h2>Portas abertas: <div class="contador">0</div>/160</h2>
+            <h2>Portas abertas: <div class="contador" id="contPortas">0</div>/160</h2>
             <div class="barra-progresso">
         		<div class="progresso" id="progressbarPortas"></div>
     		</div>
-    		<h2>Perguntas acertadas: <div class="contadorPerguntas">0</div>/40</h2>
+    		<h2>Respostas acertadas: <div class="contador" id="contRespostas">0</div>/40</h2>
             <div class="barra-progresso">
-        		<div class="progressoPerguntas" id="progressbarPerguntas"></div>
+        		<div class="progresso" id="progressbarRespostas"></div>
     		</div>
-    		<h2>Desafios resolvidos: <div class="contador">0</div>/4</h2>
+    		<h2>Desafios resolvidos: <div class="contador" id="contDesafios">0</div>/4</h2>
             <div class="barra-progresso">
         		<div class="progresso" id="progressbarDesafios"></div>
     		</div>
         </div>
     </div>
     
-    <div id="perguntasModal" class="perguntasModal">
-    <div class="modal-content-perguntas">
-        <span class="closePerguntas" onclick="fecharModal('perguntasModal')">&times;</span>
+    <div id="respostasModal" class="respostasModal">
+    <div class="modal-content-respostas">
+        <span class="closePerguntas" onclick="fecharModal('respostasModal')">&times;</span>
         <h2>Pergunta:</h2>
         <p>Qual é a sua resposta?</p>
         <div class="options">

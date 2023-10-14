@@ -11,17 +11,17 @@
             document.getElementById("botao"+id).disabled = true;
             
             contadorPortas++;
-            document.querySelector('.contador').textContent = contadorPortas;
+            document.querySelector('#contPortas').textContent = contadorPortas;
             
-            document.querySelector('.progresso')
+            document.querySelector('#progressbarPortas')
             	.textContent = calcularPorcentagem(contadorPortas, 160)+"%";
             
-            var progressoPortasElement = document.querySelector('.progresso');
+            var progressoPortasElement = document.querySelector('#progressbarPortas');
             var valorPorcentagem = parseFloat(progressoPortasElement.textContent);
             document.getElementById("progressbarPortas").style.width = valorPorcentagem + "%";
             
             if(verificarIdPortaSorteada(id))
-            	mostrarModal('perguntasModal');
+            	mostrarModal('respostasModal');
         }
         
         function calcularPorcentagem(numero, total) {
@@ -37,15 +37,15 @@
         function verificarResposta(id){
         	if(id == "resposta3"){
         		contadorRespostas++;
-                document.querySelector('.contadorPerguntas').textContent = contadorRespostas;
+                document.querySelector('#contRespostas').textContent = contadorRespostas;
                 
-                document.querySelector('.progressoPerguntas')
-                	.textContent = calcularPorcentagem(contadorRespostas, 160)+"%";
+                document.querySelector('#progressbarRespostas')
+                	.textContent = calcularPorcentagem(contadorRespostas, 40)+"%";
                 
-                var progressoRespostasElement = document.querySelector('.progressoPerguntas');
+                var progressoRespostasElement = document.querySelector('#progressbarRespostas');
                 var valorPorcentagem = parseFloat(progressoRespostasElement.textContent);
-                document.getElementById("progressbarPerguntas").style.width = valorPorcentagem + "%";
+                document.getElementById("progressbarRespostas").style.width = valorPorcentagem + "%";
         	}
-        	fecharModal('perguntasModal');
+        	fecharModal('respostasModal');
         }
 </script>
