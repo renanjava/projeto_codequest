@@ -19,6 +19,9 @@
     	function mostrarConquista(mensagem){
     		document.getElementById('popUpConquista').style.display = 'block';
     		document.querySelector('#campoConquista').textContent = 'Agora você é um '+mensagem;
+    		setTimeout(function() {
+    			document.getElementById('popUpConquista').style.display = "none";
+    			}, 2000);
     	}
         
         function calcularPorcentagem(numero, total) {
