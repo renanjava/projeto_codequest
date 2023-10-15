@@ -161,15 +161,12 @@
     document.addEventListener("DOMContentLoaded", function() {
         var generoJogador = '<%=request.getSession().getAttribute("genero-jogador")%>';
 
-        if (generoJogador == "masculino") {
+        if (generoJogador == "masculino") 
             document.getElementById("fotoPerfil").src = "<%= request.getContextPath()%>/icon/masculino.jpg";
-        } else if (generoJogador.toLowerCase() == "feminino") {
+        else
             document.getElementById("fotoPerfil").src = "<%= request.getContextPath()%>/icon/feminino.jpg";
-        } else {
-        	document.getElementById("fotoPerfil").src = "<%= request.getContextPath()%>/icon/feminino.jpg";
-        }
     });
-</script>
+	</script>
 
     <script>
         function mostrarModal(id) {

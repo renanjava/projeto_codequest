@@ -1,6 +1,4 @@
-quando for uma pergunta, ele abre uma janela (sem fechar a principal) onde terá a pergunta
-	e abaixo, 4 ou 5 opções de resposta, se ele acertar, a caixa fica verde e as outras vermelhas
-	a que clicar, ficará um X para ele saber se acertou ou não
+a caixa fica verde e as outras vermelhas a que clicar, ficará um X para ele saber se acertou ou não
 	
 mesma coisa com o desafio, abre uma janela (sem fechar a principal) e ao concluir acertando
 	o desafio, ele é redirecionado pra próxima sala de disciplina, porém, ele recebe uma
@@ -16,7 +14,10 @@ pintar o background das imagens das portas
 
 no final do jogo deve ter 5 estrelas no total
 
-no Modal Progresso, no fim, uma categoria de Conquista e lá vai ter mais progressbar
-	para alcançar determinadas conquistas e também um icon para cada conquista
+um icon para cada conquista
 	
 adaptar as mensagens e as conquistas de acordo com o gênero
+
+head do modal do desafio vai ter o botão de começar, body as instruções
+	ao clicar, o body agora vai ter 10 botões e o head do modal vai atualizar por segundos
+	
