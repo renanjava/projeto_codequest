@@ -158,14 +158,13 @@
     <div id="respostasModal" class="respostasModal">
     <div class="modal-content-respostas">
         <span class="closePerguntas" onclick="fecharModal('respostasModal')">&times;</span>
-        <h2>Pergunta:</h2>
-        <p>Qual é a sua resposta?</p>
+        <h2>Pergunta: <p>Qual é o operador usado para obter o valor de uma variável apontada por um ponteiro em C ?</p></h2>
         <div class="options">
-            <button id="resposta1" class="optionBtn" onclick="verificarResposta(id)">Resposta 1</button>
-            <button id="resposta2" class="optionBtn" onclick="verificarResposta(id)">Resposta 2</button>
-            <button id="resposta3" class="optionBtn" onclick="verificarResposta(id)">Resposta 3</button>
-            <button id="resposta4" class="optionBtn" onclick="verificarResposta(id)">Resposta 4</button>
-            <button id="resposta5" class="optionBtn" onclick="verificarResposta(id)">Resposta 5</button>
+            <button id="resposta1" class="optionBtn" onclick="verificarResposta(id)"><h2>*</h2></button>
+            <button id="resposta2" class="optionBtn" onclick="verificarResposta(id)"><h2>&</h2></button>
+            <button id="resposta3" class="optionBtn" onclick="verificarResposta(id)"><h2>$</h2></button>
+            <button id="resposta4" class="optionBtn" onclick="verificarResposta(id)"><h2>%</h2></button>
+            <button id="resposta5" class="optionBtn" onclick="verificarResposta(id)"><h2>sizeof</h2></button>
         </div>
     </div>
 </div>
