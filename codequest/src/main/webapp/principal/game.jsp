@@ -84,5 +84,11 @@ body {
             <div id="buttonDesafio"></div>
         </div>
     </div>
+    
+    <div id="resultadoDesafio" class="modalDesafio">
+        <div class="modal-content-desafio">
+            <h2>Resultado: <p class="contador" id="campoResultadoDesafio"></p></h2>
+        </div>
+    </div>
 </body>
 </html>

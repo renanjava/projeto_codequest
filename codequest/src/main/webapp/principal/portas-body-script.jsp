@@ -1,10 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <script>
 	let contadorPortas = 0;
 	let contadorRespostas = 0;	
 	let contadorDesafios = 0;
 	let numerosDesafioED = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
+	let numerosAuxiliar = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
+	let botoesClicadosDesafio = 0;
 	
         function alternarPorta(id) {
             document.getElementById("porta"+id).src = "icon/aberta.png";
@@ -13,7 +15,7 @@
             contadorPortas++;
             atualizarProgresso(contadorPortas, 160, 'Portas');
             
-            if(verificarIdPortaSorteada(id))
+            if(verificarIdPortaSorteada(id)){
             	if(id == 19){
             		mostrarModal('myModalDesafio');
             		
@@ -23,7 +25,9 @@
             	    modal.style.textAlign = 'center';
 
             	    for (var i = 1; i <= 20; i++) {
+            	    	(function(i) {
             	        var button = document.createElement("button");
+            	        button.id = 'botaoDesafio' + i;
             	        button.style.fontSize = '20px';
             	        button.style.padding = '15px 30px';
             	        button.style.width = '150px';
@@ -33,18 +37,33 @@
             	        
             	        do
             	        	var indiceArray = Math.floor(Math.random() * 20);
-            	        while(numerosDesafioED[indiceArray] == 99)
+            	        while(numerosAuxiliar[indiceArray] == 99)
 
-            	        button.innerText = numerosDesafioED[indiceArray];
+            	        button.innerText = numerosAuxiliar[indiceArray];
             	        buttonContainer.appendChild(button);
-            	        numerosDesafioED[indiceArray] = 99;
+            	        numerosAuxiliar[indiceArray] = 99;
 
             	        if (i % 5 === 0) {
             	            buttonContainer.appendChild(document.createElement("br"));
             	        }
             	        var cont = 15;
             	        iniciarContagem(cont);
-
+            	        
+            	        button.addEventListener("click", function() {
+            	        	var verificaIndiceVazio = 0;
+            	        	
+            	        	while(numerosAuxiliar[verificaIndiceVazio] != 99)
+            	        		verificaIndiceVazio++;
+            	        	
+            	        	numerosAuxiliar[verificaIndiceVazio] = document.getElementById("botaoDesafio"+i).innerText;
+            	        	
+            	        		
+            	        	botoesClicadosDesafio++;
+            	        	document.getElementById("botaoDesafio"+i).disabled = true;
+            	        });
+            	    	})(i);
+            	    	
+            	    	
             	        function atualizarCampo(cont) {
             	            return new Promise(function(resolve, reject) {
             	            	document.querySelector('#campoHeadDesafio').textContent = 
@@ -57,18 +76,39 @@
             	        }
 
             	        function iniciarContagem(cont) {
-            	            if (cont >= 0) {
+            	            if (cont >= 0 && botoesClicadosDesafio < 20) {
             	                atualizarCampo(cont).then(function() {
             	                    iniciarContagem(cont-1);
             	                });
-            	            }else
-            	            	fecharModal('myModalDesafio')
-            	        }
-            	        	
-            	        
+            	            }else{
+            	            	fecharModal('myModalDesafio');
+								mostrarModal('resultadoDesafio');
+								document.getElementById('campoResultadoDesafio').style.color = 'black';
+            	            	
+            	            	if(verificaVetores()){
+            	            		document.querySelector('#campoResultadoDesafio').textContent = 'Certo!';
+                	            	document.getElementById('campoResultadoDesafio').style.backgroundColor = 'green';
+                	            	
+            	            	}else{
+            	            		document.querySelector('#campoResultadoDesafio').textContent = 'Errado!';
+            	            		document.getElementById('campoResultadoDesafio').style.backgroundColor = 'black';
+            	            	}
+            	            		
+            	            }
+            	        }           	        
             	    }
             	}else
             		mostrarModal('respostasModal');
+            }
+            	
+        }
+        
+        function verificaVetores(){
+        	for(i = 0;i < 20;i++){
+        		if(numerosAuxiliar[i] != numerosDesafioED[i])
+        			return false;
+        	}
+        	return true;
         }
 
     	function mostrarConquista(mensagem){
