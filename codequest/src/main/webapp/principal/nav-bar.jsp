@@ -139,6 +139,19 @@
             <div class="barra-progresso">
         		<div class="progresso" id="progressbarCSenior"></div>
        		</div>
+    		<p style="padding: 1px;"></p>
+    		<h2>Solucionador Júnior - Desafios resolvidos: <div class="contador" id="contSJunior">0</div>/1</h2>
+            <div class="barra-progresso">
+        		<div class="progresso" id="progressbarSJunior"></div>
+       		</div>
+       		<h2>Solucionador Pleno - Desafios resolvidos: <div class="contador" id="contSPleno">0</div>/2</h2>
+            <div class="barra-progresso">
+        		<div class="progresso" id="progressbarSPleno"></div>
+       		</div>
+       		<h2>Solucionador Sênior - Desafios resolvidos: <div class="contador" id="contSSenior">0</div>/4</h2>
+            <div class="barra-progresso">
+        		<div class="progresso" id="progressbarSSenior"></div>
+       		</div>
         </div>
     </div>
     

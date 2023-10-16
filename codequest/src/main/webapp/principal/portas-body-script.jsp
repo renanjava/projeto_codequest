@@ -89,10 +89,23 @@
             	            		document.querySelector('#campoResultadoDesafio').textContent = 'Certo!';
                 	            	document.getElementById('campoResultadoDesafio').style.backgroundColor = 'green';
                 	            	
+                	            	contadorDesafios++;
+                	            	if(contadorDesafios > 0 && contadorDesafios < 5){
+                	           			if(contadorDesafios == 1){
+                    	        			atualizarProgresso(contadorDesafios, 1, 'SJunior');
+                    	        			setTimeout(function() {
+                    	        				mostrarConquista('Solucionador Júnior');
+                        	        		}, 2000);
+                	                	}
+                	            	atualizarProgresso(contadorDesafios, 4, id);
+                	            	}
             	            	}else{
             	            		document.querySelector('#campoResultadoDesafio').textContent = 'Errado!';
-            	            		document.getElementById('campoResultadoDesafio').style.backgroundColor = 'black';
+            	            		document.getElementById('campoResultadoDesafio').style.backgroundColor = 'red';
             	            	}
+            	            	setTimeout(function() {
+            	            		fecharModal('resultadoDesafio');
+            	        		}, 2000);
             	            		
             	            }
             	        }           	        
@@ -115,7 +128,7 @@
     		document.getElementById('popUpConquista').style.display = 'block';
     		document.querySelector('#campoConquista').textContent = 'Agora você é um '+mensagem;
     		setTimeout(function() {
-    			document.getElementById('popUpConquista').style.display = "none";
+    			document.getElementById('popUpConquista').style.display = 'none';
     			}, 2000);
     	}
         
