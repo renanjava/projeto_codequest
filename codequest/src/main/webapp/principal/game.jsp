@@ -98,5 +98,21 @@ body {
             <h2>Resultado: <p class="contador" id="campoResultadoDesafio"></p></h2>
         </div>
     </div>
+    
+    <div id="respostasModal" class="respostasModal">
+    <div class="modal-content-respostas">
+        <h2>Pergunta: <p>Qual é o operador usado para obter o valor de uma variável apontada por um ponteiro em C ?</p></h2>
+        <div class="options">
+            <button id="resposta1" class="optionBtn" onclick="verificarResposta(id)" enabled><h2>*</h2></button>
+            <button id="resposta2" class="optionBtn" onclick="verificarResposta(id)" enabled><h2>&</h2></button>
+            <button id="resposta3" class="optionBtn" onclick="verificarResposta(id)" enabled><h2>$</h2></button>
+            <button id="resposta4" class="optionBtn" onclick="verificarResposta(id)" enabled><h2>%</h2></button>
+            <button id="resposta5" class="optionBtn" onclick="verificarResposta(id)" enabled><h2>sizeof</h2></button>
+        </div>
+    </div>
+    
+    <script type="text/javascript">
+    	sortearPortas();
+    </script>
 </body>
 </html>

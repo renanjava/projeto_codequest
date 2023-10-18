@@ -7,6 +7,27 @@
 	let botoesClicadosDesafio = 0;
 	let numerosDesafioED = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
 	let numerosAuxiliar = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
+	let posicoesPortas = [];
+	let portaDesafio = 0;
+	
+	function sortearPortas(){
+		var numeroSorteado;
+		
+		for(var o = 0; o < 11; o++){
+			do{
+				var numeroExistente = false;
+			    numeroSorteado = parseInt(Math.random() * 41);
+			   
+			    for(var i = 0; i < 11; i++){
+					if(posicoesPortas[i] == numeroSorteado)
+						numeroExistente = true;
+			   	}
+		   }while(numeroExistente)
+		   posicoesPortas[o] = numeroSorteado;	   
+		}
+		portaDesafio = posicoesPortas[parseInt(Math.random() * 11)];
+		console.log(posicoesPortas);
+   }
 	
    function alternarPorta(id) {
        	document.getElementById("porta"+id).src = "icon/aberta.png";
@@ -15,9 +36,8 @@
        	contadorPortas++;
        	atualizarProgresso(contadorPortas, 160, 'Portas');
        
-		if(verificarIdPortaSorteada(id)){
-			
-			if(id == 19){
+		if(verificarPortaSorteada(id)){
+			if(portaDesafio == id){
 				mostrarModal('myModalInstrucoes');
 				document.getElementById("campoHeadInstrucoes").style.color = 'white';
 				document.querySelector('#campoHeadInstrucoes').textContent = 
@@ -25,13 +45,7 @@
 					'ordem crescente antes do tempo acabar';
 					
 				var botaoComecar = document.getElementById("botaoComecar");
-				botaoComecar.style.fontSize = '20px';
-				botaoComecar.style.padding = '15px 30px';
-				botaoComecar.style.width = '150px';
-				botaoComecar.style.height = '50px'
-				botaoComecar.style.fontFamily = 'Courier, monospace';
-				botaoComecar.style.fontWeight = 'bold';
-				botaoComecar.value = 'COMEÇAR';
+				botaoComecar = estruturaBotao(botaoComecar);
 				
 				botaoComecar.addEventListener("click", function() {
 					fecharModal('myModalInstrucoes');
@@ -46,12 +60,7 @@
 		       	    	(function(i) {
 			       	        var button = document.createElement("button");
 			       	        button.id = 'botaoDesafio' + i;
-			       	        button.style.fontSize = '20px';
-			       	        button.style.padding = '15px 30px';
-			       	        button.style.width = '150px';
-			       	        button.style.height = '50px'
-			       	        button.style.fontFamily = 'Courier, monospace';
-			       	        button.style.fontWeight = 'bold';
+			       	     	button = estruturaBotao(button);
 			       	        
 			       	        do
 			       	        	var indiceArray = Math.floor(Math.random() * 20);
@@ -113,7 +122,6 @@
 	  		document.querySelector('#campoResultadoDesafio').textContent = 'Certo!';
 	      	document.getElementById('campoResultadoDesafio').style.backgroundColor = 'green';
 	      	
-	      	console.log("Valor de contadorDesafios: " + contadorDesafios);
 	      	contadorDesafios++;
 	      	atualizarProgresso(contadorDesafios, 4, 'Desafios');
 	      	if(contadorDesafios > 0 && contadorDesafios < 5){
@@ -165,35 +173,56 @@
     	return ((numero / total) * 100);
 	}
    
-	function verificarIdPortaSorteada(id){
-		if(id == 20 || id == 19)
-			return true;	
+	function verificarPortaSorteada(id) {
+		for(var i = 0; i < posicoesPortas.length; i++){
+			if(posicoesPortas[i] == id){
+				posicoesPortas[i] = 99;
+				return true;
+			}
+		}
 		return false;
-   }
+	}
    
 	function verificarResposta(id){
 	   	
-	   	document.getElementById("resposta1").style.backgroundColor = 'green';
-	   	document.getElementById("resposta2").style.backgroundColor = 'red';
-	   	document.getElementById("resposta3").style.backgroundColor = 'red';
-	   	document.getElementById("resposta4").style.backgroundColor = 'red';
-	   	document.getElementById("resposta5").style.backgroundColor = 'red';
+		for(var i = 1; i <= 5; i++){
+			document.getElementById("resposta"+i).style.backgroundColor = (i == 1 ? 'green' : 'red');
+	       	document.getElementById("resposta"+i).disabled = true;
+		}
 	   	setTimeout(function() {
-	   		if(id == "resposta1"){
+	   		
+	   		if(id == "resposta1" && contadorRespostas < 40){
 		   		
 		   		contadorRespostas++;
 		   		atualizarProgresso(contadorRespostas, 40, 'Respostas');
 		   		
 		   		if(contadorRespostas == 1){
+		   			mostrarConquista('Consultor Júnior');
 		   			atualizarProgresso(contadorRespostas, 1, 'CJunior');
 		   			atualizarProgresso(contadorRespostas, 20, 'CPleno');
+		   			atualizarProgresso(contadorRespostas, 40, 'CSenior');	
+		   			
+		   		}else if(contadorRespostas > 1 && contadorRespostas < 21){
+		   			if(contadorRespostas == 20)
+			   			mostrarConquista('Consultor Pleno');
+
+		   			atualizarProgresso(contadorRespostas, 20, 'CPleno');
+		   			atualizarProgresso(contadorRespostas, 40, 'CSenior');	
+		   			
+		   		}else{
+		   			if(contadorRespostas == 40)
+		   				mostrarConquista('Consultor Sênior')
+		   				
 		   			atualizarProgresso(contadorRespostas, 40, 'CSenior');
-		   			mostrarConquista('Consultor Júnior');
-		           }
+		   		}
 		                 
 		   	}
-			fecharModal('respostasModal')
-			}, 2000);
+			fecharModal('respostasModal');
+			for(var i = 1; i <= 5; i++){
+				document.getElementById("resposta"+i).style.backgroundColor = 'blue';
+		       	document.getElementById("resposta"+i).disabled = false;
+			}
+		}, 2000);
 	}
 
 	function atualizarProgresso(cont, valorMaximoPorcentagem, id){
@@ -204,5 +233,16 @@
 	    var progressoRespostasElement = document.querySelector('#progressbar'+id);
 	    var valorPorcentagem = parseFloat(progressoRespostasElement.textContent);
 	    document.getElementById('progressbar'+id).style.width = valorPorcentagem + "%";
+	}
+	
+	function estruturaBotao(botao){
+		botao.style.fontSize = '20px';
+	    botao.style.padding = '15px 30px';
+	    botao.style.width = '150px';
+	    botao.style.height = '50px'
+	    botao.style.fontFamily = 'Courier, monospace';
+	    botao.style.fontWeight = 'bold';
+	   	
+	    return botao;
 	}
 </script>
