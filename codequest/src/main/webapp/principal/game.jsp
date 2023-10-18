@@ -51,20 +51,6 @@ body {
     width: 80%;
 }
 
-.close-desafio {
-    color: #aaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-}
-
-.close-desafio:hover,
-.close-desafio:focus {
-    color: black;
-    text-decoration: none;
-    cursor: pointer;
-}
-
 </style>
 </head>
 <body>
@@ -101,13 +87,13 @@ body {
     
     <div id="respostasModal" class="respostasModal">
     <div class="modal-content-respostas">
-        <h2>Pergunta: <p>Qual é o operador usado para obter o valor de uma variável apontada por um ponteiro em C ?</p></h2>
+        <h2>Pergunta: <p id="campoPergunta"></p></h2>
         <div class="options">
-            <button id="resposta1" class="optionBtn" onclick="verificarResposta(id)" enabled><h2>*</h2></button>
-            <button id="resposta2" class="optionBtn" onclick="verificarResposta(id)" enabled><h2>&</h2></button>
-            <button id="resposta3" class="optionBtn" onclick="verificarResposta(id)" enabled><h2>$</h2></button>
-            <button id="resposta4" class="optionBtn" onclick="verificarResposta(id)" enabled><h2>%</h2></button>
-            <button id="resposta5" class="optionBtn" onclick="verificarResposta(id)" enabled><h2>sizeof</h2></button>
+            <button id="resposta1" class="optionBtn" onclick="verificarResposta(id)" enabled><h2 id="campoResposta1"></h2></button>
+            <button id="resposta2" class="optionBtn" onclick="verificarResposta(id)" enabled><h2 id="campoResposta2"></h2></button>
+            <button id="resposta3" class="optionBtn" onclick="verificarResposta(id)" enabled><h2 id="campoResposta3"></h2></button>
+            <button id="resposta4" class="optionBtn" onclick="verificarResposta(id)" enabled><h2 id="campoResposta4"></h2></button>
+            <button id="resposta5" class="optionBtn" onclick="verificarResposta(id)" enabled><h2 id="campoResposta5"></h2></button>
         </div>
     </div>
     

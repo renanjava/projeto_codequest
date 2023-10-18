@@ -42,20 +42,6 @@
     width: 80%;
 }
 
-.closePerguntas {
-    color: #aaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-}
-
-.closePerguntas:hover,
-.closePerguntas:focus {
-    color: black;
-    text-decoration: none;
-    cursor: pointer;
-}
-
 .options {
     margin-top: 20px;
 }

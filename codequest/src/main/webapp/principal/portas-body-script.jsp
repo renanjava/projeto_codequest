@@ -26,7 +26,6 @@
 		   posicoesPortas[o] = numeroSorteado;	   
 		}
 		portaDesafio = posicoesPortas[parseInt(Math.random() * 11)];
-		console.log(posicoesPortas);
    }
 	
    function alternarPorta(id) {
@@ -90,8 +89,22 @@
 					var cont = 15;
 		       		iniciarContagem(cont);
 				});
-			}else
+			}else{
+				
+				var pergunta = 
+					'Qual é o operador usado para obter o valor de'+
+					' uma variavel apontada por um ponteiro em C ?';
+				
+				var respostas = ['*','&','$','%','sizeof'];
+				
+				document.querySelector('#campoPergunta').textContent = pergunta;
+				document.querySelector('#campoResposta1').textContent = respostas[0];
+				document.querySelector('#campoResposta2').textContent = respostas[1];
+				document.querySelector('#campoResposta3').textContent = respostas[2];
+				document.querySelector('#campoResposta4').textContent = respostas[3];
+				document.querySelector('#campoResposta5').textContent = respostas[4];
 	    		mostrarModal('respostasModal');
+			}
 		}
 	}
        	        
