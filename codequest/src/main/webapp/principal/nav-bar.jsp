@@ -62,19 +62,44 @@
     background-color: gray;
 }
 
+.navigation-buttons {
+    display: flex;
+}
+
+.navigation-btn {
+    background-color: white;
+    color: black;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+.navigation-btn:hover {
+    background-color: gray;
+}
+
+
 </style>
 </head>
 <body>
 	<nav class="navbar">
         <div class="navbar-container">
             <div class="logo">
-                <a href="#">Sala de Estrutura de Dados</a>
+                <a href="#" id="tituloSala"></a>
             </div>
+            
+	     	<div class="navigation-buttons">
+	        	<button class="navigation-btn" id="paginaAnteriorBtn">Anterior</button>
+	        	<button class="navigation-btn" id="proximaPaginaBtn">Próximo</button>
+	    	</div>
+            
             <ul class="nav-links">
             	<li><a id="perfilLink" onclick="mostrarModal('perfilModal')">Perfil</a></li>
                 <li><a id="progressoLink" onclick="mostrarModal('progressoModal')">Progresso</a></li>
                 <li><a href="#">Vidas</a></li>
-                <li><a href="<%= request.getContextPath() %>/ServletPrincipal?acao=Logout"><i
+                <li><a href="<%= request.getContextPath() %>/Login?acao=Logout"><i
 						class="ti-layout-sidebar-left"></i>Logout</a></li>
             </ul>
         </div>
@@ -113,7 +138,7 @@
     		<p style="padding: 1px;"></p>
     		<h2>Conquistas</h2>
     		<p style="padding: 1px;"></p>
-    		<h2>Consultor Júnior - Respostas acertadas: <div class="contador" id="contCJunior">0</div>/1</h2>
+    		<h2>Consultor Júnior - Respostas acertadas: <div class="contador" id="contCJunior">0</div>/10</h2>
             <div class="barra-progresso">
         		<div class="progresso" id="progressbarCJunior"></div>
        		</div>

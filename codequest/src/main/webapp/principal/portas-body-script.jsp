@@ -206,26 +206,28 @@
 		   		contadorRespostas++;
 		   		atualizarProgresso(contadorRespostas, 40, 'Respostas');
 		   		
-		   		if(contadorRespostas == 1){
-		   			mostrarConquista('Consultor Júnior');
-		   			atualizarProgresso(contadorRespostas, 1, 'CJunior');
+		   		if(contadorRespostas > 0 && contadorRespostas < 41){
+		   			if(contadorRespostas == 10)
+			   			mostrarConquista('Consultor Júnior');
+		   			
+		   			atualizarProgresso(contadorRespostas, 10, 'CJunior');
 		   			atualizarProgresso(contadorRespostas, 20, 'CPleno');
 		   			atualizarProgresso(contadorRespostas, 40, 'CSenior');	
-		   			
-		   		}else if(contadorRespostas > 1 && contadorRespostas < 21){
-		   			if(contadorRespostas == 20)
-			   			mostrarConquista('Consultor Pleno');
+			   			
+			   		if(contadorRespostas > 10 && contadorRespostas < 21){
+			   			if(contadorRespostas == 20)
+				   			mostrarConquista('Consultor Pleno');
 
-		   			atualizarProgresso(contadorRespostas, 20, 'CPleno');
-		   			atualizarProgresso(contadorRespostas, 40, 'CSenior');	
-		   			
-		   		}else{
-		   			if(contadorRespostas == 40)
-		   				mostrarConquista('Consultor Sênior')
-		   				
-		   			atualizarProgresso(contadorRespostas, 40, 'CSenior');
+			   			atualizarProgresso(contadorRespostas, 20, 'CPleno');
+			   			atualizarProgresso(contadorRespostas, 40, 'CSenior');	
+			   			
+			   		}else{
+			   			if(contadorRespostas == 40)
+			   				mostrarConquista('Consultor Sênior')
+			   				
+			   			atualizarProgresso(contadorRespostas, 40, 'CSenior');
+			   		}
 		   		}
-		                 
 		   	}
 			fecharModal('respostasModal');
 			for(var i = 1; i <= 5; i++){

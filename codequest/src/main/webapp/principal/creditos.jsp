@@ -7,7 +7,7 @@
 <body>
 	<div id="allthethings">
 		<div id="left"></div>
-		<form action="ServletPrincipal" method="post">
+		<form action="Login" method="post">
 			<table><td></td></table>
 			<p></p>
 			<input type="submit" value="VOLTAR" id="creditos" name="botao">

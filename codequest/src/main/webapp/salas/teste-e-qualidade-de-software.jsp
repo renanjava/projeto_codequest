@@ -5,30 +5,8 @@
 <head>
 <jsp:include page="/principal/title-and-favicon.jsp"></jsp:include>
 <jsp:include page="/principal/portas-head.jsp"></jsp:include>
+<jsp:include page="/principal/conquista-and-html_body.jsp"></jsp:include>
 <style type="text/css">
-html, body {
-	height: 100%;
-	margin: 0;
-	padding: 0;
-}
-
-body {
-	background: linear-gradient(to bottom, #2c3e50, #0d2959);
-}
-
-.pop-up-conquista {
-	display: none;
-	position: fixed;
-	background-color: gray;
-	width: 300px;
-	padding: 10px;
-	text-align: center;
-	border: 1px solid #ccc;
-	border-radius: 10px;
-	box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
-	top: 80px;
-}
-
 .modalDesafio {
     display: none;
     position: fixed;
@@ -99,6 +77,9 @@ body {
     
     <script type="text/javascript">
     	sortearPortas();
+    	
+    	document.querySelector('#tituloSala').textContent = 'Sala de Teste e Qualidade de Software';
+    	document.body.style.background = 'linear-gradient(to bottom, #52A252, #66CC66)';
     </script>
 </body>
 </html>

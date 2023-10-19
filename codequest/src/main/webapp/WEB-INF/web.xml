@@ -14,4 +14,14 @@
     <servlet-name>ServletIniciarController</servlet-name>
     <url-pattern>/ServletIniciarController</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ServletTrocarFaseController</display-name>
+    <servlet-name>ServletTrocarFaseController</servlet-name>
+    <servlet-class>controller.ServletTrocarFaseController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ServletTrocarFaseController</servlet-name>
+    <url-pattern>/ServletTrocarFaseController</url-pattern>
+  </servlet-mapping>
 </web-app>

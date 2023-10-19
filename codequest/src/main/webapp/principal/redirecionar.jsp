@@ -9,9 +9,7 @@
   	var salasDisponiveis = ['estrutura-de-dados-i','programacao-orientada-a-objetos','banco-de-dados-ii','teste-e-qualidade-de-software'];
   	var salaEscolhida = salasDisponiveis.splice(Math.random() * salasDisponiveis.length, 1);
   	
-    setTimeout(function () {
-      window.location.href = "salas/"+salaEscolhida+".jsp";
-    }, 2000); // Redireciona após 2 segundos (2000 milissegundos)
+    window.location.href = "salas/"+salaEscolhida+".jsp";
   </script>
 </head>
 <body>
