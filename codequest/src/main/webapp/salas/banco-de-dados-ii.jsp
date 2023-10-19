@@ -4,7 +4,7 @@
 <html lang="pt-br">
 <head>
 <jsp:include page="/principal/title-and-favicon.jsp"></jsp:include>
-<jsp:include page="portas-head.jsp"></jsp:include>
+<jsp:include page="/principal/portas-head.jsp"></jsp:include>
 <style type="text/css">
 html, body {
 	height: 100%;
@@ -55,9 +55,9 @@ body {
 </head>
 <body>
 
-	<jsp:include page="nav-bar.jsp"></jsp:include>
-	<jsp:include page="portas-body-table.jsp"></jsp:include>
-	<jsp:include page="portas-body-script.jsp"></jsp:include>
+	<jsp:include page="/principal/nav-bar.jsp"></jsp:include>
+	<jsp:include page="/principal/portas-body-table.jsp"></jsp:include>
+	<jsp:include page="/principal/portas-body-script.jsp"></jsp:include>
 
 	<div class="pop-up-conquista" id="popUpConquista">
 		<h2>Conquista Desbloqueada!</h2>

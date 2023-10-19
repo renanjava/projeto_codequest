@@ -49,7 +49,7 @@
                 Entrar no Jogo
             </div>
             <div class="card-body">
-                <form action="ServletIniciar" method="post">
+                <form action="IniciaGame" method="post">
                     <div class="mb-3">
                         <label for="nome" class="form-label">Nome:</label>
                         <input type="text" class="form-control" name="campoNome" placeholder="Digite seu nome de usuário"

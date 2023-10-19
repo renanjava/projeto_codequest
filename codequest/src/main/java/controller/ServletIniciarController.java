@@ -11,7 +11,7 @@ import model.ModelJogador;
 
 import java.io.IOException;
 
-@WebServlet(urlPatterns = {"/ServletIniciar"})
+@WebServlet(urlPatterns = {"/IniciaGame"})
 public class ServletIniciarController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -33,7 +33,7 @@ public class ServletIniciarController extends HttpServlet {
 		request.getSession().setAttribute("genero-jogador", jogador.getGenero());
 		request.getSession().setAttribute("portas-jogador", jogador.getQtdPortasAbertas());
 		
-		RequestDispatcher redireciona = request.getRequestDispatcher("principal/game.jsp");
+		RequestDispatcher redireciona = request.getRequestDispatcher("principal/redirecionar.jsp");
 		redireciona.forward(request, response);
 	}
 

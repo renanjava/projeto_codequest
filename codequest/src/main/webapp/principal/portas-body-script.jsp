@@ -9,6 +9,7 @@
 	let numerosAuxiliar = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
 	let posicoesPortas = [];
 	let portaDesafio = 0;
+	let respostaCerta = '';
 	
 	function sortearPortas(){
 		var numeroSorteado;
@@ -29,7 +30,7 @@
    }
 	
    function alternarPorta(id) {
-       	document.getElementById("porta"+id).src = "icon/aberta.png";
+       	document.getElementById("porta"+id).src = "/codequest/icon/aberta.png";
        	document.getElementById("botao"+id).disabled = true;
        
        	contadorPortas++;
@@ -96,14 +97,9 @@
 					' uma variavel apontada por um ponteiro em C ?';
 				
 				var respostas = ['*','&','$','%','sizeof'];
-				
-				document.querySelector('#campoPergunta').textContent = pergunta;
-				document.querySelector('#campoResposta1').textContent = respostas[0];
-				document.querySelector('#campoResposta2').textContent = respostas[1];
-				document.querySelector('#campoResposta3').textContent = respostas[2];
-				document.querySelector('#campoResposta4').textContent = respostas[3];
-				document.querySelector('#campoResposta5').textContent = respostas[4];
-	    		mostrarModal('respostasModal');
+				respostaCerta = respostas[0];
+				atribuirRandomizarCampos(pergunta, respostas);
+	    		mostrarModal('respostasModal');	
 			}
 		}
 	}
@@ -197,14 +193,15 @@
 	}
    
 	function verificarResposta(id){
+		
+		var querySelector = document.querySelector('#'+id).textContent;
 	   	
 		for(var i = 1; i <= 5; i++){
-			document.getElementById("resposta"+i).style.backgroundColor = (i == 1 ? 'green' : 'red');
+			document.getElementById("resposta"+i).style.backgroundColor = (document.querySelector('#resposta'+i).textContent == respostaCerta ? 'green' : 'red');
 	       	document.getElementById("resposta"+i).disabled = true;
 		}
 	   	setTimeout(function() {
-	   		
-	   		if(id == "resposta1" && contadorRespostas < 40){
+	   		if(querySelector == respostaCerta){
 		   		
 		   		contadorRespostas++;
 		   		atualizarProgresso(contadorRespostas, 40, 'Respostas');
@@ -257,5 +254,23 @@
 	    botao.style.fontWeight = 'bold';
 	   	
 	    return botao;
+	}
+	
+	function atribuirRandomizarCampos(pergunta, respostas){
+		var posicoesAleatorias = [];
+		document.querySelector('#campoPergunta').textContent = pergunta;
+		
+		while(posicoesAleatorias.length < respostas.length){
+			var posicao = 0;
+			
+			do
+				posicao = parseInt(Math.random() * 5)+1;
+			while(posicoesAleatorias.includes(posicao));
+			posicoesAleatorias.push(posicao);
+		}
+		
+		for(var i = 1; i < posicoesAleatorias.length + 1; i++){
+			document.querySelector('#campoResposta' + i).textContent = respostas[posicoesAleatorias[i - 1] - 1];
+		}
 	}
 </script>

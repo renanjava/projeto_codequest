@@ -11,6 +11,3 @@ no final do jogo deve ter 5 estrelas no total
 um icon para cada conquista
 	
 adaptar as mensagens e as conquistas de acordo com o gênero
-	
-na class options, dar hidden em todos os optionsBtn e depois show em ordem aleatória, dai
-	a resposta sempre vai ser o campo1, porém, ele não vai ficar sempre no mesmo lugar

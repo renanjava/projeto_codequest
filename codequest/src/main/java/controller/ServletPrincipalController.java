@@ -9,7 +9,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-@WebServlet(urlPatterns = { "/ServletPrincipal" })
+@WebServlet(urlPatterns = { "/Login" })
 public class ServletPrincipalController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	

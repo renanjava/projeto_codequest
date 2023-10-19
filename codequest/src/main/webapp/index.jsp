@@ -8,7 +8,7 @@
 <body>
 	<div id="allthethings">
 		<div id="left"></div>
-		<form action="ServletPrincipal" method="post">
+		<form action="Login" method="post">
 			<table><td></td></table>
 			<input type="submit" value="JOGAR" id="jogar" name="botao">
 			<p></p>

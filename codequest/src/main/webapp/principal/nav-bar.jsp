@@ -86,7 +86,7 @@
             <h2>Perfil</h2>
             <p style="padding: 1px;"></p>
             <div class="perfil" id="perfil">
-        		<img id="fotoPerfil" src="icon/fechada.png" alt="Foto de Perfil">
+        		<img id="fotoPerfil" src="<%= request.getContextPath()%>/icon/fechada.png" alt="Foto de Perfil">
     		</div>
             <h2>Nome: <%= request.getSession().getAttribute("nome-jogador") %></h2>
             <h2>Email: <%= request.getSession().getAttribute("email-jogador") %></h2>
