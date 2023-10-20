@@ -74,26 +74,30 @@
     padding: 10px 20px;
     margin-left: 10px;
     cursor: pointer;
+    font-size: 13px;
+    font-family: 'Courier, monospace';
+    font-weight: 'bold';
 }
 
 .navigation-btn:hover {
     background-color: gray;
 }
-
-
 </style>
 </head>
 <body>
 	<nav class="navbar">
         <div class="navbar-container">
+        
+        <div class="navigation-buttons">
+	     		<form action="/codequest/TrocarFase" method="post">
+	     			<button class="navigation-btn" id="paginaAnteriorBtn">Anterior</button>
+	        		<button class="navigation-btn" id="proximaPaginaBtn">Próximo</button>
+	     		</form>
+	    </div>
+	    	
             <div class="logo">
                 <a href="#" id="tituloSala"></a>
             </div>
-            
-	     	<div class="navigation-buttons">
-	        	<button class="navigation-btn" id="paginaAnteriorBtn">Anterior</button>
-	        	<button class="navigation-btn" id="proximaPaginaBtn">Próximo</button>
-	    	</div>
             
             <ul class="nav-links">
             	<li><a id="perfilLink" onclick="mostrarModal('perfilModal')">Perfil</a></li>
