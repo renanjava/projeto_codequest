@@ -24,6 +24,8 @@ public class ServletTrocarFaseController extends HttpServlet {
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		request.getSession().setAttribute("portas-jogador",request.getParameter("portasAbertas"));
+		
 		String enderecoAtual = (String)request.getSession().getAttribute("endereco-destino");
 		String buttonId = request.getParameter("buttonId");
 		

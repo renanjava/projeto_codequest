@@ -95,12 +95,13 @@
     		<form action="<%= request.getContextPath()%>/TrocarFase" method="post">
 		        <button class="navigation-btn" name="buttonId" value="Anterior" id="anterior" enabled>Anterior</button>
 		        <button class="navigation-btn" name="buttonId" value="Proximo" id="proximo" enabled>Próximo</button>
+		        <input type="hidden" id="portasAbertas" name="portasAbertas">
     		</form>
 		</div>
 	
 	    <jsp:include page="bloquear-botoes.jsp"></jsp:include>
 	    
-	    	
+	    
            	<div class="logo">
                 <a href="#" id="tituloSala"></a>
             </div>

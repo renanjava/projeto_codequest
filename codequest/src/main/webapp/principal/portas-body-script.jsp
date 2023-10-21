@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <script>
-	let contadorPortas = 0;
+	let contadorPortas = <%= session.getAttribute("portas-jogador") %>;
 	let contadorRespostas = 0;	
 	let contadorDesafios = 0;
 	let botoesClicadosDesafio = 0;
@@ -35,6 +35,7 @@
        
        	contadorPortas++;
        	atualizarProgresso(contadorPortas, 160, 'Portas');
+       	document.getElementById("portasAbertas").value = contadorPortas;
        
 		if(verificarPortaSorteada(id)){
 			if(portaDesafio == id){
