@@ -80,7 +80,10 @@
 }
 
 .navigation-btn:hover {
-    background-color: #0b7000;
+    background-color: #007bff;
+    color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transform: scale(1.1);
 }
 </style>
 </head>

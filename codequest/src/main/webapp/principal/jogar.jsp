@@ -36,8 +36,14 @@
             color: #FFFFFF;
         }
         .btn-primary{
-        	background-color: black;
-        	color: white;
+        	background: #0000cd;
+			color: black;
+			box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    		transform: scale(1.1);
+        }
+        .btn-primary-hover{
+        	background: #3498DB;
+        	color: #ECF0F1;
         }
     </style>
 </head>
@@ -74,7 +80,7 @@
                             </label>
                         </div>
                     </div>
-                    <button type="submit" class="btn btn-primary">Jogar</button>
+                    <button type="submit" class="btn btn-primary btn-primary-hover">Jogar</button>
                 </form>
             </div>
         </div>

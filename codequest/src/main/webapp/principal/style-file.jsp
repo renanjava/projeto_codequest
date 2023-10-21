@@ -44,22 +44,22 @@ p {
 #jogar:hover {
 	background: #0000cd;
 	color: black;
-	-webkit-transform: rotate(-1deg);
-	transform: rotate(-2deg);
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transform: scale(1.1);
 }
 
 #tutorial:hover {
 	background: #0000cd;
 	color: black;
-	-webkit-transform: rotate(-2deg);
-	transform: rotate(-2deg);
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transform: scale(1.1);
 }
 
 #creditos:hover {
 	background: #0000cd;
 	color: black;
-	-webkit-transform: rotate(-2deg);
-	transform: rotate(-2deg);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transform: scale(1.1);
 }
 
 
