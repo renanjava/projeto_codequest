@@ -80,7 +80,7 @@
 }
 
 .navigation-btn:hover {
-    background-color: gray;
+    background-color: #0b7000;
 }
 </style>
 </head>
@@ -89,13 +89,16 @@
         <div class="navbar-container">
         
         <div class="navigation-buttons">
-	     		<form action="/codequest/TrocarFase" method="post">
-	     			<button class="navigation-btn" id="paginaAnteriorBtn">Anterior</button>
-	        		<button class="navigation-btn" id="proximaPaginaBtn">Próximo</button>
-	     		</form>
-	    </div>
+    		<form action="<%= request.getContextPath()%>/TrocarFase" method="post">
+		        <button class="navigation-btn" name="buttonId" value="Anterior" id="anterior" enabled>Anterior</button>
+		        <button class="navigation-btn" name="buttonId" value="Proximo" id="proximo" enabled>Próximo</button>
+    		</form>
+		</div>
+	
+	    <jsp:include page="bloquear-botoes.jsp"></jsp:include>
+	    
 	    	
-            <div class="logo">
+           	<div class="logo">
                 <a href="#" id="tituloSala"></a>
             </div>
             

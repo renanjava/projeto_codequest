@@ -30,7 +30,7 @@
    }
 	
    function alternarPorta(id) {
-       	document.getElementById("porta"+id).src = "/codequest/icon/aberta.png";
+       	document.getElementById("porta"+id).src = "<%= request.getContextPath()%>/icon/aberta.png";
        	document.getElementById("botao"+id).disabled = true;
        
        	contadorPortas++;
