@@ -32,7 +32,10 @@ public class ServletIniciarController extends HttpServlet {
 		request.getSession().setAttribute("nome-jogador", jogador.getNome());
 		request.getSession().setAttribute("email-jogador", jogador.getEmail());
 		request.getSession().setAttribute("genero-jogador", jogador.getGenero());
-		request.getSession().setAttribute("portas-jogador", jogador.getQtdPortasAbertas());
+		
+		request.getSession().setAttribute("portas-jogador", 0);
+		request.getSession().setAttribute("respostas-jogador", 0);
+		request.getSession().setAttribute("desafios-jogador", 0);
 		
 		ListaSalas lista = new ListaSalas();
 		

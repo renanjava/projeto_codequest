@@ -6,17 +6,6 @@ public class ModelJogador {
 	private String nome;
 	private String email;
 	private String genero;
-	private int qtdPortasAbertas = 0;
-	private List<String> conquistas;
-	private int qtdEstrelasGanhas;
-
-	public int getQtdPortasAbertas() {
-		return qtdPortasAbertas;
-	}
-
-	public void setQtdPortasAbertas(int qtdPortasAbertas) {
-		this.qtdPortasAbertas = qtdPortasAbertas;
-	}
 
 	public String getNome() {
 		return nome;

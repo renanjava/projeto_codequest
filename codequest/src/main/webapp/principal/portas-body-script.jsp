@@ -2,8 +2,8 @@
 	pageEncoding="UTF-8"%>
 <script>
 	let contadorPortas = <%= session.getAttribute("portas-jogador") %>;
-	let contadorRespostas = 0;	
-	let contadorDesafios = 0;
+	let contadorRespostas = <%= session.getAttribute("respostas-jogador") %>;	
+	let contadorDesafios = <%= session.getAttribute("desafios-jogador") %>;
 	let botoesClicadosDesafio = 0;
 	let numerosDesafioED = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
 	let numerosAuxiliar = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
@@ -31,8 +31,21 @@
 	
    function persistirProgresso(){
       	document.getElementById("portasAbertas").value = contadorPortas;
+      	document.getElementById("respostasCertas").value = contadorRespostas;
+      	document.getElementById("desafiosResolvidos").value = contadorDesafios;
+      	
 		if(contadorPortas > 0)
 	       	atualizarProgresso(contadorPortas, 160, 'Portas');
+		
+		if(contadorRespostas > 0){
+			atualizarProgresso(contadorRespostas, 40, 'Respostas');
+			barraProgressoConquistasConsultor(false);
+		}
+			
+		if(contadorDesafios > 0){
+			atualizarProgresso(contadorDesafios, 4, 'Desafios');
+			barraProgressoConquistasSolucionador(false);
+		}
    }
 	
    function alternarPorta(id) {
@@ -140,18 +153,9 @@
 	      	
 	      	contadorDesafios++;
 	      	atualizarProgresso(contadorDesafios, 4, 'Desafios');
-	      	if(contadorDesafios > 0 && contadorDesafios < 5){
-	      		
-	     		if(contadorDesafios == 1){
-	      			atualizarProgresso(contadorDesafios, 1, 'SJunior');
-	      			setTimeout(function() {
-	      				mostrarConquista('Solucionador Júnior');
-	 	        		}, 2000);
-	      			
-	      			atualizarProgresso(contadorDesafios, 2, 'SPleno');
-	      			atualizarProgresso(contadorDesafios, 4, 'SSenior');
-	          	}
-	      	}
+	      	document.getElementById("desafiosResolvidos").value = contadorDesafios;
+
+	      	barraProgressoConquistasSolucionador(true);
 	  	}else{
 	  		document.querySelector('#campoResultadoDesafio').textContent = 'Errado!';
 	  		document.getElementById('campoResultadoDesafio').style.backgroundColor = 'red';
@@ -176,6 +180,68 @@
 	   	else
 	   		return false;
    }
+	
+	function barraProgressoConquistasConsultor(conquista){
+		
+		if(contadorRespostas < 11){
+			
+			if(contadorRespostas == 10 && conquista == true)
+				mostrarConquista('Consultor Júnior');
+			
+			atualizarProgresso(contadorRespostas, 10, 'CJunior');
+			atualizarProgresso(contadorRespostas, 20, 'CPleno');
+			atualizarProgresso(contadorRespostas, 40, 'CSenior');
+		
+		}else if(contadorRespostas > 10 && contadorRespostas < 21){
+			
+			if(contadorRespostas == 20 && conquista == true)
+				mostrarConquista('Consultor Pleno');
+			
+			atualizarProgresso(10, 10, 'CJunior');
+			atualizarProgresso(contadorRespostas, 20, 'CPleno');
+			atualizarProgresso(contadorRespostas, 40, 'CSenior');
+			
+		}else{
+			
+			if(contadorRespostas == 40 && conquista == true)
+				mostrarConquista('Consultor Sênior');
+			
+			atualizarProgresso(10, 10, 'CJunior');
+			atualizarProgresso(20, 20, 'CPleno');
+			atualizarProgresso(contadorRespostas, 40, 'CSenior');
+		}
+	}
+	
+	function barraProgressoConquistasSolucionador(conquista){
+		
+		if(contadorDesafios == 1 || contadorDesafios == 2){
+			
+			if(contadorDesafios == 1 && conquista == true)
+				setTimeout(function() {
+					mostrarConquista('Solucionador Júnior');
+		        }, 2000);		
+			if(contadorDesafios == 2 && conquista == true)
+				setTimeout(function() {
+					mostrarConquista('Solucionador Pleno');
+		        }, 2000);
+			
+			atualizarProgresso(1, 1, 'SJunior');
+			atualizarProgresso(contadorDesafios, 2, 'SPleno');
+			atualizarProgresso(contadorDesafios, 4, 'SSenior');
+			
+		}else{
+			
+			if(contadorDesafios == 4 && conquista == true)
+				setTimeout(function() {
+					mostrarConquista('Solucionador Sênior');
+		        }, 2000);
+			
+			atualizarProgresso(1, 1, 'SJunior');
+			atualizarProgresso(2, 2, 'SPleno');
+			atualizarProgresso(contadorDesafios, 4, 'SSenior');
+			
+		}
+	}
 
 	function mostrarConquista(mensagem){
 		document.getElementById('popUpConquista').style.display = 'block';
@@ -212,29 +278,9 @@
 		   		
 		   		contadorRespostas++;
 		   		atualizarProgresso(contadorRespostas, 40, 'Respostas');
+		      	document.getElementById("respostasCertas").value = contadorRespostas;
 		   		
-		   		if(contadorRespostas > 0 && contadorRespostas < 41){
-		   			if(contadorRespostas == 10)
-			   			mostrarConquista('Consultor Júnior');
-		   			
-		   			atualizarProgresso(contadorRespostas, 10, 'CJunior');
-		   			atualizarProgresso(contadorRespostas, 20, 'CPleno');
-		   			atualizarProgresso(contadorRespostas, 40, 'CSenior');	
-			   			
-			   		if(contadorRespostas > 10 && contadorRespostas < 21){
-			   			if(contadorRespostas == 20)
-				   			mostrarConquista('Consultor Pleno');
-
-			   			atualizarProgresso(contadorRespostas, 20, 'CPleno');
-			   			atualizarProgresso(contadorRespostas, 40, 'CSenior');	
-			   			
-			   		}else{
-			   			if(contadorRespostas == 40)
-			   				mostrarConquista('Consultor Sênior')
-			   				
-			   			atualizarProgresso(contadorRespostas, 40, 'CSenior');
-			   		}
-		   		}
+		      	barraProgressoConquistasConsultor(true);
 		   	}
 			fecharModal('respostasModal');
 			for(var i = 1; i <= 5; i++){

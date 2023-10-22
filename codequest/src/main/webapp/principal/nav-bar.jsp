@@ -96,6 +96,8 @@
 		        <button class="navigation-btn" name="buttonId" value="Anterior" id="anterior" enabled>Anterior</button>
 		        <button class="navigation-btn" name="buttonId" value="Proximo" id="proximo" enabled>Próximo</button>
 		        <input type="hidden" id="portasAbertas" name="portasAbertas">
+		        <input type="hidden" id="respostasCertas" name="respostasCertas">
+		        <input type="hidden" id="desafiosResolvidos" name="desafiosResolvidos">
     		</form>
 		</div>
 	
