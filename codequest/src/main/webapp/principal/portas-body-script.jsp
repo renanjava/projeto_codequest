@@ -17,7 +17,7 @@
 		for(var o = 0; o < 11; o++){
 			do{
 				var numeroExistente = false;
-			    numeroSorteado = parseInt(Math.random() * 41);
+			    numeroSorteado = parseInt((Math.random() * 40)+1);
 			   
 			    for(var i = 0; i < 11; i++){
 					if(posicoesPortas[i] == numeroSorteado)
@@ -27,6 +27,12 @@
 		   posicoesPortas[o] = numeroSorteado;	   
 		}
 		portaDesafio = posicoesPortas[parseInt(Math.random() * 11)];
+   }
+	
+   function persistirProgresso(){
+      	document.getElementById("portasAbertas").value = contadorPortas;
+		if(contadorPortas > 0)
+	       	atualizarProgresso(contadorPortas, 160, 'Portas');
    }
 	
    function alternarPorta(id) {

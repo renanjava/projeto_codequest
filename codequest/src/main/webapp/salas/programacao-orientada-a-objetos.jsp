@@ -78,6 +78,7 @@
     
     <script type="text/javascript">
     	sortearPortas();
+    	persistirProgresso();
     	
     	document.querySelector('#tituloSala').textContent = 'Sala de Programação Orientada a Objetos';
     	document.body.style.background = 'linear-gradient(to bottom, #CC6633, #CC5532)';

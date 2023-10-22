@@ -77,10 +77,10 @@
     
     <script type="text/javascript">
     	sortearPortas();
+    	persistirProgresso();
     	
     	document.querySelector('#tituloSala').textContent = 'Sala de Banco de Dados II';
     	document.body.style.background = 'linear-gradient(to bottom, #393939, #262626)';
-    	
     </script>
 </body>
 </html>

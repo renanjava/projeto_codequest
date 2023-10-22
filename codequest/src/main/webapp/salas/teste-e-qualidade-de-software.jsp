@@ -77,6 +77,7 @@
     
     <script type="text/javascript">
     	sortearPortas();
+    	persistirProgresso();
     	
     	document.querySelector('#tituloSala').textContent = 'Sala de Teste e Qualidade de Software';
     	document.body.style.background = 'linear-gradient(to bottom, #52A252, #66CC66)';

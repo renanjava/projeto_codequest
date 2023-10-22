@@ -78,6 +78,7 @@
     
     <script type="text/javascript">
     	sortearPortas();
+    	persistirProgresso();
     	
 		document.querySelector('#tituloSala').textContent = 'Sala de Estrutura de Dados I';
 		document.body.style.background = 'linear-gradient(to bottom, #2c3e50, #0d2959)';
