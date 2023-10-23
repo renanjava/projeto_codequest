@@ -38,18 +38,20 @@ public class ServletIniciarController extends HttpServlet {
 		request.getSession().setAttribute("respostas-jogador", 0);
 		request.getSession().setAttribute("desafios-jogador", 0);
 		
-		ListaSalas lista = new ListaSalas();
-		AtomicInteger contador = new AtomicInteger(1);
+		ListaSalas listaSalas = new ListaSalas();
+		AtomicInteger cont = new AtomicInteger(1);
 		 
-		lista.getSalasExistentes()
+		listaSalas.getPosicoesSorteadas()
 		.stream()
+		.limit(4)
 		.forEach((e) -> 
 			{
-			request.getSession().setAttribute("endereco-"+(contador.get()), e);
-			contador.incrementAndGet();
+			request.getSession().setAttribute("endereco-"+(cont.get()), 
+					listaSalas.getSalasExistentes().get(e));
+			cont.incrementAndGet();
 			});
 		
-		request.getSession().setAttribute("endereco-destino", lista.getEnderecos()[0]);
+		request.getSession().setAttribute("endereco-destino", listaSalas.getEnderecos()[0]);
 		
 		
 		RequestDispatcher redireciona = request.getRequestDispatcher("principal/redirecionar.jsp");
