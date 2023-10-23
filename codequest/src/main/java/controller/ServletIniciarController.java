@@ -1,6 +1,7 @@
 package controller;
 
 import java.io.IOException;
+import java.util.concurrent.atomic.AtomicInteger;
 
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
@@ -38,9 +39,15 @@ public class ServletIniciarController extends HttpServlet {
 		request.getSession().setAttribute("desafios-jogador", 0);
 		
 		ListaSalas lista = new ListaSalas();
-		
-		for(int i = 0; i < 4; i++) 
-			request.getSession().setAttribute("endereco-"+(i+1), lista.getEnderecos()[i]);
+		AtomicInteger contador = new AtomicInteger(1);
+		 
+		lista.getSalasExistentes()
+		.stream()
+		.forEach((e) -> 
+			{
+			request.getSession().setAttribute("endereco-"+(contador.get()), e);
+			contador.incrementAndGet();
+			});
 		
 		request.getSession().setAttribute("endereco-destino", lista.getEnderecos()[0]);
 		
