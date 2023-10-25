@@ -8,13 +8,13 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import listas.ListaSalas;
+import preparador.PreparaSalas;
 
 public class ListaSalasTeste {
 	
 	@Test
 	public void deveMudarOsEnderecos() {
-		ListaSalas lista = new ListaSalas();
+		PreparaSalas lista = new PreparaSalas();
 		String[] enderecos = {"", "", "", ""};
 		
 		assertNotEquals(enderecos, lista.getEnderecos());
@@ -22,7 +22,7 @@ public class ListaSalasTeste {
 	
 	@Test
 	public void deveMudarAsPosicoesSorteadas(){
-		ListaSalas lista = new ListaSalas();
+		PreparaSalas lista = new PreparaSalas();
 		int[] posicoesSorteadas = {99, 99, 99, 99};
 		
 		assertNotEquals(posicoesSorteadas, lista.getPosicoesSorteadas());
@@ -31,7 +31,7 @@ public class ListaSalasTeste {
 	
 	@Test
 	public void deveSerUmaListDeSalas(){
-		ListaSalas listaSala = new ListaSalas();
+		PreparaSalas listaSala = new PreparaSalas();
 		List<String> listaCopy = new ArrayList<String>();
 		listaCopy.add("estrutura-de-dados-i");
 		listaCopy.add("programacao-orientada-a-objetos");

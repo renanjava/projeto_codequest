@@ -1,11 +1,11 @@
-package listas;
+package preparador;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
-public class ListaSalas {
+public class PreparaSalas {
 	
     private List<String> salasExistentes = new ArrayList<>
     (Arrays.asList(
@@ -16,9 +16,10 @@ public class ListaSalas {
     ));
     
     private List<Integer> posicoesSorteadas =  new ArrayList<>();
+    private List<int[]> EventosIdPortasSalas =  new ArrayList<>();
     private String[] enderecos = {"", "", "", ""};
     
-    public ListaSalas() {
+    public PreparaSalas() {
     	escolherPosicoes();
     	atribuirEnderecos();
     }
@@ -35,6 +36,22 @@ public class ListaSalas {
             while(posicoesSorteadas.contains(posicaoSorteada));
             
         	posicoesSorteadas.add(posicaoSorteada);
+        	
+        	int[] idPortas = new int[11];
+        	
+        	for(var o = 0; o < 11; o++){
+				boolean numeroExistente;
+				do{
+					posicaoSorteada = random.nextInt(40) + 1;
+				    numeroExistente = false;
+				    for(var i = 0; i < 11; i++){
+						if(idPortas[i] == posicaoSorteada)
+							numeroExistente = true;
+				   	}
+			   }while(numeroExistente);
+				idPortas[o] = posicaoSorteada;	   
+			}
+        	EventosIdPortasSalas.add(idPortas);
             cont++;
         }
     }
@@ -57,6 +74,10 @@ public class ListaSalas {
 	public List<Integer> getPosicoesSorteadas() {
 		return posicoesSorteadas;
 	}
-    
+
+
+	public List<int[]> getEventosIdPortasSalas() {
+		return EventosIdPortasSalas;
+	}
     
 }

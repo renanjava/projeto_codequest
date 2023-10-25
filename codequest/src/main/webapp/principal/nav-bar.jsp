@@ -93,11 +93,12 @@
         
         <div class="navigation-buttons">
     		<form action="<%= request.getContextPath()%>/TrocarFase" method="post">
-		        <button class="navigation-btn" name="buttonId" value="Anterior" id="anterior" enabled>Anterior</button>
-		        <button class="navigation-btn" name="buttonId" value="Proximo" id="proximo" enabled>Próximo</button>
+		        <button class="navigation-btn" name="buttonId" value="Anterior" id="anterior" onclick="inserirDadosHidden()" enabled>Anterior</button>
+		        <button class="navigation-btn" name="buttonId" value="Proximo" id="proximo" onclick="inserirDadosHidden()" enabled>Próximo</button>
 		        <input type="hidden" id="portasAbertas" name="portasAbertas">
 		        <input type="hidden" id="respostasCertas" name="respostasCertas">
 		        <input type="hidden" id="desafiosResolvidos" name="desafiosResolvidos">
+		        <input type="hidden" id="idPortas" name="idPortas">
     		</form>
 		</div>
 	

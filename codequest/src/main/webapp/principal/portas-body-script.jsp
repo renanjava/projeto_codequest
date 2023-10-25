@@ -4,35 +4,32 @@
 	let contadorPortas = <%= session.getAttribute("portas-jogador") %>;
 	let contadorRespostas = <%= session.getAttribute("respostas-jogador") %>;	
 	let contadorDesafios = <%= session.getAttribute("desafios-jogador") %>;
+	let listaIdPortas = [];
 	let botoesClicadosDesafio = 0;
 	let numerosDesafioED = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
 	let numerosAuxiliar = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
-	let posicoesPortas = [];
 	let portaDesafio = 0;
 	let respostaCerta = '';
 	
-	function sortearPortas(){
-		var numeroSorteado;
-		
-		for(var o = 0; o < 11; o++){
-			do{
-				var numeroExistente = false;
-			    numeroSorteado = parseInt((Math.random() * 40)+1);
-			   
-			    for(var i = 0; i < 11; i++){
-					if(posicoesPortas[i] == numeroSorteado)
-						numeroExistente = true;
-			   	}
-		   }while(numeroExistente)
-		   posicoesPortas[o] = numeroSorteado;	   
-		}
-		portaDesafio = posicoesPortas[parseInt(Math.random() * 11)];
-   }
+	function inserirDadosHidden(){
+		document.getElementById("idPortas").value = listaIdPortas.join(",");
+	}
 	
    function persistirProgresso(){
       	document.getElementById("portasAbertas").value = contadorPortas;
       	document.getElementById("respostasCertas").value = contadorRespostas;
       	document.getElementById("desafiosResolvidos").value = contadorDesafios;
+      	
+      	var atualizarPortas = "<%= session.getAttribute("id-portas") %>";
+      	console.log(<%= session.getAttribute("sorteio-destino") %>)
+      	
+      	if(atualizarPortas != 0){
+      		atualizarPortas.split(",");
+      		for(i = 0; i < atualizarPortas.length; i++)
+      			alternarPorta(atualizarPortas[i]);
+      	}
+      		
+      	//portaDesafio = posicoesPortas[parseInt(Math.random() * 11)];
       	
 		if(contadorPortas > 0)
 	       	atualizarProgresso(contadorPortas, 160, 'Portas');
@@ -51,6 +48,8 @@
    function alternarPorta(id) {
        	document.getElementById("porta"+id).src = "<%= request.getContextPath()%>/icon/aberta.png";
        	document.getElementById("botao"+id).disabled = true;
+       	
+       	listaIdPortas.push(id);
        
        	contadorPortas++;
        	atualizarProgresso(contadorPortas, 160, 'Portas');

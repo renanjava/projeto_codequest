@@ -8,7 +8,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import listas.ListaSalas;
+import preparador.PreparaSalas;
 
 @WebServlet(urlPatterns = {"/TrocarFase"})
 public class ServletTrocarFaseController extends HttpServlet {
@@ -27,24 +27,37 @@ public class ServletTrocarFaseController extends HttpServlet {
 		request.getSession().setAttribute("portas-jogador",request.getParameter("portasAbertas"));
 		request.getSession().setAttribute("respostas-jogador",request.getParameter("respostasCertas"));
 		request.getSession().setAttribute("desafios-jogador",request.getParameter("desafiosResolvidos"));
+		request.getSession().setAttribute("id-portas",request.getParameter("idPortas"));
 		
 		String enderecoAtual = (String)request.getSession().getAttribute("endereco-destino");
 		String buttonId = request.getParameter("buttonId");
 		
 		if("Proximo".equals(buttonId)) {
-			if(request.getSession().getAttribute("endereco-1") == enderecoAtual)
+			if(request.getSession().getAttribute("endereco-1") == enderecoAtual) {
 				request.getSession().setAttribute("endereco-destino",request.getSession().getAttribute("endereco-2"));
-			else if(request.getSession().getAttribute("endereco-2") == enderecoAtual)
+				request.getSession().setAttribute("sorteio-destino",request.getSession().getAttribute("sorteio-portas-2"));
+			}
+			else if(request.getSession().getAttribute("endereco-2") == enderecoAtual) {
 				request.getSession().setAttribute("endereco-destino",request.getSession().getAttribute("endereco-3"));
-			else if(request.getSession().getAttribute("endereco-3") == enderecoAtual)
+				request.getSession().setAttribute("sorteio-destino",request.getSession().getAttribute("sorteio-portas-3"));
+			}
+			else if(request.getSession().getAttribute("endereco-3") == enderecoAtual) {
 				request.getSession().setAttribute("endereco-destino",request.getSession().getAttribute("endereco-4"));	
+				request.getSession().setAttribute("sorteio-destino",request.getSession().getAttribute("sorteio-portas-4"));
+			}
 		}else{
-			if(request.getSession().getAttribute("endereco-4") == enderecoAtual)
+			if(request.getSession().getAttribute("endereco-4") == enderecoAtual) {
 				request.getSession().setAttribute("endereco-destino",request.getSession().getAttribute("endereco-3"));
-			else if(request.getSession().getAttribute("endereco-3") == enderecoAtual)
+				request.getSession().setAttribute("sorteio-destino",request.getSession().getAttribute("sorteio-portas-3"));
+			}
+			else if(request.getSession().getAttribute("endereco-3") == enderecoAtual) {
 				request.getSession().setAttribute("endereco-destino",request.getSession().getAttribute("endereco-2"));
-			else if(request.getSession().getAttribute("endereco-2") == enderecoAtual)
+				request.getSession().setAttribute("sorteio-destino",request.getSession().getAttribute("sorteio-portas-2"));
+			}
+			else if(request.getSession().getAttribute("endereco-2") == enderecoAtual) {
 				request.getSession().setAttribute("endereco-destino",request.getSession().getAttribute("endereco-1"));	
+				request.getSession().setAttribute("sorteio-destino",request.getSession().getAttribute("sorteio-portas-1"));
+			}
 		}
 		
 

@@ -1,6 +1,8 @@
 package controller;
 
 import java.io.IOException;
+import java.util.Arrays;
+import java.util.Random;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import jakarta.servlet.RequestDispatcher;
@@ -9,8 +11,8 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import listas.ListaSalas;
 import model.ModelJogador;
+import preparador.PreparaSalas;
 
 @WebServlet(urlPatterns = {"/IniciaGame"})
 public class ServletIniciarController extends HttpServlet {
@@ -37,8 +39,9 @@ public class ServletIniciarController extends HttpServlet {
 		request.getSession().setAttribute("portas-jogador", 0);
 		request.getSession().setAttribute("respostas-jogador", 0);
 		request.getSession().setAttribute("desafios-jogador", 0);
+		request.getSession().setAttribute("id-portas", 0);
 		
-		ListaSalas listaSalas = new ListaSalas();
+		PreparaSalas listaSalas = new PreparaSalas();
 		AtomicInteger cont = new AtomicInteger(1);
 		 
 		listaSalas.getPosicoesSorteadas()
@@ -48,10 +51,14 @@ public class ServletIniciarController extends HttpServlet {
 			{
 			request.getSession().setAttribute("endereco-"+(cont.get()), 
 					listaSalas.getSalasExistentes().get(e));
+			
+			request.getSession().setAttribute("sorteio-portas-"+(cont.get()),
+					Arrays.toString(listaSalas.getEventosIdPortasSalas().get(e)));
 			cont.incrementAndGet();
 			});
 		
 		request.getSession().setAttribute("endereco-destino", listaSalas.getEnderecos()[0]);
+		request.getSession().setAttribute("sorteio-destino", Arrays.toString(listaSalas.getEventosIdPortasSalas().get(0)));
 		
 		
 		RequestDispatcher redireciona = request.getRequestDispatcher("principal/redirecionar.jsp");

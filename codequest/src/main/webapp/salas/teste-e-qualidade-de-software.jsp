@@ -76,7 +76,6 @@
     </div>
     
     <script type="text/javascript">
-    	sortearPortas();
     	persistirProgresso();
     	
     	document.querySelector('#tituloSala').textContent = 'Sala de Teste e Qualidade de Software';

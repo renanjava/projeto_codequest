@@ -77,7 +77,6 @@
     </div>
     
     <script type="text/javascript">
-    	sortearPortas();
     	persistirProgresso();
     	
     	document.querySelector('#tituloSala').textContent = 'Sala de Programação Orientada a Objetos';
