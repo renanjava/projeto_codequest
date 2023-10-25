@@ -5,13 +5,14 @@
 	let contadorRespostas = <%= session.getAttribute("respostas-jogador") %>;	
 	let contadorDesafios = <%= session.getAttribute("desafios-jogador") %>;
 	let listaIdPortas = [];
+	let posicoesPortas;
 	let botoesClicadosDesafio = 0;
 	let numerosDesafioED = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
 	let numerosAuxiliar = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
 	let portaDesafio = 0;
 	let respostaCerta = '';
 	
-	function inserirDadosHidden(){
+	function atualizarDadosHidden(){
 		document.getElementById("idPortas").value = listaIdPortas.join(",");
 	}
 	
@@ -20,13 +21,23 @@
       	document.getElementById("respostasCertas").value = contadorRespostas;
       	document.getElementById("desafiosResolvidos").value = contadorDesafios;
       	
-      	var atualizarPortas = "<%= session.getAttribute("id-portas") %>";
-      	console.log(<%= session.getAttribute("sorteio-destino") %>)
+      	persistirPortasAbertas = "<%= session.getAttribute("id-portas-destino") %>";
+      	posicoesPortas = "<%= session.getAttribute("sorteio-destino") %>"
+      	posicoesPortas = posicoesPortas.replace("[","");
+      	posicoesPortas = posicoesPortas.replace("]","");
+      	posicoesPortas = posicoesPortas.replaceAll(" ","");
+      	posicoesPortas = posicoesPortas.split(",");
+      	console.log(posicoesPortas)
+      	console.log(persistirPortasAbertas)
       	
-      	if(atualizarPortas != 0){
-      		atualizarPortas.split(",");
-      		for(i = 0; i < atualizarPortas.length; i++)
-      			alternarPorta(atualizarPortas[i]);
+      	if(persistirPortasAbertas != 0){
+      		persistirPortasAbertas = persistirPortasAbertas.split(",");
+      		for(i = 0; i < persistirPortasAbertas.length; i++){
+      	      	console.log(persistirPortasAbertas[i])
+      			document.getElementById("porta"+persistirPortasAbertas[i]).src = "<%= request.getContextPath()%>/icon/aberta.png";
+           		document.getElementById("botao"+persistirPortasAbertas[i]).disabled = true;
+      		}
+      			
       	}
       		
       	//portaDesafio = posicoesPortas[parseInt(Math.random() * 11)];

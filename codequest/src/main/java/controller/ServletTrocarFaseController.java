@@ -27,36 +27,52 @@ public class ServletTrocarFaseController extends HttpServlet {
 		request.getSession().setAttribute("portas-jogador",request.getParameter("portasAbertas"));
 		request.getSession().setAttribute("respostas-jogador",request.getParameter("respostasCertas"));
 		request.getSession().setAttribute("desafios-jogador",request.getParameter("desafiosResolvidos"));
-		request.getSession().setAttribute("id-portas",request.getParameter("idPortas"));
 		
 		String enderecoAtual = (String)request.getSession().getAttribute("endereco-destino");
 		String buttonId = request.getParameter("buttonId");
+		
+		String fixIdPortas1 = (String.valueOf(request.getSession().getAttribute("id-portas-1"))).replace("0", "");
+		String fixIdPortas2 = (String.valueOf(request.getSession().getAttribute("id-portas-1"))).replace("0", "");
+		String fixIdPortas3 = (String.valueOf(request.getSession().getAttribute("id-portas-1"))).replace("0", "");
+		String fixIdPortas4 = (String.valueOf(request.getSession().getAttribute("id-portas-1"))).replace("0", "");
 		
 		if("Proximo".equals(buttonId)) {
 			if(request.getSession().getAttribute("endereco-1") == enderecoAtual) {
 				request.getSession().setAttribute("endereco-destino",request.getSession().getAttribute("endereco-2"));
 				request.getSession().setAttribute("sorteio-destino",request.getSession().getAttribute("sorteio-portas-2"));
+				request.getSession().setAttribute("id-portas-destino",request.getSession().getAttribute("id-portas-2"));
+				request.getSession().setAttribute("id-portas-1",fixIdPortas1+request.getParameter("idPortas"));
 			}
 			else if(request.getSession().getAttribute("endereco-2") == enderecoAtual) {
 				request.getSession().setAttribute("endereco-destino",request.getSession().getAttribute("endereco-3"));
 				request.getSession().setAttribute("sorteio-destino",request.getSession().getAttribute("sorteio-portas-3"));
+				request.getSession().setAttribute("id-portas-destino",request.getSession().getAttribute("id-portas-3"));
+				request.getSession().setAttribute("id-portas-2",fixIdPortas2+request.getParameter("idPortas"));
 			}
 			else if(request.getSession().getAttribute("endereco-3") == enderecoAtual) {
 				request.getSession().setAttribute("endereco-destino",request.getSession().getAttribute("endereco-4"));	
 				request.getSession().setAttribute("sorteio-destino",request.getSession().getAttribute("sorteio-portas-4"));
+				request.getSession().setAttribute("id-portas-destino",request.getSession().getAttribute("id-portas-4"));
+				request.getSession().setAttribute("id-portas-3",fixIdPortas3+request.getParameter("idPortas"));
 			}
 		}else{
 			if(request.getSession().getAttribute("endereco-4") == enderecoAtual) {
 				request.getSession().setAttribute("endereco-destino",request.getSession().getAttribute("endereco-3"));
 				request.getSession().setAttribute("sorteio-destino",request.getSession().getAttribute("sorteio-portas-3"));
+				request.getSession().setAttribute("id-portas-destino",request.getSession().getAttribute("id-portas-3"));
+				request.getSession().setAttribute("id-portas-4",fixIdPortas4+request.getParameter("idPortas"));
 			}
 			else if(request.getSession().getAttribute("endereco-3") == enderecoAtual) {
 				request.getSession().setAttribute("endereco-destino",request.getSession().getAttribute("endereco-2"));
 				request.getSession().setAttribute("sorteio-destino",request.getSession().getAttribute("sorteio-portas-2"));
+				request.getSession().setAttribute("id-portas-destino",request.getSession().getAttribute("id-portas-2"));
+				request.getSession().setAttribute("id-portas-3",fixIdPortas3+request.getParameter("idPortas"));
 			}
 			else if(request.getSession().getAttribute("endereco-2") == enderecoAtual) {
 				request.getSession().setAttribute("endereco-destino",request.getSession().getAttribute("endereco-1"));	
 				request.getSession().setAttribute("sorteio-destino",request.getSession().getAttribute("sorteio-portas-1"));
+				request.getSession().setAttribute("id-portas-destino",request.getSession().getAttribute("id-portas-1"));
+				request.getSession().setAttribute("id-portas-2",fixIdPortas2+request.getParameter("idPortas"));
 			}
 		}
 		

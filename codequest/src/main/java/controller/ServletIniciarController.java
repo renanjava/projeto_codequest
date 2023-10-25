@@ -54,11 +54,14 @@ public class ServletIniciarController extends HttpServlet {
 			
 			request.getSession().setAttribute("sorteio-portas-"+(cont.get()),
 					Arrays.toString(listaSalas.getEventosIdPortasSalas().get(e)));
+			
+			request.getSession().setAttribute("id-portas-"+cont.get(),0);
 			cont.incrementAndGet();
 			});
 		
 		request.getSession().setAttribute("endereco-destino", listaSalas.getEnderecos()[0]);
 		request.getSession().setAttribute("sorteio-destino", Arrays.toString(listaSalas.getEventosIdPortasSalas().get(0)));
+		request.getSession().setAttribute("id-portas-destino",0);
 		
 		
 		RequestDispatcher redireciona = request.getRequestDispatcher("principal/redirecionar.jsp");
