@@ -5,6 +5,7 @@
 	let contadorRespostas = <%= session.getAttribute("respostas-jogador") %>;	
 	let contadorDesafios = <%= session.getAttribute("desafios-jogador") %>;
 	let portaDesafio = <%= session.getAttribute("id-desafio-destino") %>;
+	let perguntasSala = "<%= session.getAttribute("perguntas-destino") %>";
 	let listaIdPortas = [];
 	let posicoesPortas;
 	let botoesClicadosDesafio = 0;
@@ -17,6 +18,8 @@
 	}
 	
    function persistirProgresso(){
+	   perguntasSala = perguntasSala.split(",");
+	   console.log(perguntasSala)
       	document.getElementById("portasAbertas").value = contadorPortas;
       	document.getElementById("respostasCertas").value = contadorRespostas;
       	document.getElementById("desafiosResolvidos").value = contadorDesafios;
@@ -125,9 +128,7 @@
 				});
 			}else{
 				
-				var pergunta = 
-					'Qual é o operador usado para obter o valor de'+
-					' uma variavel apontada por um ponteiro em C ?';
+				var pergunta = perguntasSala[parseInt(Math.random() * 10)];
 				
 				var respostas = ['*','&','$','%','sizeof'];
 				respostaCerta = respostas[0];

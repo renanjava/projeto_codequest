@@ -24,6 +24,20 @@ public class PreparaSalas {
     private int idPortaDesafio3;
     private int idPortaDesafio4;
     
+    private List<String> perguntasDiscipEstrutura = new ArrayList<>
+    (Arrays.asList(
+            "Qual é o operador usado para obter o valor de uma variável apontada por um ponteiro em C?",
+            "Como você verifica se uma sequência de parênteses em uma expressão é balanceada usando uma pilha em C?",
+            "Como você inverte uma pilha em C usando apenas operações de pilha?",
+            "Como uma fila é geralmente implementada em C?",
+            "Qual é a diferença principal entre malloc() e calloc() em C?",
+            "Qual é a principal vantagem das listas encadeadas em relação aos arrays em C?",
+            "Qual é a principal vantagem das listas duplamente encadeadas em relação às listas encadeadas simples em C?",
+            "Qual é a principal vantagem de uma lista circular sobre uma lista encadeada simples em C?",
+            "Qual é a principal vantagem da alocação dinâmica de memória em C?",
+            "O que acontece se você usar realloc() para reduzir o tamanho de um bloco de memória?"
+    ));
+    
     public PreparaSalas() {
     	escolherPosicoes();
     	atribuirEnderecos();
@@ -43,12 +57,12 @@ public class PreparaSalas {
         	
         	int[] idPortas = new int[11];
         	
-        	for(var o = 0; o < 11; o++){
+        	for(int o = 0; o < 11; o++){
 				boolean numeroExistente;
 				do{
 					posicaoSorteada = random.nextInt(40) + 1;
 				    numeroExistente = false;
-				    for(var i = 0; i < 11; i++){
+				    for(int i = 0; i < 11; i++){
 						if(idPortas[i] == posicaoSorteada)
 							numeroExistente = true;
 				   	}
@@ -99,6 +113,10 @@ public class PreparaSalas {
 
 	public List<int[]> getEventosIdPortasSalas() {
 		return EventosIdPortasSalas;
+	}
+	
+	public List<String> getPerguntasDiscipEstrutura(){
+		return perguntasDiscipEstrutura;
 	}
    
 }
