@@ -1,6 +1,8 @@
 package controller;
 
 import java.io.IOException;
+import java.util.Arrays;
+import java.util.List;
 
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
@@ -29,63 +31,52 @@ public class ServletTrocarFaseController extends HttpServlet {
 		
 		String enderecoAtual = (String)request.getSession().getAttribute("endereco-destino");
 		String buttonId = request.getParameter("buttonId");
-		
+				
 		String fixIdPortas1 = (String.valueOf(request.getSession().getAttribute("id-portas-1"))).replace(" ", "");
 		String fixIdPortas2 = (String.valueOf(request.getSession().getAttribute("id-portas-2"))).replace(" ", "");
 		String fixIdPortas3 = (String.valueOf(request.getSession().getAttribute("id-portas-3"))).replace(" ", "");
 		String fixIdPortas4 = (String.valueOf(request.getSession().getAttribute("id-portas-4"))).replace(" ", "");
 		
+		List<String> listaIdFix = Arrays.asList(
+				fixIdPortas1, fixIdPortas2, fixIdPortas3, fixIdPortas4
+				);
+		
 		String novasPortas = request.getParameter("idPortas");
 
 		System.out.println(fixIdPortas1+" "+fixIdPortas2+" "+fixIdPortas3+" "+fixIdPortas4);
 		
+		int cont;
+		boolean controle;
 		if("Proximo".equals(buttonId)) {
-			if(request.getSession().getAttribute("endereco-1") == enderecoAtual) {
-				request.getSession().setAttribute("endereco-destino",request.getSession().getAttribute("endereco-2"));
-				request.getSession().setAttribute("sorteio-destino",request.getSession().getAttribute("sorteio-portas-2"));
-				request.getSession().setAttribute("id-desafio-destino",request.getSession().getAttribute("id-desafio-2"));
-				request.getSession().setAttribute("id-portas-destino",request.getSession().getAttribute("id-portas-2"));
-				request.getSession().setAttribute("id-portas-1",(novasPortas.length() > 0 ? fixIdPortas1+","+novasPortas : fixIdPortas1));
-			}
-			else if(request.getSession().getAttribute("endereco-2") == enderecoAtual) {
-				request.getSession().setAttribute("endereco-destino",request.getSession().getAttribute("endereco-3"));
-				request.getSession().setAttribute("sorteio-destino",request.getSession().getAttribute("sorteio-portas-3"));
-				request.getSession().setAttribute("id-desafio-destino",request.getSession().getAttribute("id-desafio-3"));
-				request.getSession().setAttribute("id-portas-destino",request.getSession().getAttribute("id-portas-3"));
-				request.getSession().setAttribute("id-portas-2",(novasPortas.length() > 0 ? fixIdPortas2+","+novasPortas : fixIdPortas2));
-			}
-			else if(request.getSession().getAttribute("endereco-3") == enderecoAtual) {
-				request.getSession().setAttribute("endereco-destino",request.getSession().getAttribute("endereco-4"));	
-				request.getSession().setAttribute("sorteio-destino",request.getSession().getAttribute("sorteio-portas-4"));
-				request.getSession().setAttribute("id-desafio-destino",request.getSession().getAttribute("id-desafio-4"));
-				request.getSession().setAttribute("id-portas-destino",request.getSession().getAttribute("id-portas-4"));
-				request.getSession().setAttribute("id-portas-3",(novasPortas.length() > 0 ? fixIdPortas3+","+novasPortas : fixIdPortas3));
+			cont = 1;
+			controle = false;
+			while(cont != 4 || controle != true){
+				if(request.getSession().getAttribute("endereco-"+cont) == enderecoAtual) {
+					controle = true;
+					request.getSession().setAttribute("endereco-destino",request.getSession().getAttribute("endereco-"+(cont+1)));
+					request.getSession().setAttribute("sorteio-destino",request.getSession().getAttribute("sorteio-portas-"+(cont+1)));
+					request.getSession().setAttribute("id-desafio-destino",request.getSession().getAttribute("id-desafio-"+(cont+1)));
+					request.getSession().setAttribute("id-portas-destino",request.getSession().getAttribute("id-portas-"+(cont+1)));
+					request.getSession().setAttribute("id-portas-"+cont,(novasPortas.length() > 0 ? listaIdFix.get(cont-1)+","+novasPortas : listaIdFix.get(cont-1)));
+				}
+				cont++;
 			}
 		}else{
-			if(request.getSession().getAttribute("endereco-4") == enderecoAtual) {
-				request.getSession().setAttribute("endereco-destino",request.getSession().getAttribute("endereco-3"));
-				request.getSession().setAttribute("sorteio-destino",request.getSession().getAttribute("sorteio-portas-3"));
-				request.getSession().setAttribute("id-desafio-destino",request.getSession().getAttribute("id-desafio-3"));
-				request.getSession().setAttribute("id-portas-destino",request.getSession().getAttribute("id-portas-3"));
-				request.getSession().setAttribute("id-portas-4",(novasPortas.length() > 0 ? fixIdPortas4+","+novasPortas : fixIdPortas4));
-			}
-			else if(request.getSession().getAttribute("endereco-3") == enderecoAtual) {
-				request.getSession().setAttribute("endereco-destino",request.getSession().getAttribute("endereco-2"));
-				request.getSession().setAttribute("sorteio-destino",request.getSession().getAttribute("sorteio-portas-2"));
-				request.getSession().setAttribute("id-desafio-destino",request.getSession().getAttribute("id-desafio-2"));
-				request.getSession().setAttribute("id-portas-destino",request.getSession().getAttribute("id-portas-2"));
-				request.getSession().setAttribute("id-portas-3",(novasPortas.length() > 0 ? fixIdPortas3+","+novasPortas : fixIdPortas3));
-			}
-			else if(request.getSession().getAttribute("endereco-2") == enderecoAtual) {
-				request.getSession().setAttribute("endereco-destino",request.getSession().getAttribute("endereco-1"));	
-				request.getSession().setAttribute("sorteio-destino",request.getSession().getAttribute("sorteio-portas-1"));
-				request.getSession().setAttribute("id-desafio-destino",request.getSession().getAttribute("id-desafio-1"));
-				request.getSession().setAttribute("id-portas-destino",request.getSession().getAttribute("id-portas-1"));
-				request.getSession().setAttribute("id-portas-2",(novasPortas.length() > 0 ? fixIdPortas2+","+novasPortas : fixIdPortas2));
+			cont = 4;
+			controle = false;
+			while(cont != 1 || controle != true){
+				if(request.getSession().getAttribute("endereco-"+cont) == enderecoAtual) {
+					controle = true;
+					request.getSession().setAttribute("endereco-destino",request.getSession().getAttribute("endereco-"+(cont-1)));
+					request.getSession().setAttribute("sorteio-destino",request.getSession().getAttribute("sorteio-portas-"+(cont-1)));
+					request.getSession().setAttribute("id-desafio-destino",request.getSession().getAttribute("id-desafio-"+(cont-1)));
+					request.getSession().setAttribute("id-portas-destino",request.getSession().getAttribute("id-portas-"+(cont-1)));
+					request.getSession().setAttribute("id-portas-"+cont,(novasPortas.length() > 0 ? listaIdFix.get(cont-1)+","+novasPortas : listaIdFix.get(cont-1)));
+				}
+				cont--;
 			}
 		}
 		
-
 		RequestDispatcher redireciona = request.getRequestDispatcher("principal/redirecionar.jsp");
 		redireciona.forward(request, response);
 	}

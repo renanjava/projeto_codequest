@@ -66,6 +66,17 @@ public class PreparaSalas {
         }
     }
     
+    public int getIdPortaDesafio(int sala) {
+		
+		switch(sala) {
+		case 1: return idPortaDesafio1;
+		case 2: return idPortaDesafio2;
+		case 3: return idPortaDesafio3;
+		case 4: return idPortaDesafio4;	
+		}
+		return 888888888;
+	}
+    
     public void atribuirEnderecos() {
     	for(int i = 0; i < 4; i++) 
     		enderecos[i] = salasExistentes.get(posicoesSorteadas.get(i));
@@ -88,18 +99,6 @@ public class PreparaSalas {
 
 	public List<int[]> getEventosIdPortasSalas() {
 		return EventosIdPortasSalas;
-	}
-
-
-	public int getIdPortaDesafio(int sala) {
-		
-		switch(sala) {
-		case 1: return idPortaDesafio1;
-		case 2: return idPortaDesafio2;
-		case 3: return idPortaDesafio3;
-		case 4: return idPortaDesafio4;	
-		}
-		return 888888888;
 	}
    
 }
