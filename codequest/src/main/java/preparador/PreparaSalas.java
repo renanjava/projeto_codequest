@@ -18,6 +18,11 @@ public class PreparaSalas {
     private List<Integer> posicoesSorteadas =  new ArrayList<>();
     private List<int[]> EventosIdPortasSalas =  new ArrayList<>();
     private String[] enderecos = {"", "", "", ""};
+    private Random random = new Random();
+    private int idPortaDesafio1;
+    private int idPortaDesafio2;
+    private int idPortaDesafio3;
+    private int idPortaDesafio4;
     
     public PreparaSalas() {
     	escolherPosicoes();
@@ -26,7 +31,6 @@ public class PreparaSalas {
 
     
     public void escolherPosicoes() {
-        Random random = new Random();
         int cont = 0;
         int posicaoSorteada;
         
@@ -51,6 +55,12 @@ public class PreparaSalas {
 			   }while(numeroExistente);
 				idPortas[o] = posicaoSorteada;	   
 			}
+        	switch(cont) {
+        	case 0: idPortaDesafio1 = idPortas[random.nextInt(11)]; break;
+        	case 1: idPortaDesafio2 = idPortas[random.nextInt(11)]; break;
+        	case 2: idPortaDesafio3 = idPortas[random.nextInt(11)]; break;
+        	case 3: idPortaDesafio4 = idPortas[random.nextInt(11)]; break;
+        	}
         	EventosIdPortasSalas.add(idPortas);
             cont++;
         }
@@ -79,5 +89,17 @@ public class PreparaSalas {
 	public List<int[]> getEventosIdPortasSalas() {
 		return EventosIdPortasSalas;
 	}
-    
+
+
+	public int getIdPortaDesafio(int sala) {
+		
+		switch(sala) {
+		case 1: return idPortaDesafio1;
+		case 2: return idPortaDesafio2;
+		case 3: return idPortaDesafio3;
+		case 4: return idPortaDesafio4;	
+		}
+		return 888888888;
+	}
+   
 }

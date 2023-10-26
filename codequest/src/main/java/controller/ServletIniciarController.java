@@ -41,27 +41,29 @@ public class ServletIniciarController extends HttpServlet {
 		request.getSession().setAttribute("desafios-jogador", 0);
 		request.getSession().setAttribute("id-portas", 0);
 		
-		PreparaSalas listaSalas = new PreparaSalas();
+		PreparaSalas preparaSalas = new PreparaSalas();
 		AtomicInteger cont = new AtomicInteger(1);
 		 
-		listaSalas.getPosicoesSorteadas()
+		preparaSalas.getPosicoesSorteadas()
 		.stream()
 		.limit(4)
 		.forEach((e) -> 
 			{
 			request.getSession().setAttribute("endereco-"+(cont.get()), 
-					listaSalas.getSalasExistentes().get(e));
+					preparaSalas.getSalasExistentes().get(e));
 			
 			request.getSession().setAttribute("sorteio-portas-"+(cont.get()),
-					Arrays.toString(listaSalas.getEventosIdPortasSalas().get(e)));
+					Arrays.toString(preparaSalas.getEventosIdPortasSalas().get(e)));
 			
-			request.getSession().setAttribute("id-portas-"+cont.get(),0);
+			request.getSession().setAttribute("id-desafio-"+cont.get(),preparaSalas.getIdPortaDesafio(cont.get()));
+			request.getSession().setAttribute("id-portas-"+cont.get()," ");
 			cont.incrementAndGet();
 			});
 		
-		request.getSession().setAttribute("endereco-destino", listaSalas.getEnderecos()[0]);
-		request.getSession().setAttribute("sorteio-destino", Arrays.toString(listaSalas.getEventosIdPortasSalas().get(0)));
-		request.getSession().setAttribute("id-portas-destino",0);
+		request.getSession().setAttribute("endereco-destino", preparaSalas.getEnderecos()[0]);
+		request.getSession().setAttribute("sorteio-destino", Arrays.toString(preparaSalas.getEventosIdPortasSalas().get(0)));
+		request.getSession().setAttribute("id-desafio-destino", request.getSession().getAttribute("id-desafio-"+preparaSalas.getPosicoesSorteadas().get(0)));
+		request.getSession().setAttribute("id-portas-destino"," ");
 		
 		
 		RequestDispatcher redireciona = request.getRequestDispatcher("principal/redirecionar.jsp");

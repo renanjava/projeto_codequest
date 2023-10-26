@@ -4,12 +4,12 @@
 	let contadorPortas = <%= session.getAttribute("portas-jogador") %>;
 	let contadorRespostas = <%= session.getAttribute("respostas-jogador") %>;	
 	let contadorDesafios = <%= session.getAttribute("desafios-jogador") %>;
+	let portaDesafio = <%= session.getAttribute("id-desafio-destino") %>;
 	let listaIdPortas = [];
 	let posicoesPortas;
 	let botoesClicadosDesafio = 0;
 	let numerosDesafioED = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
 	let numerosAuxiliar = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
-	let portaDesafio = 0;
 	let respostaCerta = '';
 	
 	function atualizarDadosHidden(){
@@ -29,18 +29,21 @@
       	posicoesPortas = posicoesPortas.split(",");
       	console.log(posicoesPortas)
       	console.log(persistirPortasAbertas)
+      	console.log('desafio: '+portaDesafio)
       	
-      	if(persistirPortasAbertas != 0){
+      	if(persistirPortasAbertas != " "){
       		persistirPortasAbertas = persistirPortasAbertas.split(",");
       		for(i = 0; i < persistirPortasAbertas.length; i++){
-      	      	console.log(persistirPortasAbertas[i])
-      			document.getElementById("porta"+persistirPortasAbertas[i]).src = "<%= request.getContextPath()%>/icon/aberta.png";
-           		document.getElementById("botao"+persistirPortasAbertas[i]).disabled = true;
+      			if(persistirPortasAbertas[i] != ""){
+      				console.log(persistirPortasAbertas[i])
+          			document.getElementById("porta"+persistirPortasAbertas[i]).src = "<%= request.getContextPath()%>/icon/aberta.png";
+               		document.getElementById("botao"+persistirPortasAbertas[i]).disabled = true;
+      			}
       		}
       			
       	}
       		
-      	//portaDesafio = posicoesPortas[parseInt(Math.random() * 11)];
+      	portaDesafio = posicoesPortas[parseInt(Math.random() * 11)];
       	
 		if(contadorPortas > 0)
 	       	atualizarProgresso(contadorPortas, 160, 'Portas');
