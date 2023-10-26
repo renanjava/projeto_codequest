@@ -61,8 +61,10 @@ public class ServletIniciarController extends HttpServlet {
 			});
 		
 		String perguntas = String.join(",",preparaSalas.getPerguntasDiscipEstrutura());
+		String respostas = Arrays.toString(preparaSalas.getRespostasDiscipEstrutura().get(1));
 		
 		request.getSession().setAttribute("perguntas-destino", perguntas);
+		request.getSession().setAttribute("respostas-destino", respostas);
 		request.getSession().setAttribute("endereco-destino", preparaSalas.getEnderecos()[0]);
 		request.getSession().setAttribute("sorteio-destino", Arrays.toString(preparaSalas.getEventosIdPortasSalas().get(0)));
 		request.getSession().setAttribute("id-desafio-destino", request.getSession().getAttribute("id-desafio-"+preparaSalas.getPosicoesSorteadas().get(0)));

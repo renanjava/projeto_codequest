@@ -1,11 +1,11 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<script>
+
+<%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%><script>
 	let contadorPortas = <%= session.getAttribute("portas-jogador") %>;
 	let contadorRespostas = <%= session.getAttribute("respostas-jogador") %>;	
 	let contadorDesafios = <%= session.getAttribute("desafios-jogador") %>;
 	let portaDesafio = <%= session.getAttribute("id-desafio-destino") %>;
 	let perguntasSala = "<%= session.getAttribute("perguntas-destino") %>";
+	let respostasSala = "<%= session.getAttribute("respostas-destino") %>"
 	let listaIdPortas = [];
 	let posicoesPortas;
 	let botoesClicadosDesafio = 0;
@@ -19,7 +19,11 @@
 	
    function persistirProgresso(){
 	   perguntasSala = perguntasSala.split(",");
-	   console.log(perguntasSala)
+	   console.log("perguntas:" + perguntasSala);
+	   
+	   respostasSala = respostasSala.replace("[","");
+	   respostasSala = respostasSala.replace("]","");
+	   console.log("respostas:" + respostasSala);
       	document.getElementById("portasAbertas").value = contadorPortas;
       	document.getElementById("respostasCertas").value = contadorRespostas;
       	document.getElementById("desafiosResolvidos").value = contadorDesafios;
@@ -45,9 +49,7 @@
       		}
       			
       	}
-      		
-      	portaDesafio = posicoesPortas[parseInt(Math.random() * 11)];
-      	
+      		      	
 		if(contadorPortas > 0)
 	       	atualizarProgresso(contadorPortas, 160, 'Portas');
 		
@@ -127,10 +129,10 @@
 		       		iniciarContagem(cont);
 				});
 			}else{
+				var perguntaEscolhida = parseInt(Math.random() * 10);
+				var pergunta = perguntasSala[perguntaEscolhida];
+				var respostas = respostasSala.split(",");
 				
-				var pergunta = perguntasSala[parseInt(Math.random() * 10)];
-				
-				var respostas = ['*','&','$','%','sizeof'];
 				respostaCerta = respostas[0];
 				atribuirRandomizarCampos(pergunta, respostas);
 	    		mostrarModal('respostasModal');	
