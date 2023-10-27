@@ -3,9 +3,9 @@
 	let contadorPortas = <%= session.getAttribute("portas-jogador") %>;
 	let contadorRespostas = <%= session.getAttribute("respostas-jogador") %>;	
 	let contadorDesafios = <%= session.getAttribute("desafios-jogador") %>;
-	let portaDesafio = <%= session.getAttribute("id-desafio-destino") %>;
+	let portaDesafio = "<%= session.getAttribute("id-desafio-destino") %>";
 	let perguntasSala = "<%= session.getAttribute("perguntas-destino") %>";
-	let respostasSala = "<%= session.getAttribute("respostas-destino") %>"
+	let respostasSala = "<%= session.getAttribute("respostas-destino") %>";
 	let listaIdPortas = [];
 	let posicoesPortas;
 	let botoesClicadosDesafio = 0;
@@ -19,11 +19,10 @@
 	
    function persistirProgresso(){
 	   perguntasSala = perguntasSala.split(",");
-	   console.log("perguntas:" + perguntasSala);
+	   console.log(perguntasSala);
 	   
-	   respostasSala = respostasSala.replace("[","");
-	   respostasSala = respostasSala.replace("]","");
-	   console.log("respostas:" + respostasSala);
+	   respostasSala = respostasSala.split("|");
+	   console.log(respostasSala);
       	document.getElementById("portasAbertas").value = contadorPortas;
       	document.getElementById("respostasCertas").value = contadorRespostas;
       	document.getElementById("desafiosResolvidos").value = contadorDesafios;
@@ -131,7 +130,8 @@
 			}else{
 				var perguntaEscolhida = parseInt(Math.random() * 10);
 				var pergunta = perguntasSala[perguntaEscolhida];
-				var respostas = respostasSala.split(",");
+				var respostas = respostasSala[perguntaEscolhida]
+				respostas = respostas.split(",");
 				
 				respostaCerta = respostas[0];
 				atribuirRandomizarCampos(pergunta, respostas);

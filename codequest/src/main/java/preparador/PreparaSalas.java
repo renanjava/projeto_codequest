@@ -40,14 +40,14 @@ public class PreparaSalas {
     
     private String[] respostas1 = {"*","&","$","%","sizeof"};
     
-    private String[] respostas2 = {"Comparando os números de parênteses abertos e fechados.",
+    private String[] respostas2 = {"Usando uma pilha para rastrear os parênteses abertos e fechados.",
     							   "Verificando se há um número ímpar de parênteses.",
-    							   "Usando uma pilha para rastrear os parênteses abertos e fechados.",
+    							   "Comparando os números de parênteses abertos e fechados.",
     							   "Contando os parênteses à direita e à esquerda.",
     							   "Não é possível verificar usando uma pilha."};
     
-    private String[] respostas3 = {"Remover todos os elementos e inserir novamente na ordem inversa.",
-    							   "Criar uma pilha auxiliar, transferir os elementos e transferir de volta para a pilha original.",
+    private String[] respostas3 = {"Criar uma pilha auxiliar, transferir os elementos e transferir de volta para a pilha original.",
+    							   "Remover todos os elementos e inserir novamente na ordem inversa.",
     							   "Multiplicar todos os elementos por -1.",
     							   "Adicionar um elemento de controle no topo da pilha e inverter todos os elementos.",
     							   "Não é possível inverter uma pilha usando apenas operações de pilha."};
@@ -58,39 +58,39 @@ public class PreparaSalas {
     							   "Usando uma pilha.",
     							   "Usando uma matriz bidimensional."};
     
-    private String[] respostas5 = {"malloc() aloca memória contígua, enquanto calloc() aloca memória não contígua.",
-    							   "malloc() não inicializa a memória alocada, enquanto calloc() a inicializa com zero.",
+    private String[] respostas5 = {"malloc() não inicializa a memória alocada, enquanto calloc() a inicializa com zero.",
+    							   "malloc() aloca memória contígua, enquanto calloc() aloca memória não contígua.",
     							   "malloc() só pode alocar um bloco de memória por vez, enquanto calloc() pode alocar múltiplos blocos de memória.",
     							   "calloc() aloca memória contígua, enquanto malloc() aloca memória não contígua.",
     							   "Não há diferença entre malloc() e calloc()."};
     
-    private String[] respostas6 = {"Melhor desempenho em operações de busca.",
+    private String[] respostas6 = {"Capacidade dinâmica de crescimento.",
     							   "Consumo de memória menor.",
     							   "Facilidade de acesso a elementos aleatórios.",
-    							   "Capacidade dinâmica de crescimento.",
+    							   "Melhor desempenho em operações de busca.",
     							   "Melhor desempenho em operações de ordenação."};
     
-    private String[] respostas7 = {"Consumo de memória menor.",
+    private String[] respostas7 = {"Facilidade em acessar elementos na ordem inversa.",
     							   "Melhor desempenho em operações de busca.",
     							   "Facilidade de implementação.",
     							   "Capacidade dinâmica de crescimento.",
-    							   "Facilidade em acessar elementos na ordem inversa."};
+    							   "Consumo de memória menor."};
     
-    private String[] respostas8 = {"Melhor desempenho em operações de busca.",
+    private String[] respostas8 = {"Possibilidade de percorrer a lista indefinidamente sem encontrar um nó NULL.",
     							   "Facilidade de implementação.",
-    							   "Possibilidade de percorrer a lista indefinidamente sem encontrar um nó NULL.",
+    							   "Melhor desempenho em operações de busca.",
     							   "Capacidade dinâmica de crescimento.",
     							   "Facilidade em inserir ou remover elementos no meio da lista."};
     
-    private String[] respostas9 = {"Maior velocidade de execução.",
+    private String[] respostas9 = {"Capacidade de alocar memória conforme necessário durante a execução.",
     							   "Menor consumo de memória.",
     							   "Maior facilidade de implementação.",
-    							   "Capacidade de alocar memória conforme necessário durante a execução.",
+    							   "Maior velocidade de execução.",
     							   "Maior segurança na manipulação de dados."};
     
-    private String[] respostas10 = {"A função gera um erro de compilação.",
+    private String[] respostas10 = {"A função cria um novo bloco de memória com o tamanho desejado e copia os dados do bloco original para o novo bloco.",
     								"A função reduz o tamanho do bloco de memória para o valor especificado.",
-    								"A função cria um novo bloco de memória com o tamanho desejado e copia os dados do bloco original para o novo bloco.",
+    								"A função gera um erro de compilação.",
     								"A função retorna NULL.",
     								"A função não pode ser usada para reduzir o tamanho de um bloco de memória."};
     

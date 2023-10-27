@@ -2,8 +2,8 @@ package controller;
 
 import java.io.IOException;
 import java.util.Arrays;
-import java.util.Random;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.stream.Collectors;
 
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
@@ -61,8 +61,10 @@ public class ServletIniciarController extends HttpServlet {
 			});
 		
 		String perguntas = String.join(",",preparaSalas.getPerguntasDiscipEstrutura());
-		String respostas = Arrays.toString(preparaSalas.getRespostasDiscipEstrutura().get(1));
-		
+		String respostas = preparaSalas.getRespostasDiscipEstrutura().stream()
+	            			.map(Arrays::toString)
+	            			.collect(Collectors.joining("|"))
+	            			.replaceAll("[\\[\\]]", "");
 		request.getSession().setAttribute("perguntas-destino", perguntas);
 		request.getSession().setAttribute("respostas-destino", respostas);
 		request.getSession().setAttribute("endereco-destino", preparaSalas.getEnderecos()[0]);
