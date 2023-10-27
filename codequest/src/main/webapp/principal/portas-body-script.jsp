@@ -359,7 +359,8 @@
 			posicoesAleatorias.push(posicao);
 		}
 		
-		for(var i = 1; i < posicoesAleatorias.length + 1; i++){
+		for(var i = 1; i < 5 + 1; i++){
+			console.log(respostas[posicoesAleatorias[i - 1] - 1])
 			document.querySelector('#campoResposta' + i).textContent = respostas[posicoesAleatorias[i - 1] - 1];
 		}
 	}

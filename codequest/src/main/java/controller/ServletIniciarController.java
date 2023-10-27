@@ -69,7 +69,7 @@ public class ServletIniciarController extends HttpServlet {
 		request.getSession().setAttribute("respostas-destino", respostas);
 		request.getSession().setAttribute("endereco-destino", preparaSalas.getEnderecos()[0]);
 		request.getSession().setAttribute("sorteio-destino", Arrays.toString(preparaSalas.getEventosIdPortasSalas().get(0)));
-		request.getSession().setAttribute("id-desafio-destino", request.getSession().getAttribute("id-desafio-"+preparaSalas.getPosicoesSorteadas().get(0)));
+		request.getSession().setAttribute("id-desafio-destino", request.getSession().getAttribute("id-desafio-"+preparaSalas.getPosicoesSorteadas().get(0).intValue()));
 		request.getSession().setAttribute("id-portas-destino"," ");
 		
 		
