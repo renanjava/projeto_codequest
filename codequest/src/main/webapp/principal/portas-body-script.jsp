@@ -23,6 +23,7 @@
 	   
 	   respostasSala = respostasSala.split("|");
 	   console.log(respostasSala);
+
       	document.getElementById("portasAbertas").value = contadorPortas;
       	document.getElementById("respostasCertas").value = contadorRespostas;
       	document.getElementById("desafiosResolvidos").value = contadorDesafios;
@@ -128,9 +129,11 @@
 		       		iniciarContagem(cont);
 				});
 			}else{
-				var perguntaEscolhida = parseInt(Math.random() * 10);
-				var pergunta = perguntasSala[perguntaEscolhida];
-				var respostas = respostasSala[perguntaEscolhida]
+				var perguntaEscolhida = parseInt(Math.random() * perguntasSala.length);
+				var pergunta = removerElemento(perguntaEscolhida, perguntasSala);
+				console.log(respostasSala)
+				var respostas = removerElemento(perguntaEscolhida, respostasSala);
+				console.log(respostasSala)
 				respostas = respostas.split(",");
 				
 				respostaCerta = respostas[0];
@@ -138,6 +141,19 @@
 	    		mostrarModal('respostasModal');	
 			}
 		}
+	}
+   
+   function removerElemento(perguntaEscolhida, destino) {
+	    elementoRemovido = destino[perguntaEscolhida];
+	    var listaAuxiliar = destino.slice(); 
+	    listaAuxiliar.splice(perguntaEscolhida, 1); 
+	    
+	    if(destino == perguntasSala)
+	    	perguntasSala = listaAuxiliar;
+	    else
+	    	respostasSala = listaAuxiliar;
+	    
+	    return elementoRemovido;
 	}
        	        
 
@@ -272,7 +288,10 @@
 	}
    
 	function verificarPortaSorteada(id) {
-		for(var i = 0; i < posicoesPortas.length; i++){
+		if(id == portaDesafio)
+			return true;
+		
+		for(i = 0; i < posicoesPortas.length; i++){
 			if(posicoesPortas[i] == id){
 				posicoesPortas[i] = 99;
 				return true;

@@ -118,25 +118,28 @@ public class PreparaSalas {
             
         	posicoesSorteadas.add(posicaoSorteada);
         	
-        	int[] idPortas = new int[11];
+        	int[] idPortas = new int[10];
+        	int portaDesafio = random.nextInt(40) + 1;
         	
-        	for(int o = 0; o < 11; o++){
+        	for(int o = 0; o < 10; o++){
 				boolean numeroExistente;
 				do{
 					posicaoSorteada = random.nextInt(40) + 1;
 				    numeroExistente = false;
-				    for(int i = 0; i < 11; i++){
-						if(idPortas[i] == posicaoSorteada)
+				    for(int i = 0; i < 10; i++){
+						if(idPortas[i] == posicaoSorteada || posicaoSorteada == portaDesafio)
 							numeroExistente = true;
 				   	}
 			   }while(numeroExistente);
 				idPortas[o] = posicaoSorteada;	   
 			}
+        	
+        	
         	switch(cont) {
-        	case 0: idPortaDesafio1 = idPortas[random.nextInt(11)]; break;
-        	case 1: idPortaDesafio2 = idPortas[random.nextInt(11)]; break;
-        	case 2: idPortaDesafio3 = idPortas[random.nextInt(11)]; break;
-        	case 3: idPortaDesafio4 = idPortas[random.nextInt(11)]; break;
+        	case 0: idPortaDesafio1 = portaDesafio; break;
+        	case 1: idPortaDesafio2 = portaDesafio; break;
+        	case 2: idPortaDesafio3 = portaDesafio; break;
+        	case 3: idPortaDesafio4 = portaDesafio; break;
         	}
         	EventosIdPortasSalas.add(idPortas);
             cont++;
