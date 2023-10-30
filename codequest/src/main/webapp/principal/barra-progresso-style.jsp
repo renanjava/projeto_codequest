@@ -15,9 +15,8 @@
 	height: 100%;
 	background-color: #4caf50;
 	border-radius: 5px;
-	text-align: center;
 	line-height: 30px;
-	color: white;
+	color: black;
 }
 </style>
 </head>

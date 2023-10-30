@@ -12,12 +12,14 @@
 	let numerosDesafioED = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
 	let numerosAuxiliar = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
 	let respostaCerta = '';
+	let nomeDaSala = '';
 	
 	function atualizarDadosHidden(){
 		document.getElementById("idPortas").value = listaIdPortas.join(",");
 	}
 	
-   function persistirProgresso(){
+   function persistirProgresso(nome){
+	   nomeDaSala = nome;
 	   perguntasSala = perguntasSala.split(",");
 	   console.log(perguntasSala);
 	   
@@ -76,7 +78,7 @@
        
 		if(verificarPortaSorteada(id)){
 			if(portaDesafio == id){
-				mostrarModal('myModalInstrucoes');
+				mostrarModal('modalInstrucoes');
 				document.getElementById("campoHeadInstrucoes").style.color = 'white';
 				document.querySelector('#campoHeadInstrucoes').textContent = 
 					'Instruções: Você deve ordenar os números em '+
@@ -86,49 +88,14 @@
 				botaoComecar = estruturaBotao(botaoComecar);
 				
 				botaoComecar.addEventListener("click", function() {
-					fecharModal('myModalInstrucoes');
-		       		mostrarModal('myModalDesafio');
+					fecharModal('modalInstrucoes');
+		       		mostrarModal('modalDesafio');
 		       		
-		       		var modal = document.getElementById("myModalDesafio");
-		       	    var buttonContainer = document.getElementById("buttonDesafio");
-		       	    
-		       	    modal.style.textAlign = 'center';
-		
-		       	    for (var i = 1; i <= 20; i++) {
-		       	    	(function(i) {
-			       	        var button = document.createElement("button");
-			       	        button.id = 'botaoDesafio' + i;
-			       	     	button = estruturaBotao(button);
-			       	        
-			       	        do
-			       	        	var indiceArray = Math.floor(Math.random() * 20);
-			       	        while(numerosAuxiliar[indiceArray] == 99)
-			
-			       	        button.innerText = numerosAuxiliar[indiceArray];
-			       	        buttonContainer.appendChild(button);
-			       	        numerosAuxiliar[indiceArray] = 99;
-			
-			       	        if (i % 5 === 0) 
-			       	            buttonContainer.appendChild(document.createElement("br"));
-			       	        
-			       	        button.addEventListener("click", function() {
-			       	        	var verificaIndiceVazio = 0;
-			       	        	
-			       	        	while(numerosAuxiliar[verificaIndiceVazio] != 99)
-			       	        		verificaIndiceVazio++;
-			       	        	
-			       	        	numerosAuxiliar[verificaIndiceVazio] = document.getElementById("botaoDesafio"+i).innerText;
-			       	        	
-			       	        		
-			       	        	botoesClicadosDesafio++;
-			       	        	document.getElementById("botaoDesafio"+i).disabled = true;
-			       			});
-		       			})(i);
-		       			}
-					var cont = 15;
-		       		iniciarContagem(cont);
+		       		if(nomeDaSala == "Estrutura")
+		       			inserirBotoesDesafioEstrutura();
 				});
 			}else{
+				
 				var perguntaEscolhida = parseInt(Math.random() * perguntasSala.length);
 				var pergunta = removerElemento(perguntaEscolhida, perguntasSala);
 				console.log(respostasSala)
@@ -175,7 +142,7 @@
 		        iniciarContagem(cont-1);
 		    });
 		}else{
-			fecharModal('myModalDesafio');
+			fecharModal('modalDesafio');
 			mostrarModal('resultadoDesafio');
 			document.getElementById('campoResultadoDesafio').style.color = 'black';
     	            	
@@ -284,7 +251,8 @@
 	}
    
 	function calcularPorcentagem(numero, total) {
-    	return ((numero / total) * 100);
+		let porcentagem = ((numero / total) * 100).toFixed(2);
+	    return parseFloat(porcentagem);
 	}
    
 	function verificarPortaSorteada(id) {
@@ -363,5 +331,46 @@
 			console.log(respostas[posicoesAleatorias[i - 1] - 1])
 			document.querySelector('#campoResposta' + i).textContent = respostas[posicoesAleatorias[i - 1] - 1];
 		}
+	}
+	
+	function inserirBotoesDesafioEstrutura(){
+		var modal = document.getElementById("modalDesafio");
+   	    var buttonContainer = document.getElementById("buttonDesafio");
+   	    
+   	    modal.style.textAlign = 'center';
+
+   	    for (var i = 1; i <= 20; i++) {
+   	    	(function(i) {
+       	        var button = document.createElement("button");
+       	        button.id = 'botaoDesafio' + i;
+       	     	button = estruturaBotao(button);
+       	        
+       	        do
+       	        	var indiceArray = Math.floor(Math.random() * 20);
+       	        while(numerosAuxiliar[indiceArray] == 99)
+
+       	        button.innerText = numerosAuxiliar[indiceArray];
+       	        buttonContainer.appendChild(button);
+       	        numerosAuxiliar[indiceArray] = 99;
+
+       	        if (i % 5 === 0) 
+       	            buttonContainer.appendChild(document.createElement("br"));
+       	        
+       	        button.addEventListener("click", function() {
+       	        	var verificaIndiceVazio = 0;
+       	        	
+       	        	while(numerosAuxiliar[verificaIndiceVazio] != 99)
+       	        		verificaIndiceVazio++;
+       	        	
+       	        	numerosAuxiliar[verificaIndiceVazio] = document.getElementById("botaoDesafio"+i).innerText;
+       	        	
+       	        		
+       	        	botoesClicadosDesafio++;
+       	        	document.getElementById("botaoDesafio"+i).disabled = true;
+       			});
+   			})(i);
+   			}
+		var cont = 15;
+   		iniciarContagem(cont);
 	}
 </script>

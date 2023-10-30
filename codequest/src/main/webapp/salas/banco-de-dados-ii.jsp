@@ -36,24 +36,13 @@
 	<jsp:include page="/principal/nav-bar.jsp"></jsp:include>
 	<jsp:include page="/principal/portas-body-table.jsp"></jsp:include>
 	<jsp:include page="/principal/portas-body-script.jsp"></jsp:include>
+	<jsp:include page="/principal/popup-and-instrucoes.jsp"></jsp:include>
+	<jsp:include page="/principal/perguntas-and-respostas.jsp"></jsp:include>
 
-	<div class="pop-up-conquista" id="popUpConquista">
-		<h2>Conquista Desbloqueada!</h2>
-		<p id="campoConquista"></p>
-	</div>
-	
-	<div id="myModalInstrucoes" class="modalDesafio">
+    <div id="modalDesafio" class="modalDesafio">
         <div class="modal-content-desafio">
-        	<h1 style="color: white;">Desafio</h1>
-        	<h2 style="text-align: center;"><p class="contador" id="campoHeadInstrucoes"></p></h2>
-            	<h2 style="text-align: center;"><button class="contador" id="botaoComecar">Começar</button></h2>
-        </div>
-    </div>
-
-    <div id="myModalDesafio" class="modalDesafio">
-        <div class="modal-content-desafio">
-            <h2>Tempo: <p class="contador" id="campoHeadDesafio"></p></h2>
-            <div id="buttonDesafio"></div>
+            <h2>Em manutenção (Desafio de Banco de Dados)<p class="contador" id="campoHeadDesafio"></p></h2>
+            <div id="buttonDesafio"><button onclick="fecharModal('modalDesafio')"></button></div>
         </div>
     </div>
     
@@ -63,20 +52,8 @@
         </div>
     </div>
     
-    <div id="respostasModal" class="respostasModal">
-    <div class="modal-content-respostas">
-        <h2>Pergunta: <p id="campoPergunta"></p></h2>
-        <div class="options">
-            <button id="resposta1" class="optionBtn" onclick="verificarResposta(id)" enabled><h2 id="campoResposta1"></h2></button>
-            <button id="resposta2" class="optionBtn" onclick="verificarResposta(id)" enabled><h2 id="campoResposta2"></h2></button>
-            <button id="resposta3" class="optionBtn" onclick="verificarResposta(id)" enabled><h2 id="campoResposta3"></h2></button>
-            <button id="resposta4" class="optionBtn" onclick="verificarResposta(id)" enabled><h2 id="campoResposta4"></h2></button>
-            <button id="resposta5" class="optionBtn" onclick="verificarResposta(id)" enabled><h2 id="campoResposta5"></h2></button>
-        </div>
-    </div>
-    
     <script type="text/javascript">
-    	persistirProgresso();
+    	persistirProgresso("Banco");
     	
     	document.querySelector('#tituloSala').textContent = 'Sala de Banco de Dados II';
     	document.body.style.background = 'linear-gradient(to bottom, #393939, #262626)';
