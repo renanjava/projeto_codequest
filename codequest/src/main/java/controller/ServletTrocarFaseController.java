@@ -55,6 +55,8 @@ public class ServletTrocarFaseController extends HttpServlet {
 					controle = true;
 					request.getSession().setAttribute("endereco-destino",request.getSession().getAttribute("endereco-"+(cont+1)));
 					request.getSession().setAttribute("sorteio-destino",request.getSession().getAttribute("sorteio-portas-"+(cont+1)));
+					request.getSession().setAttribute("perguntas-destino", request.getSession().getAttribute("perguntas-sala-"+(cont+1)));
+					request.getSession().setAttribute("respostas-destino", request.getSession().getAttribute("respostas-sala-"+(cont+1)));
 					request.getSession().setAttribute("id-desafio-destino",request.getSession().getAttribute("id-desafio-"+(cont+1)));
 					request.getSession().setAttribute("id-portas-destino",request.getSession().getAttribute("id-portas-"+(cont+1)));
 					request.getSession().setAttribute("id-portas-"+cont,(novasPortas.length() > 0 ? listaIdFix.get(cont-1)+","+novasPortas : listaIdFix.get(cont-1)));
@@ -69,6 +71,8 @@ public class ServletTrocarFaseController extends HttpServlet {
 					controle = true;
 					request.getSession().setAttribute("endereco-destino",request.getSession().getAttribute("endereco-"+(cont-1)));
 					request.getSession().setAttribute("sorteio-destino",request.getSession().getAttribute("sorteio-portas-"+(cont-1)));
+					request.getSession().setAttribute("perguntas-destino", request.getSession().getAttribute("perguntas-sala-"+(cont-1)));
+					request.getSession().setAttribute("respostas-destino", request.getSession().getAttribute("respostas-sala-"+(cont-1)));
 					request.getSession().setAttribute("id-desafio-destino",request.getSession().getAttribute("id-desafio-"+(cont-1)));
 					request.getSession().setAttribute("id-portas-destino",request.getSession().getAttribute("id-portas-"+(cont-1)));
 					request.getSession().setAttribute("id-portas-"+cont,(novasPortas.length() > 0 ? listaIdFix.get(cont-1)+","+novasPortas : listaIdFix.get(cont-1)));

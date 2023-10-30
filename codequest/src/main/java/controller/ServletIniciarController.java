@@ -57,16 +57,18 @@ public class ServletIniciarController extends HttpServlet {
 			
 			request.getSession().setAttribute("id-desafio-"+cont.get(),preparaSalas.getIdPortaDesafio(cont.get()));
 			request.getSession().setAttribute("id-portas-"+cont.get()," ");
+			
+			request.getSession().setAttribute("perguntas-sala-"+cont.get(),String.join(",",preparaSalas.getDisciplinas().getPerguntasDisciplinas().get(e)));
+			request.getSession().setAttribute("respostas-sala-"+cont.get(),preparaSalas.getDisciplinas().getRespostasDisciplinas().get(e)
+					.stream()
+		            .map(Arrays::toString)
+		            .collect(Collectors.joining("|"))
+		            .replaceAll("[\\[\\]]", ""));
 			cont.incrementAndGet();
 			});
-		
-		String perguntas = String.join(",",preparaSalas.getPerguntasDiscipEstrutura());
-		String respostas = preparaSalas.getRespostasDiscipEstrutura().stream()
-	            			.map(Arrays::toString)
-	            			.collect(Collectors.joining("|"))
-	            			.replaceAll("[\\[\\]]", "");
-		request.getSession().setAttribute("perguntas-destino", perguntas);
-		request.getSession().setAttribute("respostas-destino", respostas);
+				
+		request.getSession().setAttribute("perguntas-destino", request.getSession().getAttribute("perguntas-sala-1"));
+		request.getSession().setAttribute("respostas-destino", request.getSession().getAttribute("respostas-sala-1"));
 		request.getSession().setAttribute("endereco-destino", preparaSalas.getEnderecos()[0]);
 		request.getSession().setAttribute("sorteio-destino", Arrays.toString(preparaSalas.getEventosIdPortasSalas().get(0)));
 		request.getSession().setAttribute("id-desafio-destino", request.getSession().getAttribute("id-desafio-"+preparaSalas.getPosicoesSorteadas().get(0).intValue()));
