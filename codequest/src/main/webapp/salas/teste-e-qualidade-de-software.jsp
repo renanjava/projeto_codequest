@@ -37,20 +37,16 @@
 	<jsp:include page="/principal/portas-body-table.jsp"></jsp:include>
 	<jsp:include page="/principal/portas-body-script.jsp"></jsp:include>
 	<jsp:include page="/principal/popup-and-instrucoes.jsp"></jsp:include>
-	<jsp:include page="/principal/perguntas-and-respostas.jsp"></jsp:include>
 
     <div id="modalDesafio" class="modalDesafio">
         <div class="modal-content-desafio">
             <h2>Em manutenção (Desafio de Testes)<p class="contador" id="campoHeadDesafio"></p></h2>
-            <div id="buttonDesafio"><button onclick="fecharModal('modalDesafio')"></div>
+            <div id="buttonDesafio"><button onclick="fecharModal('modalDesafio')"></button></div>
         </div>
     </div>
     
-    <div id="resultadoDesafio" class="modalDesafio">
-        <div class="modal-content-desafio">
-            <h2>Resultado: <p class="contador" id="campoResultadoDesafio"></p></h2>
-        </div>
-    </div>
+    <jsp:include page="/principal/resultado-desafio.jsp"></jsp:include>
+    <jsp:include page="/principal/perguntas-and-respostas.jsp"></jsp:include>
 
     <script type="text/javascript">
     	persistirProgresso("Testes");
