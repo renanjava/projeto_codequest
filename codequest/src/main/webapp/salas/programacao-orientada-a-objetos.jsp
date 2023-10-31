@@ -30,6 +30,69 @@
     width: 80%;
 }
 
+.roleta {
+    width: 200px;
+    height: 200px;
+    border: 5px solid black;
+    border-radius: 50%;
+    position: relative;
+}
+
+.girar {
+    transform: rotate(1800deg);
+}
+
+.slot {
+    width: 100%;
+    height: 50px;
+    background-color: red;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+#slot1 {
+    background-color: red;
+    transform: translateY(-150%);
+}
+
+#slot2 {
+    background-color: orange;
+    transform: translateY(-100%);
+}
+
+#slot3 {
+    background-color: yellow;
+    transform: translateY(-50%);
+}
+
+#slot4 {
+    background-color: green;
+}
+
+#slot5 {
+    background-color: blue;
+    transform: translateY(50%);
+}
+
+#slot6 {
+    background-color: purple;
+    transform: translateY(100%);
+}
+
+@keyframes girar-animation {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(1800deg);
+    }
+}
+
+.girar-animation {
+    animation: girar-animation 5s ease-in-out;
+}
+
 </style>
 </head>
 <body>
@@ -40,9 +103,16 @@
 	<jsp:include page="/principal/popup-and-instrucoes.jsp"></jsp:include>
 
     <div id="modalDesafio" class="modalDesafio">
-        <div class="modal-content-desafio">
-            <h2>Em manutenção (Desafio de Java)<p class="contador" id="campoHeadDesafio"></p></h2>
-            <div id="buttonDesafio"><button onclick="fecharModal('modalDesafio')"></button></div>
+    	<div class="modal-content-desafio">
+             <div class="roleta">
+	            <div class="slot" id="slot1"></div>
+	            <div class="slot" id="slot2"></div>
+	            <div class="slot" id="slot3"></div>
+	            <div class="slot" id="slot4"></div>
+	            <div class="slot" id="slot5"></div>
+	            <div class="slot" id="slot6"></div>
+        	</div>
+        	<button id="giraRoleta">GIRAR</button>
         </div>
     </div>
     

@@ -8,9 +8,6 @@
 	let respostasSala = "<%= session.getAttribute("respostas-destino") %>";
 	let listaIdPortas = [];
 	let posicoesPortas;
-	let botoesClicadosDesafio = 0;
-	let numerosDesafioED = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
-	let numerosAuxiliar = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
 	let respostaCerta = '';
 	let nomeDaSala = '';
 	
@@ -92,7 +89,8 @@
 		       		mostrarModal('modalDesafio');
 		       		
 		       		if(nomeDaSala == "Estrutura")
-		       			inserirBotoesDesafioEstrutura();
+		       			montarDesafioEstrutura();
+		       		
 				});
 			}else{
 				
@@ -134,51 +132,6 @@
 	        }, 1000);
 	    });
 	}
-
-	function iniciarContagem(cont) {
-		
-		if (cont >= 0 && botoesClicadosDesafio < 20) {
-		    atualizarCampo(cont).then(function() {
-		        iniciarContagem(cont-1);
-		    });
-		}else{
-			fecharModal('modalDesafio');
-			mostrarModal('resultadoDesafio');
-			document.getElementById('campoResultadoDesafio').style.color = 'black';
-    	            	
-	  	if(verificaVetores()){
-	  		document.querySelector('#campoResultadoDesafio').textContent = 'Certo!';
-	      	document.getElementById('campoResultadoDesafio').style.backgroundColor = 'green';
-	      	
-	      	contadorDesafios++;
-	      	atualizarProgresso(contadorDesafios, 4, 'Desafios');
-	      	document.getElementById("desafiosResolvidos").value = contadorDesafios;
-
-	      	barraProgressoConquistasSolucionador(true);
-	  	}else{
-	  		document.querySelector('#campoResultadoDesafio').textContent = 'Errado!';
-	  		document.getElementById('campoResultadoDesafio').style.backgroundColor = 'red';
-	  	}
-	  	
-	  	setTimeout(function() {
-	  		fecharModal('resultadoDesafio');
-		}, 2000);
-		}
-    }
-
-	function verificaVetores(){
-	   	var contValoresIguais = 0;
-	   	
-	   	for(i = 0;i < 20;i++){
-	   		if(numerosAuxiliar[i] == numerosDesafioED[i])
-	   			contValoresIguais++;
-	   	}
-	   	
-	   	if(contValoresIguais == 20) 
-	   		return true;
-	   	else
-	   		return false;
-   }
 	
 	function barraProgressoConquistasConsultor(conquista){
 		
@@ -333,7 +286,11 @@
 		}
 	}
 	
-	function inserirBotoesDesafioEstrutura(){
+	function montarDesafioEstrutura(){
+		var botoesClicadosDesafio = 0;
+		var numerosDesafioED = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
+		var numerosAuxiliar = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
+		
 		var modal = document.getElementById("modalDesafio");
    	    var buttonContainer = document.getElementById("buttonDesafio");
    	    
@@ -370,7 +327,69 @@
        			});
    			})(i);
    			}
+   	    
 		var cont = 15;
    		iniciarContagem(cont);
+   		function iniciarContagem(cont) {
+   			
+   			if (cont >= 0 && botoesClicadosDesafio < 20) {
+   			    atualizarCampo(cont).then(function() {
+   			        iniciarContagem(cont-1);
+   			    });
+   			}else{
+   				fecharModal('modalDesafio');
+   				mostrarModal('resultadoDesafio');
+   				document.getElementById('campoResultadoDesafio').style.color = 'black';
+   	    	            	
+   		  	if(verificaVetores()){
+   		  		document.querySelector('#campoResultadoDesafio').textContent = 'Certo!';
+   		      	document.getElementById('campoResultadoDesafio').style.backgroundColor = 'green';
+   		      	
+   		      	contadorDesafios++;
+   		      	atualizarProgresso(contadorDesafios, 4, 'Desafios');
+   		      	document.getElementById("desafiosResolvidos").value = contadorDesafios;
+
+   		      	barraProgressoConquistasSolucionador(true);
+   		  	}else{
+   		  		document.querySelector('#campoResultadoDesafio').textContent = 'Errado!';
+   		  		document.getElementById('campoResultadoDesafio').style.backgroundColor = 'red';
+   		  	}
+   		  	
+   		  	setTimeout(function() {
+   		  		fecharModal('resultadoDesafio');
+   			}, 2000);
+   			}
+   	    }
+   		
+   		function verificaVetores(){
+   		   	var contValoresIguais = 0;
+   		   	
+   		   	for(i = 0;i < 20;i++){
+   		   		if(numerosAuxiliar[i] == numerosDesafioED[i])
+   		   			contValoresIguais++;
+   		   	}
+   		   	
+   		   	if(contValoresIguais == 20) 
+   		   		return true;
+   		   	else
+   		   		return false;
+   	   }
 	}
+	
+	document.addEventListener('DOMContentLoaded', function () {
+	    function montarDesafioJava() {
+	        var botaoGirar = document.getElementById("giraRoleta");
+	        botaoGirar.addEventListener('click', function () {
+	            var roleta = document.querySelector('.roleta');
+	            roleta.classList.add('girar-animation');
+
+	            setTimeout(function () {
+	                roleta.classList.remove('girar-animation');
+	            }, 5000);
+	        });
+	    }
+		
+	    if(nomeDaSala == "Java")
+	    	montarDesafioJava();
+	});
 </script>
