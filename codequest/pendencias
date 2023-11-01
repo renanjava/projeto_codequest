@@ -15,3 +15,8 @@ adaptar as mensagens e as conquistas de acordo com o gênero
 3 vidas por sala
 
 diminuir o tamanho das respostas e verificar se as perguntas se repetem após trocar as salas
+azul: interface
+verde: enum
+amarelo: exceptions
+vermelho: polimorfismo
+laranja: herança

@@ -17,7 +17,6 @@
     width: 100%;
     height: 100%;
     overflow: auto;
-    background-color: rgb(0, 0, 0);
     background-color: rgba(0, 0, 0, 0.4);
     padding-top: 60px;
 }
@@ -31,66 +30,48 @@
 }
 
 .roleta {
-    width: 200px;
-    height: 200px;
-    border: 5px solid black;
+    width: 300px;
+    height: 300px;
+    border: 16px solid #333;
     border-radius: 50%;
     position: relative;
-}
-
-.girar {
-    transform: rotate(1800deg);
+    overflow: hidden;
 }
 
 .slot {
-    width: 100%;
-    height: 50px;
-    background-color: red;
     position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
+    width: 0;
+    height: 0;
+    border-left: 150px solid transparent;
+    border-right: 150px solid transparent;
+    border-bottom: 150px solid var(--slot-color);
+    transform: rotate(calc(var(--slot-index) * 72deg));
+    transform-origin: bottom center;
 }
 
-#slot1 {
-    background-color: red;
-    transform: translateY(-150%);
-}
-
-#slot2 {
-    background-color: orange;
-    transform: translateY(-100%);
-}
-
-#slot3 {
-    background-color: yellow;
-    transform: translateY(-50%);
-}
-
-#slot4 {
-    background-color: green;
-}
-
-#slot5 {
+.slot:nth-child(1) {
     background-color: blue;
-    transform: translateY(50%);
+    transform: rotate(0deg);
 }
 
-#slot6 {
-    background-color: purple;
-    transform: translateY(100%);
+.slot:nth-child(2) {
+    background-color: green;
+    transform: rotate(60deg);
 }
 
-@keyframes girar-animation {
-    0% {
-        transform: rotate(0deg);
-    }
-    100% {
-        transform: rotate(1800deg);
-    }
+.slot:nth-child(3) {
+    background-color: yellow;
+    transform: rotate(120deg);
 }
 
-.girar-animation {
-    animation: girar-animation 5s ease-in-out;
+.slot:nth-child(4) {
+    background-color: orange;
+    transform: rotate(180deg);
+}
+
+.slot:nth-child(5) {
+    background-color: red;
+    transform: rotate(240deg);
 }
 
 </style>
@@ -103,16 +84,15 @@
 	<jsp:include page="/principal/popup-and-instrucoes.jsp"></jsp:include>
 
     <div id="modalDesafio" class="modalDesafio">
-    	<div class="modal-content-desafio">
-             <div class="roleta">
-	            <div class="slot" id="slot1"></div>
-	            <div class="slot" id="slot2"></div>
-	            <div class="slot" id="slot3"></div>
-	            <div class="slot" id="slot4"></div>
-	            <div class="slot" id="slot5"></div>
-	            <div class="slot" id="slot6"></div>
-        	</div>
-        	<button id="giraRoleta">GIRAR</button>
+        <div class="modal-content-desafio">
+            <div class="roleta">
+                <div class="slot" style="--slot-index: 0;"></div>
+                <div class="slot" style="--slot-index: 1;"></div>
+                <div class="slot" style="--slot-index: 2;"></div>
+                <div class="slot" style="--slot-index: 3;"></div>
+                <div class="slot" style="--slot-index: 4;"></div>
+            </div>
+            <button id="girarRoleta">GIRAR</button>
         </div>
     </div>
     

@@ -378,14 +378,19 @@
 	
 	document.addEventListener('DOMContentLoaded', function () {
 	    function montarDesafioJava() {
-	        var botaoGirar = document.getElementById("giraRoleta");
-	        botaoGirar.addEventListener('click', function () {
-	            var roleta = document.querySelector('.roleta');
-	            roleta.classList.add('girar-animation');
+	    	const roleta = document.querySelector('.roleta');
+	        const girarBotao = document.getElementById('girarRoleta');
 
-	            setTimeout(function () {
-	                roleta.classList.remove('girar-animation');
-	            }, 5000);
+	        girarBotao.addEventListener('click', () => {
+	            // Gera um número aleatório de 0 a 4 para determinar qual slot será destacado
+	            const numeroSlot = Math.floor(Math.random() * 5);
+
+	            // Calcula o ângulo para girar a roleta (72 graus por slot)
+	            const angulo = 72 * numeroSlot;
+
+	            // Aplica a animação de rotação à roleta
+	            roleta.style.transition = 'transform 3s ease-out';
+	            roleta.style.transform = `rotate(${angulo}deg)`;
 	        });
 	    }
 		
