@@ -84,9 +84,7 @@
 				botaoComecar.addEventListener("click", function() {
 					fecharModal('modalInstrucoes');
 		       		mostrarModal('modalDesafio');
-		       		
-		       		if(nomeDaSala == "Estrutura")
-		       			montarDesafioEstrutura();
+
 				});
 			}else{
 				
@@ -115,18 +113,6 @@
 	    	respostasSala = listaAuxiliar;
 	    
 	    return elementoRemovido;
-	}
-       	        
-
-	function atualizarCampo(cont) {
-	    return new Promise(function(resolve, reject) {
-	    	document.querySelector('#campoHeadDesafio').textContent = 
-	        	(cont < 10 ? '0:0' + cont.toString() : '0:' + cont.toString());
-	    	
-	        setTimeout(function() {
-	            resolve();
-	        }, 1000);
-	    });
 	}
 	
 	function barraProgressoConquistasConsultor(conquista){
@@ -281,95 +267,4 @@
 			document.querySelector('#campoResposta' + i).textContent = respostas[posicoesAleatorias[i - 1] - 1];
 		}
 	}
-	
-	function montarDesafioEstrutura(){
-		var botoesClicadosDesafio = 0;
-		var numerosDesafioED = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
-		var numerosAuxiliar = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
-		
-		var modal = document.getElementById("modalDesafio");
-   	    var buttonContainer = document.getElementById("buttonDesafio");
-   	    
-   	    modal.style.textAlign = 'center';
-
-   	    for (var i = 1; i <= 20; i++) {
-   	    	(function(i) {
-       	        var button = document.createElement("button");
-       	        button.id = 'botaoDesafio' + i;
-       	     	button = estruturaBotao(button);
-       	        
-       	        do
-       	        	var indiceArray = Math.floor(Math.random() * 20);
-       	        while(numerosAuxiliar[indiceArray] == 99)
-
-       	        button.innerText = numerosAuxiliar[indiceArray];
-       	        buttonContainer.appendChild(button);
-       	        numerosAuxiliar[indiceArray] = 99;
-
-       	        if (i % 5 === 0) 
-       	            buttonContainer.appendChild(document.createElement("br"));
-       	        
-       	        button.addEventListener("click", function() {
-       	        	var verificaIndiceVazio = 0;
-       	        	
-       	        	while(numerosAuxiliar[verificaIndiceVazio] != 99)
-       	        		verificaIndiceVazio++;
-       	        	
-       	        	numerosAuxiliar[verificaIndiceVazio] = document.getElementById("botaoDesafio"+i).innerText;
-       	        	
-       	        		
-       	        	botoesClicadosDesafio++;
-       	        	document.getElementById("botaoDesafio"+i).disabled = true;
-       			});
-   			})(i);
-   			}
-   	    
-		var cont = 15;
-   		iniciarContagem(cont);
-   		function iniciarContagem(cont) {
-   			
-   			if (cont >= 0 && botoesClicadosDesafio < 20) {
-   			    atualizarCampo(cont).then(function() {
-   			        iniciarContagem(cont-1);
-   			    });
-   			}else{
-   				fecharModal('modalDesafio');
-   				mostrarModal('resultadoDesafio');
-   				document.getElementById('campoResultadoDesafio').style.color = 'black';
-   	    	            	
-   		  	if(verificaVetores()){
-   		  		document.querySelector('#campoResultadoDesafio').textContent = 'Certo!';
-   		      	document.getElementById('campoResultadoDesafio').style.backgroundColor = 'green';
-   		      	
-   		      	contadorDesafios++;
-   		      	atualizarProgresso(contadorDesafios, 4, 'Desafios');
-   		      	document.getElementById("desafiosResolvidos").value = contadorDesafios;
-
-   		      	barraProgressoConquistasSolucionador(true);
-   		  	}else{
-   		  		document.querySelector('#campoResultadoDesafio').textContent = 'Errado!';
-   		  		document.getElementById('campoResultadoDesafio').style.backgroundColor = 'red';
-   		  	}
-   		  	
-   		  	setTimeout(function() {
-   		  		fecharModal('resultadoDesafio');
-   			}, 2000);
-   			}
-   	    }
-   		
-   		function verificaVetores(){
-   		   	var contValoresIguais = 0;
-   		   	
-   		   	for(i = 0;i < 20;i++){
-   		   		if(numerosAuxiliar[i] == numerosDesafioED[i])
-   		   			contValoresIguais++;
-   		   	}
-   		   	
-   		   	if(contValoresIguais == 20) 
-   		   		return true;
-   		   	else
-   		   		return false;
-   	   }
-	}
-
 </script>

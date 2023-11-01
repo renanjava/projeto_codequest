@@ -80,11 +80,11 @@
     <div id="modalDesafio" class="modalDesafio">
         <div class="modal-content-desafio">
             <div class="roleta">
-		        <div class="slot">Interface</div>
-		        <div class="slot">Enum</div>
-		        <div class="slot">Exception</div>
-		        <div class="slot">Herança</div>
-		        <div class="slot">Polimorfismo</div>
+		        <div class="slot" id="slot1"></div>
+		        <div class="slot" id="slot2"></div>
+		        <div class="slot" id="slot3"></div>
+		        <div class="slot" id="slot4"></div>
+		        <div class="slot" id="slot5"></div>
 		    </div>
 		    	<button id="botaoGirar">Sortear</button>
         </div>
@@ -106,7 +106,24 @@
     </script>
     
     <script>
+    inserirTextoAleatorio();
     var slots = Array.from(document.querySelectorAll('.slot'));
+    
+    function inserirTextoAleatorio(){
+    	var textosSlots = ["Interface", "Enum", "Exception", "Herança", "Polimorfismo"];
+    	var posicoesAleatorias = [];
+    	while(posicoesAleatorias.length < 5){
+			var posicao = 0;
+			
+			do
+				posicao = parseInt(Math.random() * 5)+1;
+			while(posicoesAleatorias.includes(posicao));
+			posicoesAleatorias.push(posicao);
+		}
+    	for(i = 1; i < posicoesAleatorias.length+1; i++){
+    		document.querySelector('#slot'+i).textContent = textosSlots[posicoesAleatorias[i-1]-1];
+    	}
+    }
 
     function atualizarSlotsDisponiveis() {
         slots = slots.filter(function(slot) {
