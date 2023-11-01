@@ -51,6 +51,9 @@
    
     <script type="text/javascript">
     	persistirProgresso("Estrutura");
+    	document.querySelector('#campoHeadInstrucoes').textContent = 
+			'Instruções: Você deve ordenar os números em '+
+			'ordem crescente antes do tempo acabar';
     	
 		document.querySelector('#tituloSala').textContent = 'Sala de Estrutura de Dados I';
 		document.body.style.background = 'linear-gradient(to bottom, #2c3e50, #0d2959)';

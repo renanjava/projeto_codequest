@@ -77,9 +77,6 @@
 			if(portaDesafio == id){
 				mostrarModal('modalInstrucoes');
 				document.getElementById("campoHeadInstrucoes").style.color = 'white';
-				document.querySelector('#campoHeadInstrucoes').textContent = 
-					'Instruções: Você deve ordenar os números em '+
-					'ordem crescente antes do tempo acabar';
 					
 				var botaoComecar = document.getElementById("botaoComecar");
 				botaoComecar = estruturaBotao(botaoComecar);
@@ -90,7 +87,6 @@
 		       		
 		       		if(nomeDaSala == "Estrutura")
 		       			montarDesafioEstrutura();
-		       		
 				});
 			}else{
 				
@@ -375,26 +371,5 @@
    		   		return false;
    	   }
 	}
-	
-	document.addEventListener('DOMContentLoaded', function () {
-	    function montarDesafioJava() {
-	    	const roleta = document.querySelector('.roleta');
-	        const girarBotao = document.getElementById('girarRoleta');
 
-	        girarBotao.addEventListener('click', () => {
-	            // Gera um número aleatório de 0 a 4 para determinar qual slot será destacado
-	            const numeroSlot = Math.floor(Math.random() * 5);
-
-	            // Calcula o ângulo para girar a roleta (72 graus por slot)
-	            const angulo = 72 * numeroSlot;
-
-	            // Aplica a animação de rotação à roleta
-	            roleta.style.transition = 'transform 3s ease-out';
-	            roleta.style.transform = `rotate(${angulo}deg)`;
-	        });
-	    }
-		
-	    if(nomeDaSala == "Java")
-	    	montarDesafioJava();
-	});
 </script>

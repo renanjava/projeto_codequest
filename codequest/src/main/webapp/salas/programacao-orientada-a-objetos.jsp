@@ -22,7 +22,7 @@
 }
 
 .modal-content-desafio {
-    background-color: black;
+	background-color: black;
     margin: 5% auto;
     padding: 20px;
     border: 1px solid #888;
@@ -30,50 +30,44 @@
 }
 
 .roleta {
-    width: 300px;
-    height: 300px;
-    border: 16px solid #333;
-    border-radius: 50%;
-    position: relative;
-    overflow: hidden;
+  display: flex;
+  background-color: black;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  cursor: pointer; /* Adicione este estilo para indicar a seleção */
 }
 
 .slot {
-    position: absolute;
-    width: 0;
-    height: 0;
-    border-left: 150px solid transparent;
-    border-right: 150px solid transparent;
-    border-bottom: 150px solid var(--slot-color);
-    transform: rotate(calc(var(--slot-index) * 72deg));
-    transform-origin: bottom center;
+  font-size: 24px;
+  background-color: white;
+  margin: 10px;
+  padding: 10px 20px;
+  border: 1px solid black;
+  border-radius: 5px;
+  text-align: center;
+  transition: background-color 0.3s ease-in-out;
 }
 
-.slot:nth-child(1) {
-    background-color: blue;
-    transform: rotate(0deg);
+#botaoGirar {
+  margin-top: 20px;
+  padding: 10px 20px;
+  font-size: 18px;
+  background-color: #3498db;
+  border: none;
+  color: #fff;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
 }
 
-.slot:nth-child(2) {
-    background-color: green;
-    transform: rotate(60deg);
+#botaoGirar:hover {
+  background-color: #2980b9;
 }
 
-.slot:nth-child(3) {
-    background-color: yellow;
-    transform: rotate(120deg);
+.slot:hover {
+  background-color: #f1f1f1;
 }
-
-.slot:nth-child(4) {
-    background-color: orange;
-    transform: rotate(180deg);
-}
-
-.slot:nth-child(5) {
-    background-color: red;
-    transform: rotate(240deg);
-}
-
 </style>
 </head>
 <body>
@@ -86,24 +80,108 @@
     <div id="modalDesafio" class="modalDesafio">
         <div class="modal-content-desafio">
             <div class="roleta">
-                <div class="slot" style="--slot-index: 0;"></div>
-                <div class="slot" style="--slot-index: 1;"></div>
-                <div class="slot" style="--slot-index: 2;"></div>
-                <div class="slot" style="--slot-index: 3;"></div>
-                <div class="slot" style="--slot-index: 4;"></div>
-            </div>
-            <button id="girarRoleta">GIRAR</button>
+		        <div class="slot">Interface</div>
+		        <div class="slot">Enum</div>
+		        <div class="slot">Exception</div>
+		        <div class="slot">Herança</div>
+		        <div class="slot">Polimorfismo</div>
+		    </div>
+		    	<button id="botaoGirar">Sortear</button>
         </div>
     </div>
+    
+    <audio id="somRoleta" src="<%= request.getContextPath() %>/audio/roulette_sound.mp3"></audio>
     
     <jsp:include page="/principal/resultado-desafio.jsp"></jsp:include>
     <jsp:include page="/principal/perguntas-and-respostas.jsp"></jsp:include>
     
     <script type="text/javascript">
     	persistirProgresso("Java");
+    	document.querySelector('#campoHeadInstrucoes').textContent = 
+			'Instruções: Você deve ligar os slots '+
+			'na definição do seu respectivo conceito';
     	
     	document.querySelector('#tituloSala').textContent = 'Sala de Programação Orientada a Objetos';
     	document.body.style.background = 'linear-gradient(to bottom, #CC6633, #CC5532)';
+    </script>
+    
+    <script>
+    var slots = Array.from(document.querySelectorAll('.slot'));
+
+    function atualizarSlotsDisponiveis() {
+        slots = slots.filter(function(slot) {
+            return !slot.classList.contains('disabled') && !slot.disabled;
+        });
+    }
+
+    function girarRoleta() {
+        var botaoGirar = document.getElementById('botaoGirar');
+        var somRoleta = document.getElementById('somRoleta');
+        botaoGirar = botaoOnOff(botaoGirar, false);
+
+        var rodadasTotais = 15;
+        var rodadaAtual = 0;
+
+        var intervaloGiro = setInterval(function() {
+            slots.forEach(function(slot) {
+                slot.style.backgroundColor = '#fff';
+            });
+            
+
+            if (slots.length >= 1) {
+            	if(slots.length == 1){
+            		var slotEscolhido = slots[0];
+            		rodadaAtual = rodadasTotais-1;
+            	}else{
+            		somRoleta.play(); // Toca o som da roleta
+                    var indiceSlotAleatorio = Math.floor(Math.random() * slots.length);
+                    var slotEscolhido = slots[indiceSlotAleatorio];
+            	}
+                slotEscolhido.style.backgroundColor = '#3498db';
+            }else	
+            	botaoGirar = botaoOnOff(botaoGirar, false);
+            
+
+            rodadaAtual++;
+
+            if (rodadaAtual === rodadasTotais) {
+                clearInterval(intervaloGiro);
+                somRoleta.pause();
+                if(slots.length > 1){
+                	if(slots.length != 1)
+                		setTimeout(function() {imprimeResultadoAtualizaList(slotEscolhido, true)}, 500);
+                	else
+                		imprimeResultadoAtualizaList(slotEscolhido, true);
+                }else
+                	setTimeout(function() {imprimeResultadoAtualizaList(slotEscolhido, false)}, 500);
+            }
+        }, 200);
+        
+        function botaoOnOff(botao, ligar){
+        	if(ligar == false){
+        		botao.disabled = true;
+            	botao.style.pointerEvents = 'none';
+            	botao.style.background = 'gray';
+        	}else{
+        		botao.disabled = false;
+            	botao.style.pointerEvents = 'auto';
+            	botao.style.background = '#3498db';
+        	}
+        	
+        	return botao;
+        }
+        
+        function imprimeResultadoAtualizaList(slotEscolhido, ligarBotao){
+        	alert("Resultado: " + slotEscolhido.textContent); 
+        	slotEscolhido.style.backgroundColor = 'gray';
+            slotEscolhido.classList.add('disabled');
+            atualizarSlotsDisponiveis();
+            botaoGirar = botaoOnOff(botaoGirar, ligarBotao);
+        }
+    }
+
+    var botaoGirar = document.getElementById('botaoGirar');
+    botaoGirar.addEventListener('click', girarRoleta);
     </script>
 </body>
 </html>

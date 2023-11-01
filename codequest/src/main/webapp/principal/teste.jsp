@@ -36,7 +36,7 @@ body {
   transition: background-color 0.3s ease-in-out;
 }
 
-#spinButton {
+#botaoGirar {
   margin-top: 20px;
   padding: 10px 20px;
   font-size: 18px;
@@ -48,7 +48,7 @@ body {
   transition: background-color 0.3s ease-in-out;
 }
 
-#spinButton:hover {
+#botaoGirar:hover {
   background-color: #2980b9;
 }
 
@@ -60,15 +60,15 @@ body {
 </head>
 <body>
     <div class="roleta">
-        <div class="slot" enabled>Interface</div>
-        <div class="slot" enabled>Enum</div>
-        <div class="slot" enabled>Exception</div>
-        <div class="slot" enabled>Herança</div>
-        <div class="slot" enabled>Polimorfismo</div>
+        <div class="slot">Interface</div>
+        <div class="slot">Enum</div>
+        <div class="slot">Exception</div>
+        <div class="slot">Herança</div>
+        <div class="slot">Polimorfismo</div>
     </div>
-    	<button id="spinButton">Girar</button>
+    	<button id="botaoGirar">Girar</button>
 
-    <audio id="rouletteSound" src="<%= request.getContextPath() %>/audio/roulette_sound.mp3"></audio>
+    <audio id="somRoleta" src="<%= request.getContextPath() %>/audio/roulette_sound.mp3"></audio>
 
     <script>
 
@@ -81,45 +81,45 @@ body {
     }
 
     function spinRoulette() {
-        var spinButton = document.getElementById('spinButton');
-        var rouletteSound = document.getElementById('rouletteSound');
-        spinButton = botaoOnOff(spinButton, false);
+        var botaoGirar = document.getElementById('botaoGirar');
+        var somRoleta = document.getElementById('somRoleta');
+        botaoGirar = botaoOnOff(botaoGirar, false);
 
-        var rounds = 15; // Número de rounds antes de parar
-        var currentRound = 0;
+        var rodadasTotais = 15;
+        var rodadaAtual = 0;
 
-        var spinInterval = setInterval(function() {
+        var intervaloGiro = setInterval(function() {
             slots.forEach(function(slot) {
-                slot.style.backgroundColor = '#fff'; // Reinicia a cor de fundo de todos os slots
+                slot.style.backgroundColor = '#fff';
             });
             
 
             if (slots.length >= 1) {
             	if(slots.length == 1){
-            		var selectedSlot = slots[0];
-            		currentRound = rounds-1;
+            		var slotEscolhido = slots[0];
+            		rodadaAtual = rodadasTotais-1;
             	}else{
-            		rouletteSound.play(); // Toca o som da roleta
-                    var randomSlotIndex = Math.floor(Math.random() * slots.length);
-                    var selectedSlot = slots[randomSlotIndex];
+            		somRoleta.play(); // Toca o som da roleta
+                    var indiceSlotAleatorio = Math.floor(Math.random() * slots.length);
+                    var slotEscolhido = slots[indiceSlotAleatorio];
             	}
-                selectedSlot.style.backgroundColor = '#3498db'; // Destaca o slot selecionado
+                slotEscolhido.style.backgroundColor = '#3498db';
             }else	
-            	spinButton = botaoOnOff(spinButton, false);
+            	botaoGirar = botaoOnOff(botaoGirar, false);
             
 
-            currentRound++;
+            rodadaAtual++;
 
-            if (currentRound === rounds) {
-                clearInterval(spinInterval);
-                rouletteSound.pause(); // Pausa o som da roleta
+            if (rodadaAtual === rodadasTotais) {
+                clearInterval(intervaloGiro);
+                somRoleta.pause();
                 if(slots.length > 1){
                 	if(slots.length != 1)
-                		setTimeout(function() {imprimeResultadoAtualizaList(selectedSlot, true)}, 500);
+                		setTimeout(function() {imprimeResultadoAtualizaList(slotEscolhido, true)}, 500);
                 	else
-                		imprimeResultadoAtualizaList(selectedSlot, true);
+                		imprimeResultadoAtualizaList(slotEscolhido, true);
                 }else
-                	setTimeout(function() {imprimeResultadoAtualizaList(selectedSlot, false)}, 500);
+                	setTimeout(function() {imprimeResultadoAtualizaList(slotEscolhido, false)}, 500);
             }
         }, 200);
         
@@ -137,17 +137,17 @@ body {
         	return botao;
         }
         
-        function imprimeResultadoAtualizaList(selectedSlot, ligarBotao){
-        	alert("Resultado: " + selectedSlot.textContent); 
-        	selectedSlot.style.backgroundColor = 'gray';
-            selectedSlot.classList.add('disabled');
+        function imprimeResultadoAtualizaList(slotEscolhido, ligarBotao){
+        	alert("Resultado: " + slotEscolhido.textContent); 
+        	slotEscolhido.style.backgroundColor = 'gray';
+            slotEscolhido.classList.add('disabled');
             atualizarSlotsDisponiveis();
-            spinButton = botaoOnOff(spinButton, ligarBotao);
+            botaoGirar = botaoOnOff(botaoGirar, ligarBotao);
         }
     }
 
-    var spinButton = document.getElementById('spinButton');
-    spinButton.addEventListener('click', spinRoulette);
+    var botaoGirar = document.getElementById('botaoGirar');
+    botaoGirar.addEventListener('click', spinRoulette);
     </script>
 </body>
 </html>
