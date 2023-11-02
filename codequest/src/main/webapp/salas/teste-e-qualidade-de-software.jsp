@@ -49,7 +49,7 @@
     <jsp:include page="/principal/perguntas-and-respostas.jsp"></jsp:include>
 
     <script type="text/javascript">
-    	persistirProgresso("Testes");
+    	persistirProgresso();
     	
     	document.querySelector('#tituloSala').textContent = 'Sala de Teste e Qualidade de Software';
     	document.body.style.background = 'linear-gradient(to bottom, #52A252, #66CC66)';

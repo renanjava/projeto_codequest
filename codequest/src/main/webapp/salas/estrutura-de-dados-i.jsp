@@ -50,7 +50,7 @@
     <jsp:include page="/principal/perguntas-and-respostas.jsp"></jsp:include>
    
     <script type="text/javascript">
-    	persistirProgresso("Estrutura");
+    	persistirProgresso();
     	document.querySelector('#campoHeadInstrucoes').textContent = 
 			'Instruções: Você deve ordenar os números em '+
 			'ordem crescente antes do tempo acabar';
@@ -63,7 +63,7 @@
     var cont = 15;
     var botoesClicadosDesafio = 0;
 	var numerosDesafioED = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
-	var numerosAuxiliar = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
+	var numerosEsperados = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
 	
 	var modal = document.getElementById("modalDesafio");
 	var buttonContainer = document.getElementById("buttonDesafio");
@@ -81,11 +81,11 @@
 	   	        
 	   	        do
 	   	        	var indiceArray = Math.floor(Math.random() * 20);
-	   	        while(numerosAuxiliar[indiceArray] == 99)
+	   	        while(numerosEsperados[indiceArray] == 99)
 	
-	   	        button.innerText = numerosAuxiliar[indiceArray];
+	   	        button.innerText = numerosEsperados[indiceArray];
 	   	        buttonContainer.appendChild(button);
-	   	        numerosAuxiliar[indiceArray] = 99;
+	   	        numerosEsperados[indiceArray] = 99;
 	
 	   	        if (i % 5 === 0) 
 	   	            buttonContainer.appendChild(document.createElement("br"));
@@ -93,10 +93,10 @@
 	   	        button.addEventListener("click", function() {
 	   	        	var verificaIndiceVazio = 0;
 	   	        	
-	   	        	while(numerosAuxiliar[verificaIndiceVazio] != 99)
+	   	        	while(numerosEsperados[verificaIndiceVazio] != 99)
 	   	        		verificaIndiceVazio++;
 	   	        	
-	   	        	numerosAuxiliar[verificaIndiceVazio] = document.getElementById("botaoDesafio"+i).innerText;
+	   	        	numerosEsperados[verificaIndiceVazio] = document.getElementById("botaoDesafio"+i).innerText;
 	   	        	
 	   	        		
 	   	        	botoesClicadosDesafio++;
@@ -140,7 +140,7 @@
 		   	var contValoresIguais = 0;
 		   	
 		   	for(i = 0;i < 20;i++){
-		   		if(numerosAuxiliar[i] == numerosDesafioED[i])
+		   		if(numerosEsperados[i] == numerosDesafioED[i])
 		   			contValoresIguais++;
 		   	}
 		   	

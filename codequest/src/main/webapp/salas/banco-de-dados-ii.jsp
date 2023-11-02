@@ -49,7 +49,7 @@
     <jsp:include page="/principal/perguntas-and-respostas.jsp"></jsp:include>
     
     <script type="text/javascript">
-    	persistirProgresso("Banco");
+    	persistirProgresso();
     	
     	document.querySelector('#tituloSala').textContent = 'Sala de Banco de Dados II';
     	document.body.style.background = 'linear-gradient(to bottom, #393939, #262626)';

@@ -9,14 +9,12 @@
 	let listaIdPortas = [];
 	let posicoesPortas;
 	let respostaCerta = '';
-	let nomeDaSala = '';
 	
 	function atualizarDadosHidden(){
 		document.getElementById("idPortas").value = listaIdPortas.join(",");
 	}
 	
-   function persistirProgresso(nome){
-	   nomeDaSala = nome;
+   function persistirProgresso(){
 	   perguntasSala = perguntasSala.split(",");
 	   console.log(perguntasSala);
 	   
@@ -86,14 +84,18 @@
 		       		mostrarModal('modalDesafio');
 
 				});
-			}else{
-				
+			}else{	
 				var perguntaEscolhida = parseInt(Math.random() * perguntasSala.length);
 				var pergunta = removerElemento(perguntaEscolhida, perguntasSala);
 				console.log(respostasSala)
 				var respostas = removerElemento(perguntaEscolhida, respostasSala);
 				console.log(respostasSala)
+				
+				//respostas = respostas.replace(/-/g, ',');
+				console.log("antes do split:"+respostas)
 				respostas = respostas.split(",");
+				for(i = 0; i < respostas.length; i++)
+			   		respostas[i] = respostas[i].replaceAll('-', ',');
 				
 				respostaCerta = respostas[0];
 				atribuirRandomizarCampos(pergunta, respostas);

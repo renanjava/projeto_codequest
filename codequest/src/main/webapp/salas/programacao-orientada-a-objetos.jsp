@@ -35,7 +35,6 @@
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-  cursor: pointer; /* Adicione este estilo para indicar a seleção */
 }
 
 .slot {
@@ -78,7 +77,8 @@
 	<jsp:include page="/principal/popup-and-instrucoes.jsp"></jsp:include>
 
     <div id="modalDesafio" class="modalDesafio">
-        <div class="modal-content-desafio">
+        <div class="modal-content-desafio" style="height: 80%;">
+        <button id="botaoGirar">Sortear</button>
             <div class="roleta">
 		        <div class="slot" id="slot1"></div>
 		        <div class="slot" id="slot2"></div>
@@ -86,7 +86,6 @@
 		        <div class="slot" id="slot4"></div>
 		        <div class="slot" id="slot5"></div>
 		    </div>
-		    	<button id="botaoGirar">Sortear</button>
         </div>
     </div>
     
@@ -96,7 +95,7 @@
     <jsp:include page="/principal/perguntas-and-respostas.jsp"></jsp:include>
     
     <script type="text/javascript">
-    	persistirProgresso("Java");
+    	persistirProgresso();
     	document.querySelector('#campoHeadInstrucoes').textContent = 
 			'Instruções: Você deve ligar os slots '+
 			'na definição do seu respectivo conceito';

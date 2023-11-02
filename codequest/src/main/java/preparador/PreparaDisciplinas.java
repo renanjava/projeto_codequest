@@ -3,7 +3,7 @@ package preparador;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.concurrent.atomic.AtomicInteger;
+import java.util.stream.Collectors;
 
 public class PreparaDisciplinas {
 	
@@ -13,19 +13,24 @@ public class PreparaDisciplinas {
 	
 	public PreparaDisciplinas() {
 		
-		GeraQuestoes pr = new GeraQuestoes();	
+		GeraQuestoes gq = new GeraQuestoes();	
 				
 		for(int i = 0; i < 4; i++) {
 			perguntasDisciplinas.add(new ArrayList<>());
 			respostasDisciplinas.add(new ArrayList<>());
 			final int indice = i;
-			pr.getPerguntas(indice)
-			.stream()
-			.forEach((e) -> perguntasDisciplinas.get(indice).add(e));
+			gq.getPerguntas(indice)
+            .forEach((e) -> perguntasDisciplinas.get(indice)
+            .add(e.replaceAll(",", "-")));
 			
-			pr.getRespostas(indice)
-			.stream()
-			.forEach((e) -> respostasDisciplinas.get(indice).add(e));
+			gq.getRespostas(indice)
+	        .forEach((e) -> {
+	            List<String> updatedList = Arrays.stream(e)
+	                    .map(u -> u.replaceAll(",", "-"))
+	                    .collect(Collectors.toList());
+	            respostasDisciplinas.get(indice).add(updatedList.toArray(new String[0]));
+	        });
+
 		}
 	}
 	
