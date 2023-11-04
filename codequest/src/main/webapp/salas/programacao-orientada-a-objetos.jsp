@@ -39,7 +39,7 @@
 
 .slot, .slot-button {
     width: 200px;
-    margin-bottom: 10px; /* Reduza o espaçamento entre as divs .slot para 10 pixels ou o valor desejado */
+    margin-bottom: 10px;
     background-color: white;
     font-size: 20px;
     margin: 5px;
@@ -50,19 +50,19 @@
 }
 
 
-#botaoGirar {
+.botaoGirar {
   margin-top: 20px;
   padding: 10px 20px;
-  font-size: 18px;
-  background-color: #3498db;
+  font-size: 23px;
+  background-color: lightblue;
   border: none;
-  color: #fff;
+  color: black;
   border-radius: 5px;
   cursor: pointer;
-  transition: background-color 0.5s ease-in-out;
+  transition: background-color 0.3s ease-in-out;
 }
 
-#botaoGirar:hover {
+#botaoGirar:hover, .slot-button:hover {
   background-color: #2980b9;
 }
 </style>
@@ -76,20 +76,22 @@
 
 	<div id="modalDesafio" class="modalDesafio">
 	    <div class="modal-content-desafio" style="height: 80%;">
-	        <button id="botaoGirar">Sortear</button>
+	        <div style="display: flex; justify-content: center; margin-top: 20px;">
+  				<button class="botaoGirar" id="botaoGirar">Sortear</button>
+			</div>
 	        <div class="roleta" style="display: flex; flex-direction: row; align-items: center;">
-	            <div class="slot" id="slot1"></div>
-	            <div class="slot" id="slot2"></div>
-	            <div class="slot" id="slot3"></div>
-	            <div class="slot" id="slot4"></div>
-	            <div class="slot" id="slot5"></div>
+	            <div class="slot" id="slotConceito1"></div>
+	            <div class="slot" id="slotConceito2"></div>
+	            <div class="slot" id="slotConceito3"></div>
+	            <div class="slot" id="slotConceito4"></div>
+	            <div class="slot" id="slotConceito5"></div>
 	        </div>
-	        <div class="roleta" style="display: flex; flex-direction: row; align-items: center;">
-	            <button class="slot-button" id="slotLigar1">Semelhante ao conceito de Header onde só tem a assinatura do método</button>
-	            <button class="slot-button" id="slotLigar2">Métodos com o mesmo nome, porém, com comportamentos diferentes</button>
-	            <button class="slot-button" id="slotLigar3">Nos possibilita tratar falhas inesperadas em tempo de execução</button>
-	            <button class="slot-button" id="slotLigar4">Diminui a repetição de código por declarar os mesmo atributos</button>
-	            <button class="slot-button" id="slotLigar5">São constantes que podemos associar comportamentos com métodos</button>
+	        <div class="roleta" style="display: flex; flex-direction: row; align-items: center; justify-content: space-between; margin-top: 180px;">
+	            <button class="slot-button" id="slotBotao1"></button>
+	            <button class="slot-button" id="slotBotao2"></button>
+	            <button class="slot-button" id="slotBotao3"></button>
+	            <button class="slot-button" id="slotBotao4"></button>
+	            <button class="slot-button" id="slotBotao5"></button>
 	        </div>
 	    </div>
 	</div>
@@ -113,23 +115,45 @@
     </script>
     
     <script>
-    inserirTextoAleatorio();
+    let conceitosSlots = ["Interface", 
+		  "Enum", 
+		  "Exception", 
+		  "Herança", 
+		  "Polimorfismo"];
+
+	let botoesSlots = ["Semelhante ao conceito de Header onde só tem a assinatura do método", 
+		   "Métodos com o mesmo nome, porém, com comportamentos diferentes", 
+		   "Nos possibilita tratar falhas inesperadas em tempo de execução", 
+		   "Diminui a repetição de código por declarar os mesmo atributos",
+		   "São constantes que podemos associar comportamentos com métodos"];
+	
+    inserirTextoAleatorio(conceitosSlots,botoesSlots);
     var slots = Array.from(document.querySelectorAll('.slot'));
     
-    function inserirTextoAleatorio(){
-    	var textosSlots = ["Interface", "Enum", "Exception", "Herança", "Polimorfismo"];
-    	var posicoesAleatorias = [];
-    	while(posicoesAleatorias.length < 5){
+    function inserirTextoAleatorio(conceitosSlots,botoesSlots){
+    	
+    	var posicoesAleatoriasConceitos = [];
+    	var posicoesAleatoriasBotoes = [];
+
+    	while(posicoesAleatoriasConceitos.length < 5){
 			var posicao = 0;
 			
-			do
-				posicao = parseInt(Math.random() * 5)+1;
-			while(posicoesAleatorias.includes(posicao));
-			posicoesAleatorias.push(posicao);
+			posicoesAleatoriasConceitos.push(encontrarPosicao(posicao,posicoesAleatoriasConceitos));
+			posicoesAleatoriasBotoes.push(encontrarPosicao(posicao,posicoesAleatoriasBotoes));
 		}
-    	for(i = 1; i < posicoesAleatorias.length+1; i++){
-    		document.querySelector('#slot'+i).textContent = textosSlots[posicoesAleatorias[i-1]-1];
+    	for(i = 1; i < 6; i++){
+    		document.querySelector('#slotConceito'+i).textContent = conceitosSlots[posicoesAleatoriasConceitos[i-1]-1];
+    		document.querySelector('#slotBotao'+i).textContent = botoesSlots[posicoesAleatoriasBotoes[i-1]-1];
     	}
+    }
+    
+    function encontrarPosicao(posicao,posicoes){
+    	
+    	do
+			posicao = parseInt(Math.random() * 5)+1;
+		while(posicoes.includes(posicao));
+    	
+		return posicao;
     }
 
     function atualizarSlotsDisponiveis() {
