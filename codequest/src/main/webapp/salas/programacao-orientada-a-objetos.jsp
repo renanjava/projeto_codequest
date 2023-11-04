@@ -18,7 +18,7 @@
     height: 100%;
     overflow: auto;
     background-color: rgba(0, 0, 0, 0.4);
-    padding-top: 60px;
+    padding-top: 30px;
 }
 
 .modal-content-desafio {
@@ -37,7 +37,7 @@
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
 }
 
-.slot, .slot-button {
+.slot-conceito, .slot-botao {
     width: 200px;
     margin-bottom: 10px;
     background-color: white;
@@ -51,18 +51,19 @@
 
 
 .botaoGirar {
+  font-family: 'Courier, monospace';
   margin-top: 20px;
   padding: 10px 20px;
   font-size: 23px;
-  background-color: lightblue;
-  border: none;
-  color: black;
+  background-color: black;
+  border: 2px solid red;
+  color: white;
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s ease-in-out;
 }
 
-#botaoGirar:hover, .slot-button:hover {
+#botaoGirar:hover, .slot-botao:hover {
   background-color: #2980b9;
 }
 </style>
@@ -77,21 +78,21 @@
 	<div id="modalDesafio" class="modalDesafio">
 	    <div class="modal-content-desafio" style="height: 80%;">
 	        <div style="display: flex; justify-content: center; margin-top: 20px;">
-  				<button class="botaoGirar" id="botaoGirar">Sortear</button>
+  				<button class="botaoGirar" id="botaoGirar">SORTEAR</button>
 			</div>
 	        <div class="roleta" style="display: flex; flex-direction: row; align-items: center;">
-	            <div class="slot" id="slotConceito1"></div>
-	            <div class="slot" id="slotConceito2"></div>
-	            <div class="slot" id="slotConceito3"></div>
-	            <div class="slot" id="slotConceito4"></div>
-	            <div class="slot" id="slotConceito5"></div>
+	            <div class="slot-conceito" id="slotConceito1"></div>
+	            <div class="slot-conceito" id="slotConceito2"></div>
+	            <div class="slot-conceito" id="slotConceito3"></div>
+	            <div class="slot-conceito" id="slotConceito4"></div>
+	            <div class="slot-conceito" id="slotConceito5"></div>
 	        </div>
 	        <div class="roleta" style="display: flex; flex-direction: row; align-items: center; justify-content: space-between; margin-top: 180px;">
-	            <button class="slot-button" id="slotBotao1"></button>
-	            <button class="slot-button" id="slotBotao2"></button>
-	            <button class="slot-button" id="slotBotao3"></button>
-	            <button class="slot-button" id="slotBotao4"></button>
-	            <button class="slot-button" id="slotBotao5"></button>
+	            <button class="slot-botao" id="slotBotao1"></button>
+	            <button class="slot-botao" id="slotBotao2"></button>
+	            <button class="slot-botao" id="slotBotao3"></button>
+	            <button class="slot-botao" id="slotBotao4"></button>
+	            <button class="slot-botao" id="slotBotao5"></button>
 	        </div>
 	    </div>
 	</div>
@@ -116,19 +117,25 @@
     
     <script>
     let conceitosSlots = ["Interface", 
-		  "Enum", 
-		  "Exception", 
-		  "Herança", 
-		  "Polimorfismo"];
+						  "Enum", 
+						  "Exception", 
+						  "Herança", 
+						  "Polimorfismo"];
+    
+    let corConceitosSlots = ["teal",
+    						 "rebeccapurple",
+    						 "khaki",
+    						 "yellow",
+    						 "tomato"];
 
 	let botoesSlots = ["Semelhante ao conceito de Header onde só tem a assinatura do método", 
-		   "Métodos com o mesmo nome, porém, com comportamentos diferentes", 
-		   "Nos possibilita tratar falhas inesperadas em tempo de execução", 
-		   "Diminui a repetição de código por declarar os mesmo atributos",
-		   "São constantes que podemos associar comportamentos com métodos"];
-	
+					   "Métodos com o mesmo nome, porém, com comportamentos diferentes", 
+					   "Nos possibilita tratar falhas inesperadas em tempo de execução", 
+					   "Diminui a repetição de código por declarar os mesmo atributos",
+					   "São constantes que podemos associar comportamentos com métodos"];
+
+    var slots = Array.from(document.querySelectorAll('.slot-conceito'));
     inserirTextoAleatorio(conceitosSlots,botoesSlots);
-    var slots = Array.from(document.querySelectorAll('.slot'));
     
     function inserirTextoAleatorio(conceitosSlots,botoesSlots){
     	
@@ -144,6 +151,7 @@
     	for(i = 1; i < 6; i++){
     		document.querySelector('#slotConceito'+i).textContent = conceitosSlots[posicoesAleatoriasConceitos[i-1]-1];
     		document.querySelector('#slotBotao'+i).textContent = botoesSlots[posicoesAleatoriasBotoes[i-1]-1];
+    		document.getElementById('slotConceito'+i).style.backgroundColor = corConceitosSlots[posicoesAleatoriasConceitos[i-1]-1];
     	}
     }
     
@@ -171,23 +179,30 @@
         var rodadaAtual = 0;
 
         var intervaloGiro = setInterval(function() {
-            slots.forEach(function(slot) {
-                slot.style.backgroundColor = '#fff';
-            });
-            
-
+            var slotEscolhido;
             if (slots.length >= 1) {
             	if(slots.length == 1){
-            		var slotEscolhido = slots[0];
+            		slotEscolhido = slots[0];
             		rodadaAtual = rodadasTotais-1;
             	}else{
             		somRoleta.play();
                     var indiceSlotAleatorio = Math.floor(Math.random() * slots.length);
-                    var slotEscolhido = slots[indiceSlotAleatorio];
+                    slotEscolhido = slots[indiceSlotAleatorio];  
             	}
-                slotEscolhido.style.backgroundColor = '#3498db';
             }else	
             	botaoGirar = botaoOnOff(botaoGirar, false);
+            
+            cor = slotEscolhido.style.backgroundColor
+            console.log(cor);
+            for(i = 1; i <= 5; i++){
+            	console.log(cor);
+            	botao = document.getElementById('slotBotao'+i);
+            	botao.addEventListener('click', (function(cor, botao) {
+                    return function() {
+                        botao.style.backgroundColor = cor;
+                    };
+                })(cor, botao));
+            }
             
 
             rodadaAtual++;
@@ -209,20 +224,18 @@
         	if(ligar == false){
         		botao.disabled = true;
             	botao.style.pointerEvents = 'none';
-            	botao.style.background = 'gray';
         	}else{
         		botao.disabled = false;
             	botao.style.pointerEvents = 'auto';
-            	botao.style.background = '#3498db';
         	}
         	
         	return botao;
         }
         
         function imprimeResultadoAtualizaList(slotEscolhido, ligarBotao){
-        	alert("Resultado: " + slotEscolhido.textContent); 
-        	slotEscolhido.style.backgroundColor = 'gray';
-            slotEscolhido.classList.add('disabled');
+        	conceito = slotEscolhido.textContent;
+        	alert("Selecione a definição do conceito: \"" +conceito+ "\""); 
+        	slotEscolhido.classList.add('disabled');
             atualizarSlotsDisponiveis();
             botaoGirar = botaoOnOff(botaoGirar, ligarBotao);
         }
