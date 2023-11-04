@@ -6,8 +6,8 @@
 <jsp:include page="/principal/title-and-favicon.jsp"></jsp:include>
 <jsp:include page="/principal/portas-head.jsp"></jsp:include>
 <jsp:include page="/principal/conquista-and-html_body.jsp"></jsp:include>
-<style type="text/css">
 
+<style type="text/css">
 .modalDesafio {
     display: none;
     position: fixed;
@@ -31,22 +31,24 @@
 
 .roleta {
   display: flex;
+  justify-content: space-between;
   background-color: black;
-  padding: 20px;
-  border-radius: 10px;
+  padding: 30px;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
 }
 
-.slot {
-  font-size: 24px;
-  background-color: white;
-  margin: 10px;
-  padding: 10px 20px;
-  border: 1px solid black;
-  border-radius: 5px;
-  text-align: center;
-  transition: background-color 0.3s ease-in-out;
+.slot, .slot-button {
+    width: 200px;
+    margin-bottom: 10px; /* Reduza o espaçamento entre as divs .slot para 10 pixels ou o valor desejado */
+    background-color: white;
+    font-size: 20px;
+    margin: 5px;
+    padding: 10px 20px;
+    border: 1px solid black;
+    text-align: center;
+    border-radius: 10px;
 }
+
 
 #botaoGirar {
   margin-top: 20px;
@@ -57,15 +59,11 @@
   color: #fff;
   border-radius: 5px;
   cursor: pointer;
-  transition: background-color 0.3s ease-in-out;
+  transition: background-color 0.5s ease-in-out;
 }
 
 #botaoGirar:hover {
   background-color: #2980b9;
-}
-
-.slot:hover {
-  background-color: #f1f1f1;
 }
 </style>
 </head>
@@ -76,18 +74,28 @@
 	<jsp:include page="/principal/portas-body-script.jsp"></jsp:include>
 	<jsp:include page="/principal/popup-and-instrucoes.jsp"></jsp:include>
 
-    <div id="modalDesafio" class="modalDesafio">
-        <div class="modal-content-desafio" style="height: 80%;">
-        <button id="botaoGirar">Sortear</button>
-            <div class="roleta">
-		        <div class="slot" id="slot1"></div>
-		        <div class="slot" id="slot2"></div>
-		        <div class="slot" id="slot3"></div>
-		        <div class="slot" id="slot4"></div>
-		        <div class="slot" id="slot5"></div>
-		    </div>
-        </div>
-    </div>
+	<div id="modalDesafio" class="modalDesafio">
+	    <div class="modal-content-desafio" style="height: 80%;">
+	        <button id="botaoGirar">Sortear</button>
+	        <div class="roleta" style="display: flex; flex-direction: row; align-items: center;">
+	            <div class="slot" id="slot1"></div>
+	            <div class="slot" id="slot2"></div>
+	            <div class="slot" id="slot3"></div>
+	            <div class="slot" id="slot4"></div>
+	            <div class="slot" id="slot5"></div>
+	        </div>
+	        <div class="roleta" style="display: flex; flex-direction: row; align-items: center;">
+	            <button class="slot-button" id="slotLigar1">Semelhante ao conceito de Header onde só tem a assinatura do método</button>
+	            <button class="slot-button" id="slotLigar2">Métodos com o mesmo nome, porém, com comportamentos diferentes</button>
+	            <button class="slot-button" id="slotLigar3">Nos possibilita tratar falhas inesperadas em tempo de execução</button>
+	            <button class="slot-button" id="slotLigar4">Diminui a repetição de código por declarar os mesmo atributos</button>
+	            <button class="slot-button" id="slotLigar5">São constantes que podemos associar comportamentos com métodos</button>
+	        </div>
+	    </div>
+	</div>
+
+
+
     
     <audio id="somRoleta" src="<%= request.getContextPath() %>/audio/roulette_sound.mp3"></audio>
     
@@ -149,7 +157,7 @@
             		var slotEscolhido = slots[0];
             		rodadaAtual = rodadasTotais-1;
             	}else{
-            		somRoleta.play(); // Toca o som da roleta
+            		somRoleta.play();
                     var indiceSlotAleatorio = Math.floor(Math.random() * slots.length);
                     var slotEscolhido = slots[indiceSlotAleatorio];
             	}

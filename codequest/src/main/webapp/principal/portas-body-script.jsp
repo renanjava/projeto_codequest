@@ -90,9 +90,7 @@
 				console.log(respostasSala)
 				var respostas = removerElemento(perguntaEscolhida, respostasSala);
 				console.log(respostasSala)
-				
-				//respostas = respostas.replace(/-/g, ',');
-				console.log("antes do split:"+respostas)
+
 				respostas = respostas.split(",");
 				for(i = 0; i < respostas.length; i++)
 			   		respostas[i] = respostas[i].replaceAll('-', ',');
