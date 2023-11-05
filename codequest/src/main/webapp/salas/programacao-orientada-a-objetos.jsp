@@ -37,7 +37,7 @@
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
 }
 
-.slot-conceito, .slot-botao {
+.slot-conceito{
     width: 200px;
     margin-bottom: 10px;
     background-color: white;
@@ -47,8 +47,23 @@
     border: 1px solid black;
     text-align: center;
     border-radius: 10px;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease-in-out;
 }
 
+.slot-botao{
+	width: 200px;
+    margin-bottom: 10px;
+    background-color: black;
+    font-size: 20px;
+    margin: 5px;
+    padding: 10px 20px;
+    border: 1px solid white;
+    text-align: center;
+    border-radius: 10px;
+    color: white;
+    transition: all 0.3s ease-in-out;
+}
 
 .botaoGirar {
   font-family: 'Courier, monospace';
@@ -56,15 +71,26 @@
   padding: 10px 20px;
   font-size: 23px;
   background-color: black;
-  border: 2px solid red;
-  color: white;
   border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s ease-in-out;
+  color: white;
+  border: 1px solid white;
+  transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
 }
 
-#botaoGirar:hover, .slot-botao:hover {
-  background-color: #2980b9;
+#botaoGirar:hover{
+	background-color: white;
+    color: black;
+}
+
+.slot-botao:hover {
+  background-color: gray;
+  border: 1px solid #2980b9;
+}
+
+.slot-escolhido {
+    transform: scale(1.05);
+    transition: transform 0.3s ease-in-out;
+    color: white;
 }
 </style>
 </head>
@@ -87,12 +113,12 @@
 	            <div class="slot-conceito" id="slotConceito4"></div>
 	            <div class="slot-conceito" id="slotConceito5"></div>
 	        </div>
-	        <div class="roleta" style="display: flex; flex-direction: row; align-items: center; justify-content: space-between; margin-top: 180px;">
-	            <button class="slot-botao" id="slotBotao1"></button>
-	            <button class="slot-botao" id="slotBotao2"></button>
-	            <button class="slot-botao" id="slotBotao3"></button>
-	            <button class="slot-botao" id="slotBotao4"></button>
-	            <button class="slot-botao" id="slotBotao5"></button>
+	        <div class="roleta" style="display: flex; flex-direction: row; align-items: center; justify-content: space-between; margin-top: 120px;">
+	            <button class="slot-botao" id="slotBotao1" disabled></button>
+	            <button class="slot-botao" id="slotBotao2" disabled></button>
+	            <button class="slot-botao" id="slotBotao3" disabled></button>
+	            <button class="slot-botao" id="slotBotao4" disabled></button>
+	            <button class="slot-botao" id="slotBotao5" disabled></button>
 	        </div>
 	    </div>
 	</div>
@@ -124,9 +150,9 @@
     
     let corConceitosSlots = ["teal",
     						 "rebeccapurple",
-    						 "khaki",
-    						 "yellow",
-    						 "tomato"];
+    						 "#FFD700",
+    						 "#0B7000",
+    						 "#FF4500"];
 
 	let botoesSlots = ["Semelhante ao conceito de Header onde só tem a assinatura do método", 
 					   "Métodos com o mesmo nome, porém, com comportamentos diferentes", 
@@ -179,7 +205,7 @@
         var rodadaAtual = 0;
 
         var intervaloGiro = setInterval(function() {
-            var slotEscolhido;
+        	var slotEscolhido;
             if (slots.length >= 1) {
             	if(slots.length == 1){
             		slotEscolhido = slots[0];
@@ -192,19 +218,6 @@
             }else	
             	botaoGirar = botaoOnOff(botaoGirar, false);
             
-            cor = slotEscolhido.style.backgroundColor
-            console.log(cor);
-            for(i = 1; i <= 5; i++){
-            	console.log(cor);
-            	botao = document.getElementById('slotBotao'+i);
-            	botao.addEventListener('click', (function(cor, botao) {
-                    return function() {
-                        botao.style.backgroundColor = cor;
-                    };
-                })(cor, botao));
-            }
-            
-
             rodadaAtual++;
 
             if (rodadaAtual === rodadasTotais) {
@@ -217,7 +230,9 @@
                 		imprimeResultadoAtualizaList(slotEscolhido, true);
                 }else
                 	setTimeout(function() {imprimeResultadoAtualizaList(slotEscolhido, false)}, 500);
-            }
+            }else
+            	setTimeout(function() {slotEscolhido.classList.remove('slot-escolhido')}, 200);
+            
         }, 200);
         
         function botaoOnOff(botao, ligar){
@@ -236,11 +251,47 @@
         	conceito = slotEscolhido.textContent;
         	alert("Selecione a definição do conceito: \"" +conceito+ "\""); 
         	slotEscolhido.classList.add('disabled');
+        	botaoGirar.disabled = true;
             atualizarSlotsDisponiveis();
-            botaoGirar = botaoOnOff(botaoGirar, ligarBotao);
+            slotEscolhido.classList.add('slot-escolhido');
+            cor = slotEscolhido.style.backgroundColor;
+            
+            for(i = 1; i <= 5; i++){
+            	botao = document.getElementById('slotBotao'+i);
+            	estilo = window.getComputedStyle(botao);
+            	corBotao = estilo.backgroundColor;
+            	
+            	if(corBotao == 'rgb(0, 0, 0)')
+            		botao.disabled = false;
+            	
+            	console.log("cor: "+corBotao);
+            	
+            	if(corBotao != 'rgb(0, 0, 0)')
+            		continue;
+            	
+            	botao.addEventListener('click', (function(cor, botao, ligarBotao, slotEscolhido) {
+                    return function() {
+                        botao.style.backgroundColor = cor;
+                        botao.style.color = 'black';
+                        botao.disabled = true;
+                        botaoGirar = botaoOnOff(botaoGirar, ligarBotao);
+                        slotEscolhido.classList.remove('slot-escolhido');
+                        
+                        cont = 0;
+                        do{
+                        	cont++;
+                        	botaoBloquear = document.getElementById('slotBotao'+cont);
+                        	if(botaoBloquear.disabled == true)
+                        		continue;
+                        	else
+                        		botaoBloquear.disabled = true;
+                        }while(cont != 5);
+                    };
+                })(cor, botao, ligarBotao, slotEscolhido));
+            }
         }
     }
-
+	
     var botaoGirar = document.getElementById('botaoGirar');
     botaoGirar.addEventListener('click', girarRoleta);
     </script>
