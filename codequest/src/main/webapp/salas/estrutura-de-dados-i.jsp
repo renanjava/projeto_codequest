@@ -111,32 +111,11 @@
 			    atualizarCampo(cont).then(function() {
 			        iniciarContagem(cont-1);
 			    });
-			}else{
-				fecharModal('modalDesafio');
-				mostrarModal('resultadoDesafio');
-				document.getElementById('campoResultadoDesafio').style.color = 'black';
-	    	            	
-		  	if(verificaVetores()){
-		  		document.querySelector('#campoResultadoDesafio').textContent = 'Certo!';
-		      	document.getElementById('campoResultadoDesafio').style.backgroundColor = 'green';
-		      	
-		      	contadorDesafios++;
-		      	atualizarProgresso(contadorDesafios, 4, 'Desafios');
-		      	document.getElementById("desafiosResolvidos").value = contadorDesafios;
-
-		      	barraProgressoConquistasSolucionador(true);
-		  	}else{
-		  		document.querySelector('#campoResultadoDesafio').textContent = 'Errado!';
-		  		document.getElementById('campoResultadoDesafio').style.backgroundColor = 'red';
-		  	}
-		  	
-		  	setTimeout(function() {
-		  		fecharModal('resultadoDesafio');
-			}, 2000);
-			}
+			}else
+				mostrarResultadoDesafio(verificaRespostaEstrutura());
 	    }
 		
-		function verificaVetores(){
+		function verificaRespostaEstrutura(){
 		   	var contValoresIguais = 0;
 		   	
 		   	for(i = 0;i < 20;i++){

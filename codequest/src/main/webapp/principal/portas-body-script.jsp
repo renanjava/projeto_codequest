@@ -267,4 +267,28 @@
 			document.querySelector('#campoResposta' + i).textContent = respostas[posicoesAleatorias[i - 1] - 1];
 		}
 	}
+	
+	function mostrarResultadoDesafio(resultado){
+		fecharModal('modalDesafio');
+		mostrarModal('resultadoDesafio');
+		document.getElementById('campoResultadoDesafio').style.color = 'black';
+		
+		if(resultado){
+	  		document.querySelector('#campoResultadoDesafio').textContent = 'Certo!';
+	      	document.getElementById('campoResultadoDesafio').style.backgroundColor = 'green';
+	      	
+	      	contadorDesafios++;
+	      	atualizarProgresso(contadorDesafios, 4, 'Desafios');
+	      	document.getElementById("desafiosResolvidos").value = contadorDesafios;
+
+	      	barraProgressoConquistasSolucionador(true);
+	  	}else{
+	  		document.querySelector('#campoResultadoDesafio').textContent = 'Errado!';
+	  		document.getElementById('campoResultadoDesafio').style.backgroundColor = 'red';
+	  	}
+		
+		setTimeout(function() {
+	  		fecharModal('resultadoDesafio');
+		}, 2000);
+	}
 </script>

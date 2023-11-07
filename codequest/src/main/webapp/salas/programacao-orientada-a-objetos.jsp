@@ -148,11 +148,11 @@
 						  "Herança", 
 						  "Polimorfismo"];
     
-    let corConceitosSlots = ["teal",
-    						 "rebeccapurple",
-    						 "#FFD700",
-    						 "#0B7000",
-    						 "#FF4500"];
+    let corConceitosSlots = ["#008080",
+    						 "#663399",
+    						 "#ffd700",
+    						 "#0b7000",
+    						 "#ff4500"];
 
 	let botoesSlots = ["Semelhante ao conceito de Header onde só tem a assinatura do método", 
 					   "Métodos com o mesmo nome, porém, com comportamentos diferentes", 
@@ -226,12 +226,11 @@
                 if(slots.length > 1){
                 	if(slots.length != 1)
                 		setTimeout(function() {imprimeResultadoAtualizaList(slotEscolhido, true)}, 500);
-                	else
-                		imprimeResultadoAtualizaList(slotEscolhido, true);
                 }else
                 	setTimeout(function() {imprimeResultadoAtualizaList(slotEscolhido, false)}, 500);
             }else
             	setTimeout(function() {slotEscolhido.classList.remove('slot-escolhido')}, 200);
+            	
             
         }, 200);
         
@@ -246,6 +245,41 @@
         	
         	return botao;
         }
+        
+        function verificaRespostaJava() {
+            for (i = 1; i < 6; i++) {
+                conteudoBotaoAlterado = document.querySelector('#slotBotao'+i).textContent;
+                botaoAlterado = document.getElementById('slotBotao' + i);
+                estilo = window.getComputedStyle(botaoAlterado);
+                corBotao = rgbParaHex(estilo.backgroundColor);
+                
+                for(w = 0; w < 5; w++){
+                	console.log("alterado: "+conteudoBotaoAlterado+" buscado: "+botoesSlots[w])
+                	if(conteudoBotaoAlterado == botoesSlots[w]){
+                		if (corBotao != corConceitosSlots[w]) {
+                            console.log("Cor esperada: " + corConceitosSlots[w] + " Cor real: " + corBotao);
+                            return false;
+                        }
+                	}	
+                }
+                
+                
+            }
+            return true;
+        }
+
+        
+        function rgbParaHex(rgb) {
+            var valoresRgb = rgb.match(/^rgb\((\d+),\s*(\d+),\s*(\d+)\)$/);
+            
+            var hex = "#" + 
+                ("0" + parseInt(valoresRgb[1], 10).toString(16)).slice(-2) +
+                ("0" + parseInt(valoresRgb[2], 10).toString(16)).slice(-2) +
+                ("0" + parseInt(valoresRgb[3], 10).toString(16)).slice(-2);
+            
+            return hex;
+        }
+
         
         function imprimeResultadoAtualizaList(slotEscolhido, ligarBotao){
         	conceito = slotEscolhido.textContent;
@@ -286,12 +320,15 @@
                         	else
                         		botaoBloquear.disabled = true;
                         }while(cont != 5);
+                        
+                        if(ligarBotao == false)
+                        	mostrarResultadoDesafio(verificaRespostaJava());
                     };
                 })(cor, botao, ligarBotao, slotEscolhido));
             }
         }
     }
-	
+    
     var botaoGirar = document.getElementById('botaoGirar');
     botaoGirar.addEventListener('click', girarRoleta);
     </script>
